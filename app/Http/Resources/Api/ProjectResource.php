@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Resources\Api;
+
+use App\Models\Project;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/** @mixin Project */
+class ProjectResource extends JsonResource
+{
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'city' => $this->city,
+            'price_from' => $this->price_from,
+            'description' => $this->description,
+        ];
+    }
+}
