@@ -11,8 +11,8 @@ use App\Http\Controllers\Api\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function (): void {
-    Route::post('/auth/register', [AuthController::class, 'register'])->name('api.v1.auth.register');
-    Route::post('/auth/login', [AuthController::class, 'login'])->name('api.v1.auth.login');
+    Route::post('/auth/register', [AuthController::class, 'register'])->middleware('throttle:10,1')->name('api.v1.auth.register');
+    Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1')->name('api.v1.auth.login');
 
     Route::get('/properties', [PropertyController::class, 'index'])->name('api.v1.properties.index');
     Route::get('/properties/{slug}', [PropertyController::class, 'show'])->name('api.v1.properties.show');

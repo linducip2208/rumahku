@@ -14,7 +14,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto px-4 lg:px-6 py-8">
-    <a href="{{ url('/jasa') }}" class="text-sm text-primary hover:underline">&larr; Kembali ke direktori jasa</a>
+    <a href="{{ route('services.index') }}" class="text-sm text-primary hover:underline">&larr; Kembali ke direktori jasa</a>
 
     <div class="kt-card p-6 mt-3">
         <span class="text-[11px] font-semibold uppercase tracking-wide text-primary">{{ ucfirst($service->category) }}</span>

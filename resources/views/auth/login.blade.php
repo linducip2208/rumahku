@@ -13,10 +13,16 @@
             <div>
                 <label for="email" class="text-sm font-semibold">Email</label>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" placeholder="nama@email.com" class="kt-input mt-1 w-full" />
+                @error('email')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="password" class="text-sm font-semibold">Kata Sandi</label>
                 <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="••••••••" class="kt-input mt-1 w-full" />
+                @error('password')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <label class="flex items-center gap-2 text-sm text-muted-foreground">
                 <input type="checkbox" name="remember" value="1" @checked(old('remember')) class="kt-checkbox" />

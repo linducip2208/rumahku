@@ -109,6 +109,14 @@ Live: `php artisan serve --port=8001` → `/` `/properti` `/admin`. Preview Metr
 - [x] Fix test login Filament: via Livewire::test (POST biasa 405 by design — form Livewire)
 - [x] Test: 69 passed / 221 assertions; pint passed; HTTP: features 20, ideas kpr total 1000
 
+## 2026-11-16 — Eksekusi otonom (audit + fix + docs)
+- [x] Audit paralel 3 agen (backend, frontend, security): 30 temuan; repo bukan kosong
+- [x] Fix: web order ownership 403 + anti-duplikat; login/register throttle:10,1; role keluar Fillable; API show published-only; bid transaction+lock; markAsPaid idempotent; payment_reference unique; index hot tables; filter web in:; KPR validasi rapi
+- [x] Fix FE: nav/footer links, named routes, hapus label Stub, @error per-field, tombol hapus compare, error pages 403/419/500/503, SEO meta 6 halaman
+- [x] Docs: audit/ (7), execution/ (6), roadmap/ (3), INSTALLATION/DEPLOYMENT/BACKUP/TESTING/USER/ADMIN/SECURITY
+- [x] Ideas metadata: priority P0-P4 + 10 kolom dampak (P0 8000, P1 8000, P2 4000)
+- [x] Test: 81 passed / 253 assertions; pint passed
+
 Update file ini setiap selesai satu blok.
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)

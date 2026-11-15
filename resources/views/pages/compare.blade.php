@@ -5,11 +5,11 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
     <h1 class="text-2xl font-extrabold">Bandingkan Properti</h1>
-    <p class="text-sm text-muted-foreground mt-1">Maksimal 4 properti. Tambahkan via <code>?ids=1,2,3</code> atau tombol bandingkan.</p>
+    <p class="text-sm text-muted-foreground mt-1">Maksimal 4 properti. Buka halaman detail properti lalu tekan tombol &ldquo;Bandingkan +&rdquo; untuk menambahkannya ke daftar ini.</p>
 
     @if ($properties->isEmpty())
         <div class="rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground mt-6">
-            Belum ada properti untuk dibandingkan. Buka halaman daftar properti dan catat ID-nya, lalu akses <code>/bandingkan?ids=1,2</code>.
+            Belum ada properti untuk dibandingkan. Jelajahi <a href="{{ route('properties.index') }}" class="text-primary hover:underline font-semibold">daftar properti</a>, buka halamannya, lalu tekan tombol &ldquo;Bandingkan +&rdquo;.
         </div>
     @else
         <div class="mt-6 overflow-x-auto">
@@ -18,9 +18,14 @@
                     <tr class="border-b border-border text-left">
                         <th class="p-4 w-40 text-muted-foreground font-medium">Aspek</th>
                         @foreach ($properties as $property)
-                            <th class="p-4 min-w-52">
+                            <th class="p-4 min-w-52 align-top">
                                 <a href="{{ route('properties.show', $property->slug) }}" class="font-bold hover:underline line-clamp-2">{{ $property->title }}</a>
                                 <div class="text-xs text-muted-foreground font-normal">{{ $property->city }}</div>
+                                <form method="POST" action="{{ route('compare.remove', $property) }}" class="mt-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-xs font-semibold text-destructive hover:underline">Hapus dari perbandingan</button>
+                                </form>
                             </th>
                         @endforeach
                     </tr>

@@ -2,7 +2,7 @@
 @props(['recommendations'])
 
 @if (isset($recommendations) && $recommendations->isNotEmpty())
-    <h2 class="font-bold mt-8 mb-3">Rekomendasi Untukmu (AI Stub)</h2>
+    <h2 class="font-bold mt-8 mb-3">Rekomendasi Untukmu</h2>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         @foreach ($recommendations as $rec)
             <a href="{{ route('properties.show', $rec->slug) }}" class="kt-card p-4 hover:shadow-md transition">

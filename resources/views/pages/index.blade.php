@@ -2,6 +2,14 @@
 
 @section('title', 'Daftar Properti — Rumah123')
 
+@push('styles')
+    <x-seo-meta
+        title="Daftar Properti — Rumah123"
+        description="Jelajahi daftar properti dijual & disewa di Indonesia: rumah, apartemen, ruko, tanah, dan villa pilihan."
+        :canonical="route('properties.index')"
+    />
+@endpush
+
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
     <h1 class="text-2xl font-extrabold">Daftar Properti</h1>

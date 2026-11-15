@@ -77,6 +77,7 @@ class PropertyController extends Controller
         $property = Property::query()
             ->with(['images', 'user.agentProfile'])
             ->where('slug', $slug)
+            ->whereNotNull('published_at')
             ->firstOrFail();
 
         $property->increment('views');

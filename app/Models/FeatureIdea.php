@@ -21,6 +21,16 @@ class FeatureIdea extends Model
         'impact',
         'effort',
         'status',
+        'submodule',
+        'priority',
+        'business_value',
+        'complexity',
+        'dependencies',
+        'security_notes',
+        'db_impact',
+        'api_impact',
+        'ui_impact',
+        'testing_notes',
     ];
 
     protected function casts(): array

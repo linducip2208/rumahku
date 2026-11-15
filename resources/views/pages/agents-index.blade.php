@@ -2,6 +2,14 @@
 
 @section('title', 'Daftar Agen Terverifikasi — Rumah123')
 
+@push('styles')
+    <x-seo-meta
+        title="Daftar Agen Terverifikasi — Rumah123"
+        description="Temukan agen properti terverifikasi di Indonesia untuk membantu jual, sewa, dan cari hunian impianmu."
+        :canonical="route('agents.index')"
+    />
+@endpush
+
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
     <h1 class="text-2xl font-extrabold">Agen Terverifikasi</h1>

@@ -23,8 +23,9 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => $validated['password'],
-            'role' => 'user',
         ]);
+
+        $user->forceFill(['role' => 'user'])->save();
 
         $token = $user->createToken('flutter', ['properties:read', 'leads:write'])->plainTextToken;
 

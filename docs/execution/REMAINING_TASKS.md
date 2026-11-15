@@ -1,0 +1,1 @@
+# REMAINING_TASKS — P1: x-property-card, captcha, hapus/wire Message, i18n, skeleton, Spatie putusan, abilities enforce, token expiry. BLOCKED (user): payment keys, mail prod, deploy, cron, store build.

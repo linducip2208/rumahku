@@ -2,7 +2,7 @@
 @props(['property'])
 
 <div class="kt-card p-5 mt-4">
-    <h2 class="font-bold mb-1">Diskusi Properti (Stub)</h2>
+    <h2 class="font-bold mb-1">Diskusi Properti</h2>
     <p class="text-xs text-muted-foreground mb-3">Pesan publik terkait listing ini. Kirim pesan belum diimplementasikan.</p>
     @php
         $chatMessages = isset($messages) ? $messages : \App\Models\Message::query()->with('sender')->where('property_id', $property->id)->latest()->take(10)->get();

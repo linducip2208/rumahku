@@ -33,7 +33,12 @@ class SeedIdeas extends Command
                 FeatureIdea::query()->upsert(
                     $chunk,
                     ['feature_key', 'slot'],
-                    ['title', 'description', 'audience', 'need', 'mechanism', 'impact', 'effort']
+                    [
+                        'title', 'description', 'audience', 'need', 'mechanism',
+                        'impact', 'effort', 'submodule', 'priority', 'business_value',
+                        'complexity', 'dependencies', 'security_notes', 'db_impact',
+                        'api_impact', 'ui_impact', 'testing_notes',
+                    ]
                 );
             }
 

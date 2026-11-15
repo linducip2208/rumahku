@@ -10,7 +10,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8 grid gap-6 lg:grid-cols-[1fr_340px]">
     <div>
-        <a href="{{ url('/lelang') }}" class="text-sm text-primary hover:underline">&larr; Kembali ke daftar lelang</a>
+        <a href="{{ route('auctions.index') }}" class="text-sm text-primary hover:underline">&larr; Kembali ke daftar lelang</a>
         <h1 class="text-2xl font-extrabold mt-2">{{ $auction->property?->title ?? 'Properti #' . $auction->property_id }}</h1>
         <div class="text-sm text-muted-foreground mt-1">
             {{ $auction->property?->address ?? '' }}
@@ -73,7 +73,7 @@
             @endif
 
             @auth
-                <form method="POST" action="{{ url('/lelang/' . $auction->id . '/bid') }}" class="mt-3 grid gap-2">
+                <form method="POST" action="{{ route('auctions.bids.store', $auction) }}" class="mt-3 grid gap-2">
                     @csrf
                     <label class="text-xs">Nominal tawaran (Rp)
                         <input type="number" name="amount" required min="{{ $minimum }}" step="1000" value="{{ old('amount', $minimum) }}" class="kt-input mt-1" />

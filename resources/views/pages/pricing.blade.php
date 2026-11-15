@@ -2,6 +2,14 @@
 
 @section('title', 'Harga Paket Iklan — Rumah123')
 
+@push('styles')
+    <x-seo-meta
+        title="Harga Paket Iklan — Rumah123"
+        description="Pilih paket iklan properti Rumah123: tingkatkan visibilitas listing dengan slot Unggulan dan badge khusus."
+        :canonical="route('pricing')"
+    />
+@endpush
+
 @section('content')
 <section class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
     <div class="text-center max-w-2xl mx-auto">

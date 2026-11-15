@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class Auction extends Model
@@ -61,35 +62,44 @@ class Auction extends Model
      */
     public function placeBid(User $user, int $amount): AuctionBid
     {
-        if ($this->status !== 'open') {
-            throw ValidationException::withMessages([
-                'amount' => 'Lelang ini tidak sedang dibuka.',
+        $bid = DB::transaction(function () use ($user, $amount): AuctionBid {
+            /** @var Auction $auction */
+            $auction = self::query()->whereKey($this->getKey())->lockForUpdate()->firstOrFail();
+
+            if ($auction->status !== 'open') {
+                throw ValidationException::withMessages([
+                    'amount' => 'Lelang ini tidak sedang dibuka.',
+                ]);
+            }
+
+            $now = now();
+
+            if (($auction->starts_at && $now->lt($auction->starts_at))
+                || ($auction->ends_at && $now->gt($auction->ends_at))) {
+                throw ValidationException::withMessages([
+                    'amount' => 'Lelang ini sedang tidak berlangsung.',
+                ]);
+            }
+
+            $minimum = $auction->minimumNextBid();
+
+            if ($amount < $minimum) {
+                throw ValidationException::withMessages([
+                    'amount' => 'Tawaran minimal Rp '.number_format($minimum, 0, ',', '.').'.',
+                ]);
+            }
+
+            $created = $auction->bids()->create([
+                'user_id' => $user->id,
+                'amount' => $amount,
             ]);
-        }
 
-        $now = now();
+            $auction->update(['current_price' => $amount]);
 
-        if (($this->starts_at && $now->lt($this->starts_at))
-            || ($this->ends_at && $now->gt($this->ends_at))) {
-            throw ValidationException::withMessages([
-                'amount' => 'Lelang ini sedang tidak berlangsung.',
-            ]);
-        }
+            return $created;
+        });
 
-        $minimum = $this->minimumNextBid();
-
-        if ($amount < $minimum) {
-            throw ValidationException::withMessages([
-                'amount' => 'Tawaran minimal Rp '.number_format($minimum, 0, ',', '.').'.',
-            ]);
-        }
-
-        $bid = $this->bids()->create([
-            'user_id' => $user->id,
-            'amount' => $amount,
-        ]);
-
-        $this->update(['current_price' => $amount]);
+        $this->refresh();
 
         return $bid;
     }

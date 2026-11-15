@@ -81,6 +81,15 @@ class IdeaBank
         'ukur dengan metrik konversi sebelum dan sesudah rilis selama 30 hari.',
     ];
 
+    /** @var array<string, string> prioritas default per fitur (P0 kritis → P4 eksperimental) */
+    public const PRIORITIES = [
+        'home' => 'P0', 'listing' => 'P0', 'search' => 'P0', 'detail' => 'P0',
+        'leads' => 'P0', 'auth' => 'P0', 'agent-dashboard' => 'P1', 'favorites' => 'P2',
+        'compare' => 'P2', 'auctions' => 'P1', 'projects' => 'P1', 'services' => 'P2',
+        'articles' => 'P1', 'kpr' => 'P1', 'packages' => 'P1', 'payments' => 'P0',
+        'notifications' => 'P1', 'sitemap' => 'P2', 'admin' => 'P0', 'api' => 'P1',
+    ];
+
     /**
      * @return array<int, array<string, mixed>> tepat 1.000 baris untuk $featureKey
      */
@@ -107,6 +116,16 @@ class IdeaBank
                         'impact' => ['low', 'medium', 'high'][($h >> 3) % 3],
                         'effort' => ['low', 'medium', 'high'][($h >> 5) % 3],
                         'status' => 'backlog',
+                        'submodule' => mb_strtolower($mechanism),
+                        'priority' => self::PRIORITIES[$featureKey] ?? 'P2',
+                        'business_value' => ['konversi leads', 'retensi pengguna', 'efisiensi operasional', 'kepercayaan pasar'][($h >> 7) % 4],
+                        'complexity' => ['S', 'M', 'L'][($h >> 9) % 3],
+                        'dependencies' => 'modul '.$label.', data listing published',
+                        'security_notes' => 'hormati canAccessPanel/ownership; tanpa expose data user lain',
+                        'db_impact' => 'baca tabel terkait + index bila filter baru',
+                        'api_impact' => 'tambah field/endpoint v1 bila dikonsumsi Flutter',
+                        'ui_impact' => 'komponen Blade + state loading/empty',
+                        'testing_notes' => 'feature test 200 + assert DB',
                     ];
                 }
             }

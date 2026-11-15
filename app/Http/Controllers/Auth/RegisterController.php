@@ -31,8 +31,9 @@ class RegisterController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => 'agent',
         ]);
+
+        $user->forceFill(['role' => 'agent'])->save();
 
         AgentProfile::query()->create([
             'user_id' => $user->id,

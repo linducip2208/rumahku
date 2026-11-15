@@ -17,6 +17,9 @@
             <div>
                 <label for="title" class="text-sm font-semibold">Judul</label>
                 <input id="title" type="text" name="title" value="{{ old('title', $property->title) }}" required maxlength="255" placeholder="Cth: Rumah Dijual di Kebayoran Baru, Jakarta Selatan" class="kt-input mt-1 w-full" />
+                @error('title')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="grid gap-4 sm:grid-cols-3">
@@ -27,6 +30,9 @@
                             <option value="{{ $val }}" @selected(old('type', $property->type) === $val)>{{ $label }}</option>
                         @endforeach
                     </select>
+                    @error('type')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="listing_status" class="text-sm font-semibold">Status Listing</label>
@@ -34,10 +40,16 @@
                         <option value="jual" @selected(old('listing_status', $property->listing_status) === 'jual')>Dijual</option>
                         <option value="sewa" @selected(old('listing_status', $property->listing_status) === 'sewa')>Disewa</option>
                     </select>
+                    @error('listing_status')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="price" class="text-sm font-semibold">Harga (Rp)</label>
                     <input id="price" type="number" name="price" value="{{ old('price', $property->price) }}" required min="0" step="1" placeholder="1500000000" class="kt-input mt-1 w-full" />
+                    @error('price')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -45,10 +57,16 @@
                 <div>
                     <label for="bedrooms" class="text-sm font-semibold">Kamar Tidur</label>
                     <input id="bedrooms" type="number" name="bedrooms" value="{{ old('bedrooms', $property->bedrooms) }}" min="0" class="kt-input mt-1 w-full" />
+                    @error('bedrooms')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="bathrooms" class="text-sm font-semibold">Kamar Mandi</label>
                     <input id="bathrooms" type="number" name="bathrooms" value="{{ old('bathrooms', $property->bathrooms) }}" min="0" class="kt-input mt-1 w-full" />
+                    @error('bathrooms')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -56,14 +74,23 @@
                 <div>
                     <label for="land_area" class="text-sm font-semibold">Luas Tanah (m²)</label>
                     <input id="land_area" type="number" name="land_area" value="{{ old('land_area', $property->land_area) }}" min="0" step="0.01" class="kt-input mt-1 w-full" />
+                    @error('land_area')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="building_area" class="text-sm font-semibold">Luas Bangunan (m²)</label>
                     <input id="building_area" type="number" name="building_area" value="{{ old('building_area', $property->building_area) }}" min="0" step="0.01" class="kt-input mt-1 w-full" />
+                    @error('building_area')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="certificate" class="text-sm font-semibold">Sertifikat</label>
                     <input id="certificate" type="text" name="certificate" value="{{ old('certificate', $property->certificate) }}" maxlength="50" placeholder="SHM / HGB / AJB" class="kt-input mt-1 w-full" />
+                    @error('certificate')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -71,25 +98,40 @@
                 <div>
                     <label for="province" class="text-sm font-semibold">Provinsi</label>
                     <input id="province" type="text" name="province" value="{{ old('province', $property->province) }}" required maxlength="255" class="kt-input mt-1 w-full" />
+                    @error('province')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="city" class="text-sm font-semibold">Kota</label>
                     <input id="city" type="text" name="city" value="{{ old('city', $property->city) }}" required maxlength="255" class="kt-input mt-1 w-full" />
+                    @error('city')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label for="district" class="text-sm font-semibold">Kecamatan</label>
                     <input id="district" type="text" name="district" value="{{ old('district', $property->district) }}" maxlength="255" class="kt-input mt-1 w-full" />
+                    @error('district')
+                        <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
             <div>
                 <label for="address" class="text-sm font-semibold">Alamat Lengkap</label>
                 <textarea id="address" name="address" required rows="2" class="kt-input mt-1 w-full">{{ old('address', $property->address) }}</textarea>
+                @error('address')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
                 <label for="description" class="text-sm font-semibold">Deskripsi</label>
                 <textarea id="description" name="description" required rows="5" class="kt-input mt-1 w-full">{{ old('description', $property->description) }}</textarea>
+                @error('description')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             @if ($property->exists && $property->images->isNotEmpty())
@@ -113,6 +155,12 @@
             <div>
                 <label for="images" class="text-sm font-semibold">{{ $property->exists ? 'Tambah Foto' : 'Foto Properti' }}</label>
                 <input id="images" type="file" name="images[]" multiple accept="image/jpeg,image/png,image/webp" class="kt-input mt-1 w-full" />
+                @error('images')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
+                @error('images.*')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
                 <p class="text-xs text-muted-foreground mt-1">Bisa pilih banyak file. Format JPG/PNG/WebP, maks 5MB per file.</p>
             </div>
 

@@ -70,6 +70,10 @@ class PropertyOrder extends Model
 
     public function markAsPaid(): bool
     {
+        if ($this->status === 'paid') {
+            return true;
+        }
+
         $package = Package::query()->where('slug', $this->package_slug)->first();
 
         $durationDays = $package?->duration_days ?? 30;

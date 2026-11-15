@@ -13,14 +13,23 @@
             <div>
                 <label for="name" class="text-sm font-semibold">Nama Lengkap</label>
                 <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Nama Anda" class="kt-input mt-1 w-full" />
+                @error('name')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="email" class="text-sm font-semibold">Email</label>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="nama@email.com" class="kt-input mt-1 w-full" />
+                @error('email')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="password" class="text-sm font-semibold">Kata Sandi</label>
                 <input id="password" type="password" name="password" required autocomplete="new-password" placeholder="Minimal 8 karakter" class="kt-input mt-1 w-full" />
+                @error('password')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="password_confirmation" class="text-sm font-semibold">Konfirmasi Kata Sandi</label>

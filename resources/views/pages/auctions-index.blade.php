@@ -2,6 +2,14 @@
 
 @section('title', 'Lelang Properti — Rumah123')
 
+@push('styles')
+    <x-seo-meta
+        title="Lelang Properti — Rumah123"
+        description="Ikuti lelang properti terbuka di Indonesia: rumah, apartemen, dan ruko dengan harga transparan."
+        :canonical="route('auctions.index')"
+    />
+@endpush
+
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
     <h1 class="text-2xl font-extrabold">Lelang Properti</h1>

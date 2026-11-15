@@ -2,12 +2,20 @@
 
 @section('title', 'Direktori Jasa — Rumah123')
 
+@push('styles')
+    <x-seo-meta
+        title="Direktori Jasa — Rumah123"
+        description="Direktori jasa properti: notaris, inspeksi, KPR, dan renovasi terpercaya di kotamu."
+        :canonical="route('services.index')"
+    />
+@endpush
+
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
-    <h1 class="text-2xl font-extrabold">Direktori Jasa (Stub)</h1>
+    <h1 class="text-2xl font-extrabold">Direktori Jasa</h1>
     <p class="text-sm text-muted-foreground mt-1">Notaris, inspeksi, KPR, dan renovasi di kotamu.</p>
 
-    <form method="GET" action="{{ url('/jasa') }}" class="mt-4 kt-card p-4 grid gap-2 md:grid-cols-[200px_1fr_auto]">
+    <form method="GET" action="{{ route('services.index') }}" class="mt-4 kt-card p-4 grid gap-2 md:grid-cols-[200px_1fr_auto]">
         <select name="category" class="kt-select">
             <option value="">Semua Kategori</option>
             @foreach (['notaris' => 'Notaris', 'inspeksi' => 'Inspeksi', 'kpr' => 'KPR', 'renovasi' => 'Renovasi'] as $val => $label)

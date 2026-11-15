@@ -1,0 +1,1 @@
+# COMPLETED_TASKS — 2026-11-14→16: 24 fase (scaffold→audit→fix). Bukti: 81 tests/253 assertions hijau, route web ~40 + api ~17, DB 12 tabel bisnis terisi, Meilisearch 50 docs, build Vite+Flutter web OK, push origin/main 626f051.

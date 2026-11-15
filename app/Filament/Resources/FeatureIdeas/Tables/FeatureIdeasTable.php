@@ -21,6 +21,7 @@ class FeatureIdeasTable
             ->columns([
                 TextColumn::make('slot')->sortable()->label('#'),
                 TextColumn::make('title')->searchable()->limit(60)->label('Ide'),
+                TextColumn::make('priority')->badge()->sortable()->label('Prioritas'),
                 TextColumn::make('mechanism')->badge()->label('Mekanisme'),
                 TextColumn::make('impact')->badge()->sortable()->label('Dampak'),
                 TextColumn::make('effort')->badge()->sortable()->label('Usaha'),
@@ -30,6 +31,9 @@ class FeatureIdeasTable
                 SelectFilter::make('feature_key')
                     ->label('Fitur')
                     ->options($features),
+                SelectFilter::make('priority')
+                    ->label('Prioritas')
+                    ->options(['P0' => 'P0', 'P1' => 'P1', 'P2' => 'P2', 'P3' => 'P3', 'P4' => 'P4']),
                 SelectFilter::make('mechanism')
                     ->label('Mekanisme')
                     ->options(array_combine(IdeaBank::MECHANISMS, IdeaBank::MECHANISMS)),

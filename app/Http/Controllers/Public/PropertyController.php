@@ -12,6 +12,10 @@ use Laravel\Scout\Builder as ScoutBuilder;
 
 class PropertyController extends Controller
 {
+    private const ALLOWED_TYPES = ['rumah', 'apartemen', 'tanah', 'ruko', 'villa'];
+
+    private const ALLOWED_STATUSES = ['jual', 'sewa'];
+
     public function index(Request $request): View
     {
         if ($request->filled('q')) {
@@ -40,11 +44,19 @@ class PropertyController extends Controller
         }
 
         if ($request->filled('type')) {
-            $query->where('type', $request->string('type')->toString());
+            $type = strtolower($request->string('type')->toString());
+
+            if (in_array($type, self::ALLOWED_TYPES, true)) {
+                $query->where('type', $type);
+            }
         }
 
         if ($request->filled('status')) {
-            $query->where('listing_status', $this->normalizeStatus($request->string('status')->toString()));
+            $status = $this->normalizeStatus($request->string('status')->toString());
+
+            if (in_array($status, self::ALLOWED_STATUSES, true)) {
+                $query->where('listing_status', $status);
+            }
         }
 
         if ($request->filled('city')) {
@@ -134,11 +146,19 @@ class PropertyController extends Controller
         $query->with('images')->whereNotNull('published_at');
 
         if ($request->filled('type')) {
-            $query->where('type', $request->string('type')->toString());
+            $type = strtolower($request->string('type')->toString());
+
+            if (in_array($type, self::ALLOWED_TYPES, true)) {
+                $query->where('type', $type);
+            }
         }
 
         if ($request->filled('status')) {
-            $query->where('listing_status', $this->normalizeStatus($request->string('status')->toString()));
+            $status = $this->normalizeStatus($request->string('status')->toString());
+
+            if (in_array($status, self::ALLOWED_STATUSES, true)) {
+                $query->where('listing_status', $status);
+            }
         }
 
         if ($request->filled('city')) {

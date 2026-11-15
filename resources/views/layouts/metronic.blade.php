@@ -47,7 +47,7 @@
             <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
                 <a href="{{ route('properties.index', ['status' => 'jual']) }}" class="px-3 py-2 rounded-lg hover:bg-muted">Jual</a>
                 <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2 rounded-lg hover:bg-muted">Sewa</a>
-                <a href="{{ route('properties.index', ['type' => 'apartemen']) }}" class="px-3 py-2 rounded-lg hover:bg-muted">Proyek Baru</a>
+                <a href="{{ route('projects.index') }}" class="px-3 py-2 rounded-lg hover:bg-muted">Proyek Baru</a>
                 <a href="{{ route('agents.index') }}" class="px-3 py-2 rounded-lg hover:bg-muted">Agen</a>
                 <a href="{{ route('articles.index') }}" class="px-3 py-2 rounded-lg hover:bg-muted">Artikel</a>
             </nav>
@@ -103,14 +103,14 @@
             <ul class="space-y-1 text-muted-foreground">
                 <li><a class="hover:underline" href="{{ route('properties.index', ['status' => 'jual']) }}">Jual</a></li>
                 <li><a class="hover:underline" href="{{ route('properties.index', ['status' => 'sewa']) }}">Sewa</a></li>
-                <li><a class="hover:underline" href="{{ route('properties.index') }}">Proyek Baru</a></li>
+                <li><a class="hover:underline" href="{{ route('projects.index') }}">Proyek Baru</a></li>
             </ul>
         </div>
         <div>
             <div class="font-semibold mb-2">Perusahaan</div>
             <ul class="space-y-1 text-muted-foreground">
-                <li><a class="hover:underline" href="{{ route('properties.index') }}">Agen</a></li>
-                <li><a class="hover:underline" href="{{ route('properties.index') }}">Artikel</a></li>
+                <li><a class="hover:underline" href="{{ route('agents.index') }}">Agen</a></li>
+                <li><a class="hover:underline" href="{{ route('articles.index') }}">Artikel</a></li>
                 <li><a class="hover:underline" href="{{ route('home') }}">Tentang Kami</a></li>
             </ul>
         </div>

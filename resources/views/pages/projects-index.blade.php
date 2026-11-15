@@ -2,6 +2,14 @@
 
 @section('title', 'Proyek Properti Baru — Rumah123')
 
+@push('styles')
+    <x-seo-meta
+        title="Proyek Properti Baru — Rumah123"
+        description="Temukan proyek properti baru dari developer terpercaya di Indonesia: rumah, apartemen, dan kawasan komersial."
+        :canonical="route('projects.index')"
+    />
+@endpush
+
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
     <h1 class="text-2xl font-extrabold">Proyek Properti Baru</h1>

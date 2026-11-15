@@ -1,0 +1,1 @@
+# SECURITY — ringkasan operasional; detail di docs/audit/SECURITY_AUDIT.md. Prinsip: throttle auth 10/mnt + leads/KPR 30/mnt; ownership check semua mutasi; upload image-only; callback signature terverifikasi; tanpa captcha (next); token tanpa expiry (next); secrets di admin settings, bukan kode.

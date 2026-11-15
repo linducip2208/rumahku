@@ -1,0 +1,1 @@
+# IMPLEMENTATION_PLAN — urutan: P0 audit-trail (activity log) → CSV import/export properti → captcha → token expiry → x-property-card → i18n → skeleton → Spatie putusan → Message putusan. Estimasi per item 1-2 agen paralel + test. Kriteria selesai: test hijau serial + HTTP 200 + docs ledger update.

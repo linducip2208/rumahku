@@ -34,9 +34,9 @@ Route::get('/properti/{slug}', [PropertyController::class, 'show'])->name('prope
 Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:30,1')->name('leads.store');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'login'])->middleware(['guest', 'throttle:10,1']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->middleware('guest')->name('register');
-Route::post('/register', [RegisterController::class, 'register'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'register'])->middleware(['guest', 'throttle:10,1']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::middleware('auth')->group(function () {

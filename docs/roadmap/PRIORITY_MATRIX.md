@@ -1,0 +1,1 @@
+# PRIORITY_MATRIX — dari feature_ideas GROUP BY priority: P0 8.000 (home,listing,search,detail,leads,auth,payments,admin), P1 8.000 (agen,lelang,proyek,artikel,kpr,paket,notif,api), P2 4.000 (favorit,compare,jasa,sitemap). P3/P4: kosong by-design (eksperimental butuh persetujuan user).

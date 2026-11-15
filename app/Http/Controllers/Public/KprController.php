@@ -13,23 +13,23 @@ class KprController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'property_id' => ['required', 'integer', 'exists:properties,id'],
-        ]);
-
-        $property = Property::findOrFail($request->input('property_id'));
+        $property = $request->input('property_id') !== null
+            ? Property::query()->find($request->input('property_id'))
+            : null;
 
         $validated = $request->validate([
             'property_id' => ['required', 'integer', 'exists:properties,id'],
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:30'],
             'email' => ['nullable', 'email', 'max:255'],
-            'dp_amount' => ['required', 'integer', 'min:0', 'max:'.$property->price],
+            'dp_amount' => ['required', 'integer', 'min:0', 'max:'.($property?->price ?? 999999999999)],
             'tenor_months' => ['required', 'integer', Rule::in(KprApplication::TENORS)],
             'bank_preference' => ['nullable', 'string', Rule::in(KprApplication::BANKS)],
             'monthly_income' => ['nullable', 'integer', 'min:0'],
             'notes' => ['nullable', 'string', 'max:2000'],
         ]);
+
+        $property ??= Property::findOrFail($validated['property_id']);
 
         KprApplication::create([
             'user_id' => $request->user()?->id,
