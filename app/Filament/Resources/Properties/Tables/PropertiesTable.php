@@ -27,8 +27,26 @@ class PropertiesTable
                 TextColumn::make('city')->sortable()->toggleable(),
                 IconColumn::make('featured')->boolean()->label('Featured'),
                 TextColumn::make('published_at')->dateTime('d M Y')->sortable()->label('Published'),
+                TextColumn::make('sold_at')->dateTime('d M Y')->sortable()->label('Terjual'),
             ])
             ->filters([
+                SelectFilter::make('status_sold')
+                    ->label('Status Sold')
+                    ->options([
+                        'aktif' => 'Aktif',
+                        'terjual' => 'Terjual',
+                        'draft' => 'Draft',
+                    ])
+                    ->query(function ($query, array $data): void {
+                        $value = $data['value'] ?? null;
+
+                        match ($value) {
+                            'aktif' => $query->whereNotNull('published_at')->whereNull('sold_at'),
+                            'terjual' => $query->whereNotNull('sold_at'),
+                            'draft' => $query->whereNull('published_at'),
+                            default => null,
+                        };
+                    }),
                 SelectFilter::make('type')->options([
                     'rumah' => 'Rumah',
                     'apartemen' => 'Apartemen',
@@ -93,6 +111,47 @@ class PropertiesTable
                         })
                         ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
+                    BulkAction::make('mark_sold')
+                        ->label('Tandai Terjual')
+                        ->icon('heroicon-o-banknotes')
+                        ->requiresConfirmation()
+                        ->action(function (Collection $records): void {
+                            $count = 0;
+
+                            foreach ($records as $record) {
+                                if ($record->sold_at === null) {
+                                    $record->update(['sold_at' => now()]);
+                                    $count++;
+                                }
+                            }
+
+                            Notification::make()
+                                ->title("{$count} properti ditandai terjual.")
+                                ->success()
+                                ->send();
+                        })
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('cancel_sold')
+                        ->label('Batalkan Terjual')
+                        ->icon('heroicon-o-arrow-uturn-left')
+                        ->requiresConfirmation()
+                        ->color('warning')
+                        ->action(function (Collection $records): void {
+                            $count = 0;
+
+                            foreach ($records as $record) {
+                                if ($record->sold_at !== null) {
+                                    $record->update(['sold_at' => null]);
+                                    $count++;
+                                }
+                            }
+
+                            Notification::make()
+                                ->title("{$count} properti dibatalkan status terjualnya.")
+                                ->success()
+                                ->send();
+                        })
+                        ->deselectRecordsAfterCompletion(),
                 ]),
             ]);
     }

@@ -17,6 +17,7 @@ class HomeController extends Controller
         $featured = Property::query()
             ->with('images')
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->where('featured', true)
             ->latest()
             ->take(8)
@@ -24,6 +25,7 @@ class HomeController extends Controller
 
         $cities = Property::query()
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->selectRaw('city, COUNT(*) as total')
             ->groupBy('city')
             ->orderByDesc('total')
@@ -33,6 +35,7 @@ class HomeController extends Controller
         $latest = Property::query()
             ->with('images')
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->latest()
             ->take(8)
             ->get();
@@ -50,6 +53,7 @@ class HomeController extends Controller
 
         $typeCounts = Property::query()
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->selectRaw('type, COUNT(*) as total')
             ->groupBy('type')
             ->pluck('total', 'type');
@@ -73,6 +77,7 @@ class HomeController extends Controller
         foreach ($collectionDefs as $def) {
             $query = Property::query()
                 ->whereNotNull('published_at')
+                ->whereNull('sold_at')
                 ->where('type', $def['type']);
 
             if ($def['min_price'] !== null) {
@@ -94,7 +99,7 @@ class HomeController extends Controller
         $agents = User::query()
             ->whereHas('agentProfile', fn ($profile): mixed => $profile->whereNotNull('verified_at'))
             ->with('agentProfile')
-            ->withCount(['properties as published_properties_count' => fn ($query): mixed => $query->whereNotNull('published_at')])
+            ->withCount(['properties as published_properties_count' => fn ($query): mixed => $query->whereNotNull('published_at')->whereNull('sold_at')])
             ->take(6)
             ->get();
 

@@ -25,6 +25,28 @@
                 @enderror
             </div>
             <div>
+                <span class="text-sm font-semibold">Daftar sebagai</span>
+                <div class="grid grid-cols-2 gap-2 mt-1">
+                    <label class="kt-card p-3 flex items-start gap-2 cursor-pointer has-checked:border-primary">
+                        <input type="radio" name="role" value="owner" {{ old('role', 'agent') === 'owner' ? 'checked' : '' }} class="mt-1" />
+                        <span>
+                            <span class="block text-sm font-bold">Pemilik Properti</span>
+                            <span class="block text-xs text-muted-foreground">Jual/sewa properti sendiri</span>
+                        </span>
+                    </label>
+                    <label class="kt-card p-3 flex items-start gap-2 cursor-pointer has-checked:border-primary">
+                        <input type="radio" name="role" value="agent" {{ old('role', 'agent') === 'agent' ? 'checked' : '' }} class="mt-1" />
+                        <span>
+                            <span class="block text-sm font-bold">Agen Properti</span>
+                            <span class="block text-xs text-muted-foreground">Kelola listing klien</span>
+                        </span>
+                    </label>
+                </div>
+                @error('role')
+                    <p class="text-xs text-destructive mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
                 <label for="password" class="text-sm font-semibold">{{ __('site.auth.password') }}</label>
                 <input id="password" type="password" name="password" required autocomplete="new-password" placeholder="Minimal 8 karakter" class="kt-input mt-1 w-full" />
                 @error('password')

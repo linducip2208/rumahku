@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Package;
 use App\Models\Property;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -25,7 +26,7 @@ class FlushDemoDataTest extends TestCase
     public function test_flush_with_force_wipes_demo_but_keeps_packages(): void
     {
         Property::factory()->create(['published_at' => now()]);
-        \App\Models\Package::query()->updateOrCreate(
+        Package::query()->updateOrCreate(
             ['slug' => 'gratis'],
             ['name' => 'Gratis', 'price' => 0, 'duration_days' => 14, 'max_photos' => 3, 'featured_included' => false]
         );
@@ -33,6 +34,6 @@ class FlushDemoDataTest extends TestCase
         $this->artisan('demo:flush', ['--force' => true])->assertSuccessful();
 
         $this->assertSame(0, Property::query()->count());
-        $this->assertSame(1, \App\Models\Package::query()->where('slug', 'gratis')->count());
+        $this->assertSame(1, Package::query()->where('slug', 'gratis')->count());
     }
 }

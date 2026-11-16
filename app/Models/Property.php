@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concerns\LogsActivity;
 use Database\Factories\PropertyFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,6 +40,7 @@ class Property extends Model
         'verified_at',
         'views',
         'published_at',
+        'sold_at',
     ];
 
     /**
@@ -58,6 +60,7 @@ class Property extends Model
             'facilities' => 'array',
             'verified_at' => 'datetime',
             'published_at' => 'datetime',
+            'sold_at' => 'datetime',
             'views' => 'integer',
         ];
     }
@@ -104,6 +107,26 @@ class Property extends Model
 
     public function shouldBeSearchable(): bool
     {
-        return $this->published_at !== null;
+        return $this->published_at !== null && $this->sold_at === null;
+    }
+
+    /**
+     * Listing aktif: sudah publish dan belum terjual.
+     *
+     * @param  Builder<Property>  $query
+     * @return Builder<Property>
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereNotNull('published_at')->whereNull('sold_at');
+    }
+
+    /**
+     * @param  Builder<Property>  $query
+     * @return Builder<Property>
+     */
+    public function scopeSold($query)
+    {
+        return $query->whereNotNull('sold_at');
     }
 }

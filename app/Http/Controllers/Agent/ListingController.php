@@ -15,13 +15,18 @@ class ListingController extends Controller
 {
     public function index(Request $request): View
     {
+        $status = $request->string('status')->toString();
+
         $properties = Property::query()
             ->where('user_id', $request->user()->id)
+            ->when($status === 'aktif', fn ($query) => $query->whereNull('sold_at'))
+            ->when($status === 'terjual', fn ($query) => $query->whereNotNull('sold_at'))
             ->with('images')
             ->latest()
-            ->paginate(12);
+            ->paginate(12)
+            ->withQueryString();
 
-        return view('agent.listings.index', compact('properties'));
+        return view('agent.listings.index', compact('properties', 'status'));
     }
 
     public function create(): View
@@ -92,6 +97,32 @@ class ListingController extends Controller
         $listing->delete();
 
         return redirect()->route('agent.listings.index')->with('success', 'Listing berhasil dihapus.');
+    }
+
+    public function sold(Request $request, Property $listing): RedirectResponse
+    {
+        if ($listing->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
+        if ($listing->sold_at === null) {
+            $listing->update(['sold_at' => now()]);
+        }
+
+        return redirect()->route('agent.listings.index')->with('success', 'Listing ditandai terjual.');
+    }
+
+    public function relist(Request $request, Property $listing): RedirectResponse
+    {
+        if ($listing->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
+        if ($listing->sold_at !== null) {
+            $listing->update(['sold_at' => null]);
+        }
+
+        return redirect()->route('agent.listings.index')->with('success', 'Listing diaktifkan kembali.');
     }
 
     /**

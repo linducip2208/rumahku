@@ -278,10 +278,14 @@
                 @php
                     $grad = $gradients[$i % count($gradients)];
                     $link = $cat['empty'] ? route('properties.index') : route('properties.index', ['type' => $cat['type']]);
+                    $catImg = ! empty($cat['type']) && file_exists(public_path('landing/category-'.$cat['type'].'.jpg')) ? asset('landing/category-'.$cat['type'].'.jpg') : null;
                 @endphp
-                <a href="{{ $link }}" class="group flex items-center gap-2.5 rounded-xl bg-gradient-to-br {{ $grad }} p-3 text-white shadow-sm transition hover:shadow-md">
-                    <span class="grid size-9 shrink-0 place-items-center rounded-lg bg-white/20 text-base font-extrabold">{{ strtoupper(mb_substr($cat['name'], 0, 1)) }}</span>
-                    <span class="min-w-0">
+                <a href="{{ $link }}" class="group relative flex min-h-36 flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-br p-4 text-white shadow-sm transition hover:shadow-md sm:min-h-44 {{ $grad }}">
+                    @if ($catImg)
+                        <img src="{{ $catImg }}" alt="{{ $cat['name'] }}" loading="lazy" class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A4A]/85 via-[#0F2A4A]/25 to-transparent" aria-hidden="true"></div>
+                    @endif
+                    <span class="relative">
                         <span class="block truncate text-sm font-bold leading-tight">{{ $cat['name'] }}</span>
                         <span class="block text-[11px] text-white/85">{{ $cat['empty'] ? 'Segera hadir' : $cat['count'].' properti' }}</span>
                     </span>
@@ -396,9 +400,15 @@
                         $cityName = is_array($row) ? ($row['city'] ?? '') : ($row->city ?? '');
                         $total = is_array($row) ? ($row['total'] ?? null) : ($row->total ?? null);
                         $grad = $gradients[$i % count($gradients)];
+                        $citySlug = \Illuminate\Support\Str::slug((string) $cityName);
+                        $cityImg = $citySlug && file_exists(public_path('landing/city-'.$citySlug.'.jpg')) ? asset('landing/city-'.$citySlug.'.jpg') : null;
                     @endphp
-                    <a href="{{ route('properties.index', ['city' => $cityName]) }}" class="group flex items-center justify-between gap-2 rounded-xl bg-gradient-to-br p-4 text-white shadow-sm transition hover:shadow-md {{ $grad }}">
-                        <span class="flex items-center gap-2.5 min-w-0">
+                    <a href="{{ route('properties.index', ['city' => $cityName]) }}" class="group relative flex items-center justify-between gap-2 overflow-hidden rounded-xl bg-gradient-to-br p-4 text-white shadow-sm transition hover:shadow-md {{ $grad }}">
+                        @if ($cityImg)
+                            <img src="{{ $cityImg }}" alt="Properti di {{ $cityName }}" loading="lazy" class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()" />
+                            <div class="absolute inset-0 bg-gradient-to-r from-[#0F2A4A]/80 via-[#0F2A4A]/45 to-[#0F2A4A]/15" aria-hidden="true"></div>
+                        @endif
+                        <span class="relative flex items-center gap-2.5 min-w-0">
                             @php $logoSlug = \Illuminate\Support\Str::slug($cityName); @endphp
                             @if ($logoSlug && file_exists(public_path('landing/logos/city-'.$logoSlug.'.png')))
                                 <img src="{{ asset('landing/logos/city-'.$logoSlug.'.png') }}" alt="Lambang {{ $cityName }}" loading="lazy" class="size-10 shrink-0 rounded-full bg-white p-1 object-contain shadow" onerror="this.remove()" />
@@ -410,7 +420,7 @@
                                 <span class="block text-[11px] text-white/85">{{ $total ? $total.' properti' : 'Lihat properti' }}</span>
                             </span>
                         </span>
-                        <span aria-hidden="true" class="grid size-8 shrink-0 place-items-center rounded-full bg-white/20 transition group-hover:bg-white/30">→</span>
+                        <span aria-hidden="true" class="relative grid size-8 shrink-0 place-items-center rounded-full bg-white/20 transition group-hover:bg-white/30">→</span>
                     </a>
                 @endforeach
             </div>
@@ -498,7 +508,13 @@
     <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="grid gap-4 lg:grid-cols-2">
             <div class="relative overflow-hidden rounded-2xl bg-[#0F2A4A] p-6 text-white sm:p-8">
-                <div class="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full border-[20px] border-white/10" aria-hidden="true"></div>
+                @if (file_exists(public_path('landing/seller-cta.jpg')))
+                    <img src="{{ asset('landing/seller-cta.jpg') }}" alt="Pasarkan properti Anda" loading="lazy" class="absolute inset-0 size-full object-cover opacity-40" onerror="this.remove()" />
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#0F2A4A] via-[#0F2A4A]/85 to-[#0F2A4A]/30" aria-hidden="true"></div>
+                @else
+                    <div class="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full border-[20px] border-white/10" aria-hidden="true"></div>
+                @endif
+                <div class="relative">
                 <p class="text-xs font-bold uppercase tracking-widest text-cyan-300">Untuk Pemilik &amp; Agen</p>
                 <h2 class="mt-2 text-xl font-extrabold tracking-tight sm:text-2xl">Punya Properti? Ubah Jadi Cuan Lebih Cepat.</h2>
                 <p class="mt-2 text-sm text-white/80">Pasang listing dalam hitungan menit dan pantau peminat yang masuk.</p>
@@ -514,6 +530,7 @@
                         <a href="{{ route('register') }}" class="kt-btn bg-white font-semibold text-[#0F2A4A] hover:bg-white/90">Pasang Properti →</a>
                     @endauth
                     <a href="{{ route('contact') }}" class="kt-btn border border-white/30 font-semibold text-white hover:bg-white/10">Hubungi Kami</a>
+                </div>
                 </div>
             </div>
             <div id="kpr" class="scroll-mt-24 rounded-2xl border border-slate-200 bg-[#F6F8FB] p-6 sm:p-8" x-data="{ price: 800000000, dp: 20, tenor: 20, rate: 6.5,

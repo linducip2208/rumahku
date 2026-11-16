@@ -1,12 +1,12 @@
 @extends('layouts.metronic')
 
-@section('title', 'Dasbor Agen — Rumah123')
+@section('title', (auth()->user()?->role === 'owner' ? 'Dasbor Pemilik' : 'Dasbor Agen').' — Rumah123')
 
 @section('content')
 <section class="max-w-7xl mx-auto px-4 lg:px-6 py-10">
     <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
-            <h1 class="text-2xl lg:text-3xl font-extrabold tracking-tight">Dasbor Agen</h1>
+            <h1 class="text-2xl lg:text-3xl font-extrabold tracking-tight">{{ auth()->user()?->role === 'owner' ? 'Dasbor Pemilik' : 'Dasbor Agen' }}</h1>
             <p class="text-sm text-muted-foreground mt-1">Halo, {{ auth()->user()->name }}. Pantau performa listing Anda.</p>
         </div>
         <div class="flex items-center gap-2">

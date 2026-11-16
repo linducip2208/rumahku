@@ -1,0 +1,92 @@
+[
+    {
+        "file": "hero.jpg",
+        "positive": "photorealistic wide aerial view of a premium Indonesian residential estate at dusk, rows of modern houses with warm lights, swimming pools glinting, lush trees, dramatic sky, ultra wide composition, premium real estate heroinsasi, no people, no text, no watermark",
+        "property_id": 900,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-rumah.jpg",
+        "positive": "photorealistic photo of a beautiful modern tropical family house exterior in Indonesia, tidy garden, blue sky, real estate, no people, no text, no watermark",
+        "property_id": 901,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-apartemen.jpg",
+        "positive": "photorealistic photo of modern apartment towers with pool podium in Jakarta Indonesia, blue sky, premium residential, no people, no text, no watermark",
+        "property_id": 902,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-tanah.jpg",
+        "positive": "photorealistic aerial photo of green vacant land plots with road access on Indonesian outskirts, golden hour, investment real estate, no people, no text, no watermark",
+        "property_id": 903,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-villa.jpg",
+        "positive": "photorealistic photo of elegant Balinese tropical villa with private pool and frangipani trees, serene daylight, luxury real estate, no people, no text, no watermark",
+        "property_id": 904,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-ruko.jpg",
+        "positive": "photorealistic photo of modern Indonesian shophouse row, colorful facades, street level daylight, commercial real estate, no readable text, no watermark",
+        "property_id": 905,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-kost.jpg",
+        "positive": "photorealistic photo of neat modern boarding house building in Indonesia, rows of windows with small balconies, morning light, no people faces, no text, no watermark",
+        "property_id": 906,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-gedung.jpg",
+        "positive": "photorealistic low-angle photo of modern glass office tower in Jakarta business district, dramatic clouds, premium commercial, no people, no text, no watermark",
+        "property_id": 907,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "category-gudang.jpg",
+        "positive": "photorealistic photo of modern industrial warehouse exterior with loading docks in Indonesia, clean daylight, logistics real estate, no people, no text, no watermark",
+        "property_id": 908,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "seller-cta.jpg",
+        "positive": "photorealistic photo of a happy Indonesian family receiving house keys from a professional property agent in front of a beautiful new modern house, warm daylight, authentic, no text, no watermark",
+        "property_id": 909,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "city-jakarta-selatan.jpg",
+        "positive": "photorealistic photo of upscale South Jakarta residential area with modern houses and city skyline at golden hour, lush trees, no people, no text, no watermark",
+        "property_id": 910,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "city-depok.jpg",
+        "positive": "photorealistic photo of peaceful green suburban housing cluster in Depok Indonesia, neat houses with red tile roofs, morning light, no people, no text, no watermark",
+        "property_id": 911,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "city-bekasi.jpg",
+        "positive": "photorealistic photo of growing modern residential estate in Bekasi Indonesia, wide roads, blue sky, no people, no text, no watermark",
+        "property_id": 912,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "city-bandung.jpg",
+        "positive": "photorealistic photo of Bandung hillside neighborhood with charming houses and mountain backdrop at soft morning light, no people, no text, no watermark",
+        "property_id": 913,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "city-surabaya.jpg",
+        "positive": "photorealistic photo of modern Surabaya residential neighborhood with contemporary houses at daylight, no people, no text, no watermark",
+        "property_id": 914,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    }
+]

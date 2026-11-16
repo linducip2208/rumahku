@@ -12,6 +12,13 @@
         <a href="{{ route('agent.listings.create') }}" class="kt-btn kt-btn-primary"><i class="ki-filled ki-plus"></i> Tambah Listing</a>
     </div>
 
+    @php $tab = $status ?? request()->string('status')->toString(); @endphp
+    <div class="flex items-center gap-2 mt-6">
+        <a href="{{ route('agent.listings.index') }}" class="kt-btn kt-btn-sm {{ $tab === '' ? 'kt-btn-primary' : 'kt-btn-outline' }}">Semua</a>
+        <a href="{{ route('agent.listings.index', ['status' => 'aktif']) }}" class="kt-btn kt-btn-sm {{ $tab === 'aktif' ? 'kt-btn-primary' : 'kt-btn-outline' }}">Aktif</a>
+        <a href="{{ route('agent.listings.index', ['status' => 'terjual']) }}" class="kt-btn kt-btn-sm {{ $tab === 'terjual' ? 'kt-btn-primary' : 'kt-btn-outline' }}">Terjual</a>
+    </div>
+
     @if ($properties->isEmpty())
         <div class="rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground mt-6">
             Belum ada listing.
@@ -22,11 +29,14 @@
             @foreach ($properties as $property)
                 @php $cover = $property->images->first()?->path; @endphp
                 <div class="kt-card overflow-hidden">
-                    <div class="aspect-[4/3] bg-muted grid place-items-center text-muted-foreground text-sm">
+                    <div class="aspect-[4/3] bg-muted grid place-items-center text-muted-foreground text-sm relative">
                         @if ($cover)
                             <img src="{{ asset('storage/' . $cover) }}" alt="{{ $property->title }}" class="size-full object-cover" loading="lazy" />
                         @else
                             <i class="ki-filled ki-home text-3xl"></i>
+                        @endif
+                        @if ($property->sold_at)
+                            <span class="absolute top-2 left-2 rounded-full bg-neutral-900/85 text-white text-xs font-bold px-3 py-1">Terjual</span>
                         @endif
                     </div>
                     <div class="p-4">
@@ -35,8 +45,19 @@
                         <div class="text-xs text-muted-foreground mt-1">
                             {{ ucfirst($property->type) }} · {{ $property->listing_status === 'jual' ? 'Dijual' : 'Disewa' }} · {{ $property->city }} · {{ number_format($property->views) }} views
                         </div>
-                        <div class="flex items-center gap-2 mt-3">
+                        <div class="flex flex-wrap items-center gap-2 mt-3">
                             <a href="{{ route('agent.listings.edit', $property) }}" class="kt-btn kt-btn-outline kt-btn-sm">Ubah</a>
+                            @if ($property->sold_at)
+                                <form method="POST" action="{{ route('agent.listings.relist', $property) }}">
+                                    @csrf
+                                    <button type="submit" class="kt-btn kt-btn-outline kt-btn-sm">Aktifkan Lagi</button>
+                                </form>
+                            @else
+                                <form method="POST" action="{{ route('agent.listings.sold', $property) }}">
+                                    @csrf
+                                    <button type="submit" class="kt-btn kt-btn-outline kt-btn-sm">Tandai Terjual</button>
+                                </form>
+                            @endif
                             <form method="POST" action="{{ route('agent.listings.destroy', $property) }}" onsubmit="return confirm('Hapus listing ini?');">
                                 @csrf
                                 @method('DELETE')

@@ -26,6 +26,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'confirmed', Password::min(8)],
+            'role' => ['nullable', 'string', 'in:owner,agent'],
         ]);
 
         if (! $captcha->passes($request->input('cf-turnstile-response'), $request->ip())) {
@@ -38,13 +39,17 @@ class RegisterController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        $user->forceFill(['role' => 'agent'])->save();
+        $role = $validated['role'] ?? 'agent';
 
-        AgentProfile::query()->create([
-            'user_id' => $user->id,
-            'phone' => '',
-            'wa' => '',
-        ]);
+        $user->forceFill(['role' => $role])->save();
+
+        if ($role === 'agent') {
+            AgentProfile::query()->create([
+                'user_id' => $user->id,
+                'phone' => '',
+                'wa' => '',
+            ]);
+        }
 
         Auth::login($user);
         $request->session()->regenerate();

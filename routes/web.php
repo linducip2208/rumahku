@@ -54,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/listings/{listing}/edit', [AgentListingController::class, 'edit'])->name('agent.listings.edit');
     Route::put('/dashboard/listings/{listing}', [AgentListingController::class, 'update'])->name('agent.listings.update');
     Route::delete('/dashboard/listings/{listing}', [AgentListingController::class, 'destroy'])->name('agent.listings.destroy');
+    Route::post('/dashboard/listings/{listing}/sold', [AgentListingController::class, 'sold'])->name('agent.listings.sold');
+    Route::post('/dashboard/listings/{listing}/relist', [AgentListingController::class, 'relist'])->name('agent.listings.relist');
     Route::get('/dashboard/orders', [AgentOrderController::class, 'index'])->name('agent.orders.index');
 });
 

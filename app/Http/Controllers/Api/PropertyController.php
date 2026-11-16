@@ -25,7 +25,8 @@ class PropertyController extends Controller
 
         $query = Property::query()
             ->with(['images', 'user.agentProfile'])
-            ->whereNotNull('published_at');
+            ->whereNotNull('published_at')
+            ->whereNull('sold_at');
 
         if (! empty($validated['q'])) {
             $keyword = $validated['q'];
@@ -78,6 +79,7 @@ class PropertyController extends Controller
             ->with(['images', 'user.agentProfile'])
             ->where('slug', $slug)
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->firstOrFail();
 
         $property->increment('views');
@@ -87,6 +89,7 @@ class PropertyController extends Controller
             ->where('city', $property->city)
             ->where('type', $property->type)
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->orderByDesc('published_at')
             ->limit(6)
             ->pluck('id')

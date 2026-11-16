@@ -31,7 +31,8 @@ class PropertyController extends Controller
 
         $query = Property::query()
             ->with('images')
-            ->whereNotNull('published_at');
+            ->whereNotNull('published_at')
+            ->whereNull('sold_at');
 
         if ($request->filled('q')) {
             $q = $request->string('q')->toString();
@@ -89,6 +90,7 @@ class PropertyController extends Controller
             ->with(['images', 'user'])
             ->where('slug', $slug)
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->firstOrFail();
 
         $property->increment('views');
@@ -96,6 +98,7 @@ class PropertyController extends Controller
         $related = Property::query()
             ->with('images')
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->where('id', '!=', $property->id)
             ->where('city', $property->city)
             ->latest()
@@ -143,7 +146,7 @@ class PropertyController extends Controller
 
     private function applyListingFilters(EloquentBuilder $query, Request $request): void
     {
-        $query->with('images')->whereNotNull('published_at');
+        $query->with('images')->whereNotNull('published_at')->whereNull('sold_at');
 
         if ($request->filled('type')) {
             $type = strtolower($request->string('type')->toString());

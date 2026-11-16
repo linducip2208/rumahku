@@ -15,6 +15,7 @@ class FlushDemoData extends Command
     {
         if (app()->isProduction() && ! $this->option('force')) {
             $this->error('Ditolak di production tanpa --force.');
+
             return self::FAILURE;
         }
 
