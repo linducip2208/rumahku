@@ -13,8 +13,10 @@ use App\Http\Controllers\Public\AuctionController;
 use App\Http\Controllers\Public\AuctionShowController;
 use App\Http\Controllers\Public\BidController;
 use App\Http\Controllers\Public\CompareController;
+use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\FavoriteController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\InfoController;
 use App\Http\Controllers\Public\KprController;
 use App\Http\Controllers\Public\LeadController;
 use App\Http\Controllers\Public\MessageController;
@@ -92,6 +94,15 @@ Route::get('/jasa/{service}', [ServiceShowController::class, 'show'])->name('ser
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::post('/kpr', [KprController::class, 'store'])->middleware('throttle:30,1')->name('kpr.store');
+
+Route::get('/{page}', [InfoController::class, 'show'])
+    ->whereIn('page', ['tentang', 'bantuan', 'privasi', 'syarat'])
+    ->name('info.show');
+
+Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
+Route::post('/kontak', [ContactController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('contact.store');
 
 Route::get('/{listing}/{type}/{city}', [SeoController::class, 'landing'])
     ->whereIn('listing', ['jual', 'sewa'])

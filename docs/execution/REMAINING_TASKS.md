@@ -1,1 +1,1 @@
-# REMAINING_TASKS — P1: x-property-card, captcha, hapus/wire Message, i18n, skeleton, Spatie putusan, abilities enforce, token expiry. BLOCKED (user): payment keys, mail prod, deploy, cron, store build.
+# REMAINING_TASKS — P1 done: x-property-card, captcha, Message wired+chat, i18n chrome+auth, skeleton, Spatie DIHAPUS, abilities, token expiry. Sisa: review visual manusia (1920/1366/390px), ganti picsum editorial dengan foto produksi bila ada. BLOCKED (user): payment keys, mail prod, deploy, cron, store build.

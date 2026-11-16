@@ -142,6 +142,11 @@ Live: `php artisan serve --port=8001` → `/` `/properti` `/admin`. Preview Metr
 - [x] HTTP: img lokal 200 image/jpeg, hero + burger OK
 - [x] Suite regresi: 104 passed / 328 assertions (desain ulang tanpa regresi)
 
+## 2026-11-16 — Lanjutan: build + push
+- [x] TEMUAN: public/build basi (CSS 49KB, kelas baru tak ada) — `npm run build` → CSS 64KB, gradient terverifikasi di bundle
+- [x] Commit 482c1ba (redesign+fitur) + 8d79e1a (160 gambar seed force-add, 4.3MB) → push origin/main sinkron
+- [x] Fresh clone kini langsung tampil (gambar ikut repo; npm build tetap perlu sekali — sudah di INSTALLATION.md)
+
 Update file ini setiap selesai satu blok.
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
