@@ -28,24 +28,7 @@
             <p class="text-sm text-muted-foreground mb-4">{{ $properties->total() }} properti ditemukan.</p>
             <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($properties as $property)
-                    @php $cover = $property->images->first()?->path; @endphp
-                    <a href="{{ route('properties.show', $property->slug) }}" class="kt-card overflow-hidden hover:shadow-md transition">
-                        <div class="aspect-[4/3] bg-muted grid place-items-center text-muted-foreground text-sm">
-                            @if ($cover)
-                                <img src="{{ asset('storage/' . $cover) }}" alt="{{ $property->title }}" class="size-full object-cover" loading="lazy" />
-                            @else
-                                <i class="ki-filled ki-home text-3xl"></i>
-                            @endif
-                        </div>
-                        <div class="p-4">
-                            <span class="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{{ $listing === 'jual' ? 'Dijual' : 'Disewa' }} &middot; {{ ucfirst($type) }}</span>
-                            <div class="text-primary font-extrabold">Rp {{ number_format($property->price, 0, ',', '.') }}</div>
-                            <div class="font-semibold mt-1 line-clamp-1">{{ $property->title }}</div>
-                            <div class="text-xs text-muted-foreground mt-1">
-                                {{ $property->bedrooms ?? '-' }} KT &middot; {{ $property->bathrooms ?? '-' }} KM &middot; LT {{ $property->land_area ?? '-' }}m² &middot; {{ $property->city }}
-                            </div>
-                        </div>
-                    </a>
+                    <x-property-card :property="$property" />
                 @endforeach
             </div>
             <div class="mt-6">{{ $properties->links() }}</div>

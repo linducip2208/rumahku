@@ -25,6 +25,10 @@ class FavoriteController extends Controller
 
     public function toggle(Request $request): JsonResponse
     {
+        if ($request->user()->tokenCant('favorites:write')) {
+            abort(403, 'Token tidak memiliki ability favorites:write.');
+        }
+
         $validated = $request->validate([
             'property_id' => ['required', 'integer', 'exists:properties,id'],
         ]);

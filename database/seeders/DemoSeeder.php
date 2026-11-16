@@ -102,7 +102,7 @@ class DemoSeeder extends Seeder
                 'agency' => 'Rumah123 Agency '.chr(65 + ($i % 5)),
                 'phone' => $phone,
                 'wa' => $phone,
-                'photo' => "https://picsum.photos/seed/agent{$i}/200/200",
+                'photo' => 'avatars/avatar-'.(($i % 10) + 1).'.png',
                 'verified_at' => now(),
             ];
             DB::table('agent_profiles')->updateOrInsert(
@@ -192,7 +192,7 @@ class DemoSeeder extends Seeder
             for ($j = 1; $j <= $count; $j++) {
                 $candidate = [
                     'property_id' => $propertyId,
-                    'path' => "https://picsum.photos/seed/prop{$propertyId}-{$j}/800/600",
+                    'path' => "properties/local-{$propertyId}-{$j}.jpg",
                     'sort' => $j,
                     'order' => $j,
                     'sort_order' => $j,

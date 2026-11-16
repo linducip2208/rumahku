@@ -117,6 +117,31 @@ Live: `php artisan serve --port=8001` → `/` `/properti` `/admin`. Preview Metr
 - [x] Ideas metadata: priority P0-P4 + 10 kolom dampak (P0 8000, P1 8000, P2 4000)
 - [x] Test: 81 passed / 253 assertions; pint passed
 
+## 2026-11-16 — Sisa P1 (3 agen + wiring)
+- [x] x-property-card: ekstrak 6 duplikasi kartu → components/property-card (featured badge, cover fallback)
+- [x] Token: expiry 30 hari (expires_at terisi eksplisit) + abilities di-enforce (favorites/orders) + Spatie DIHAPUS (nol pemakaian)
+- [x] Chat properti: MessageController + thread di detail + Filament read-only; Turnstile (skip bila secret kosong, fail-closed) di leads+register; setting captcha.*
+- [x] POST /messages (auth+throttle); test MessageTest+CaptchaTest+TokenSecurityTest+FavoriteToggleTest+AdminPanel login
+- [x] Test serial: 91 passed / 285 assertions; view:cache OK; HTTP: chat+captcha render, CSRF aktif (419 raw POST)
+- [x] Pelajaran: timeout shell foreground flaky — pakai vendor/bin/phpunit + background untuk suite penuh
+
+## 2026-11-16 — Audit trail + CSV (2 agen)
+- [x] audit_logs (user/action/morph/old-new/ip) + trait LogsActivity di 6 model + Filament read-only + AuditLogTest 4 test
+- [x] properties:export (19 kolom, filter --user) — teruji di data real: 50 baris; properties:import (--user wajib, dry-run, idempotent by slug) + PropertyCsvTest 4 test
+- [ ] Suite penuh 95+ tests: berjalan background (hasil menyusul)
+- [x] Suite penuh: 99 passed / 314 assertions (audit trail + CSV hijau)
+
+## 2026-11-16 — Skeleton + i18n (2 agen)
+- [x] x-skeleton (animate-pulse) di cover property-card + galeri detail (onload swap); tanpa CSS custom
+- [x] i18n: lang/id+en site.php, SetLocale (?lang + session, fallback id), layout/auth pakai __(), toggle ID|EN; LocaleTest 5 test
+- [x] Suite penuh: 104 passed / 328 assertions (skeleton + i18n hijau)
+
+## 2026-11-16 — Perbaikan UI/UX berat (kritik user)
+- [x] Akar masalah: gambar remote picsum di-prefix storage/ → URL rusak total. Fix: 150 gambar lokal GD (ilustrasi rumah, 5 varian langit) + 10 avatar inisial; DB dipetakan via SQL; DemoSeeder pakai path lokal
+- [x] Redesign home: hero gradient + search card overlap + tile kota gradient + CTA 2 kolom; header hamburger mobile; index grid 2-kolom mobile + sticky toolbar; footer/nav links; hapus label Stub; @error per-field; error pages; SEO meta 13 halaman; tombol hapus compare
+- [x] HTTP: img lokal 200 image/jpeg, hero + burger OK
+- [x] Suite regresi: 104 passed / 328 assertions (desain ulang tanpa regresi)
+
 Update file ini setiap selesai satu blok.
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)

@@ -25,6 +25,10 @@ class OrderController extends Controller
 
     public function store(Request $request): JsonResponse
     {
+        if ($request->user()->tokenCant('orders:write')) {
+            abort(403, 'Token tidak memiliki ability orders:write.');
+        }
+
         $validated = $request->validate([
             'property_id' => ['required', 'integer', 'exists:properties,id'],
             'package_slug' => ['required', 'string', 'exists:packages,slug'],

@@ -12,6 +12,10 @@ class LeadController extends Controller
 {
     public function store(Request $request): JsonResponse
     {
+        if ($request->user() && $request->user()->tokenCant('leads:write')) {
+            abort(403, 'Token tidak memiliki ability leads:write.');
+        }
+
         $validated = $request->validate([
             'property_id' => ['required', 'integer', 'exists:properties,id'],
             'name' => ['required', 'string', 'max:255'],

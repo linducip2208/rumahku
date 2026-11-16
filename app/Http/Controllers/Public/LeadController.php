@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Lead;
 use App\Models\Property;
+use App\Services\Security\TurnstileValidator;
 use App\Support\NotifiesNewLead;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LeadController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, TurnstileValidator $captcha): RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -19,6 +20,10 @@ class LeadController extends Controller
             'message' => ['nullable', 'string', 'max:2000'],
             'property_id' => ['nullable', 'integer', 'exists:properties,id'],
         ]);
+
+        if (! $captcha->passes($request->input('cf-turnstile-response'), $request->ip())) {
+            return back()->withErrors(['captcha' => 'Verifikasi keamanan gagal. Silakan coba lagi.'])->withInput();
+        }
 
         $property = isset($validated['property_id'])
             ? Property::find($validated['property_id'])

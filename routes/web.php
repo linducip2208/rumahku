@@ -17,6 +17,7 @@ use App\Http\Controllers\Public\FavoriteController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\KprController;
 use App\Http\Controllers\Public\LeadController;
+use App\Http\Controllers\Public\MessageController;
 use App\Http\Controllers\Public\ProjectController;
 use App\Http\Controllers\Public\PropertyController;
 use App\Http\Controllers\Public\SeoController;
@@ -32,6 +33,10 @@ Route::get('/properti', [PropertyController::class, 'index'])->name('properties.
 Route::get('/properti/{slug}', [PropertyController::class, 'show'])->name('properties.show');
 
 Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:30,1')->name('leads.store');
+
+Route::post('/messages', [MessageController::class, 'store'])
+    ->middleware(['auth', 'throttle:30,1'])
+    ->name('messages.store');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->middleware(['guest', 'throttle:10,1']);

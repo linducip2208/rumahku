@@ -42,9 +42,10 @@
     <div>
         <!-- Gallery -->
         <div class="kt-card overflow-hidden" x-data="{ current: '{{ $cover ? asset('storage/' . $cover) : '' }}' }">
-            <div class="aspect-[16/9] bg-muted grid place-items-center text-muted-foreground overflow-hidden">
+            <div class="relative aspect-[16/9] bg-muted grid place-items-center text-muted-foreground overflow-hidden">
                 @if ($cover)
-                    <img id="prop-main-img" src="{{ asset('storage/' . $cover) }}" alt="{{ $property->title }}" class="size-full object-cover" :src="current || '{{ asset('storage/' . $cover) }}'" />
+                    <x-skeleton class="absolute inset-0 size-full !rounded-none" />
+                    <img id="prop-main-img" src="{{ asset('storage/' . $cover) }}" alt="{{ $property->title }}" class="relative size-full object-cover bg-muted animate-pulse" :src="current || '{{ asset('storage/' . $cover) }}'" onload="this.classList.remove('animate-pulse');this.previousElementSibling?.remove()" />
                 @else
                     <span class="flex items-center gap-2"><i class="ki-filled ki-picture text-3xl"></i> Foto properti</span>
                 @endif
@@ -57,9 +58,9 @@
                             data-full="{{ $full }}"
                             @click="current = '{{ $full }}'"
                             onclick="document.getElementById('prop-main-img').src = this.dataset.full;"
-                            class="rounded-lg overflow-hidden ring-offset-2 focus:ring-2 focus:ring-primary"
+                            class="rounded-lg overflow-hidden ring-offset-2 focus:ring-2 focus:ring-primary bg-muted animate-pulse"
                             aria-label="Lihat foto {{ $i + 1 }}">
-                            <img src="{{ $full }}" alt="Foto {{ $i + 1 }} {{ $property->title }}" class="aspect-[4/3] w-full object-cover bg-muted hover:opacity-90 transition" loading="lazy" />
+                            <img src="{{ $full }}" alt="Foto {{ $i + 1 }} {{ $property->title }}" class="aspect-[4/3] w-full object-cover bg-muted animate-pulse hover:opacity-90 transition" loading="lazy" onload="this.classList.remove('animate-pulse')" />
                         </button>
                     @endforeach
                 </div>
@@ -174,6 +175,10 @@
             </form>
         </div>
 
+        <!-- Diskusi -->
+        @php($messages = \App\Models\Message::query()->with('sender')->where('property_id', $property->id)->latest()->take(10)->get())
+        @include('components.chat-thread', ['property' => $property, 'messages' => $messages])
+
         <!-- Related -->
         @if ($related->isNotEmpty())
             <h2 class="font-bold mt-6 mb-3">Properti Terkait</h2>
@@ -215,6 +220,13 @@
                 <input type="text" name="name" required placeholder="Nama" class="kt-input" value="{{ old('name') }}" />
                 <input type="text" name="phone" required placeholder="No. HP / WA" class="kt-input" value="{{ old('phone') }}" />
                 <textarea name="message" rows="3" placeholder="Pesan untuk agen…" class="kt-input">{{ old('message', 'Saya tertarik dengan properti ini. Mohon info lebih lanjut.') }}</textarea>
+                <div class="cf-turnstile" data-sitekey="{{ \App\Models\Setting::get('captcha.turnstile_site_key', '') }}"></div>
+                @error('captcha')
+                    <p class="text-xs text-destructive">{{ $message }}</p>
+                @enderror
+                @if (\App\Models\Setting::get('captcha.turnstile_site_key', ''))
+                    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                @endif
                 <button type="submit" class="kt-btn kt-btn-primary w-full">Hubungi Agen</button>
             </form>
         </div>

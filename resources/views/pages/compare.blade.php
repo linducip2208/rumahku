@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
-    <h1 class="text-2xl font-extrabold">Bandingkan Properti</h1>
+    <h1 class="text-2xl font-extrabold tracking-tight">Bandingkan Properti</h1>
     <p class="text-sm text-muted-foreground mt-1">Maksimal 4 properti. Buka halaman detail properti lalu tekan tombol &ldquo;Bandingkan +&rdquo; untuk menambahkannya ke daftar ini.</p>
 
     @if ($properties->isEmpty())

@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         $user->forceFill(['role' => 'user'])->save();
 
-        $token = $user->createToken('flutter', ['properties:read', 'leads:write'])->plainTextToken;
+        $token = $user->createToken('flutter', ['properties:read', 'leads:write', 'favorites:write', 'orders:write'], now()->addMinutes((int) config('sanctum.expiration', 43200)))->plainTextToken;
 
         return response()->json([
             'user' => [
@@ -55,7 +55,7 @@ class AuthController extends Controller
             ]);
         }
 
-        $token = $user->createToken('flutter', ['properties:read', 'leads:write'])->plainTextToken;
+        $token = $user->createToken('flutter', ['properties:read', 'leads:write', 'favorites:write', 'orders:write'], now()->addMinutes((int) config('sanctum.expiration', 43200)))->plainTextToken;
 
         return response()->json([
             'user' => [

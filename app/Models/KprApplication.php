@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Concerns\LogsActivity;
 use Database\Factories\KprApplicationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class KprApplication extends Model
 {
     /** @use HasFactory<KprApplicationFactory> */
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     public const TENORS = [12, 24, 36, 60, 120, 180, 240];
 
