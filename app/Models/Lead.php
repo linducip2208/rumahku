@@ -20,7 +20,17 @@ class Lead extends Model
         'phone',
         'message',
         'source',
+        'status',
+        'follow_up_at',
+        'notes',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'follow_up_at' => 'datetime',
+        ];
+    }
 
     public function property(): BelongsTo
     {
@@ -30,5 +40,10 @@ class Lead extends Model
     public function agent(): BelongsTo
     {
         return $this->belongsTo(User::class, 'agent_user_id');
+    }
+
+    public function isOpen(): bool
+    {
+        return ! in_array($this->status, ['closing', 'gagal'], true);
     }
 }

@@ -17,6 +17,7 @@ class Package extends Model
         'price',
         'duration_days',
         'max_photos',
+        'max_listings',
         'featured_included',
         'badge',
     ];
@@ -30,6 +31,7 @@ class Package extends Model
             'price' => 'integer',
             'duration_days' => 'integer',
             'max_photos' => 'integer',
+            'max_listings' => 'integer',
             'featured_included' => 'boolean',
         ];
     }

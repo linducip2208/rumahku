@@ -19,6 +19,9 @@ class LeadInfolist
             ])->columns(2),
             Section::make('Lead')->schema([
                 TextEntry::make('property.title')->label('Properti'),
+                TextEntry::make('status')->badge()->label('Status'),
+                TextEntry::make('follow_up_at')->dateTime('d M Y H:i')->label('Follow Up'),
+                TextEntry::make('notes')->columnSpanFull()->label('Catatan'),
                 TextEntry::make('message')->columnSpanFull()->label('Pesan'),
                 TextEntry::make('created_at')->dateTime('d M Y H:i')->label('Dibuat'),
             ])->columns(2),

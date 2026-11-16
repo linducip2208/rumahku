@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Agent;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use App\Models\PropertyImage;
+use App\Services\ListingQuota;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -36,6 +37,12 @@ class ListingController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        if (! ListingQuota::canCreate($request->user())) {
+            return back()
+                ->withErrors(['quota' => 'Kuota listing aktif Anda penuh. Lihat pilihan paket di /harga untuk menambah kuota.'])
+                ->withInput();
+        }
+
         $validated = $this->validatePayload($request);
 
         $property = Property::query()->create([

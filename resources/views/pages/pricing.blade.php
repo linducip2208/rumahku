@@ -32,6 +32,7 @@
                 </div>
                 <ul class="text-sm text-muted-foreground space-y-2">
                     <li>Maks. {{ $package->max_photos }} foto</li>
+                    <li>{{ $package->max_listings === null ? 'Tanpa batas listing aktif' : 'Maks. '.$package->max_listings.' listing aktif' }}</li>
                     <li>{{ $package->featured_included ? 'Termasuk badge & slot Unggulan' : 'Listing standar' }}</li>
                     <li>Tayang {{ $package->duration_days }} hari</li>
                 </ul>

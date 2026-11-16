@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Agent\DashboardController as AgentDashboardController;
+use App\Http\Controllers\Agent\LeadController as AgentLeadController;
 use App\Http\Controllers\Agent\ListingController as AgentListingController;
 use App\Http\Controllers\Agent\OrderController as AgentOrderController;
 use App\Http\Controllers\Auth\LoginController;
@@ -57,6 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/listings/{listing}/sold', [AgentListingController::class, 'sold'])->name('agent.listings.sold');
     Route::post('/dashboard/listings/{listing}/relist', [AgentListingController::class, 'relist'])->name('agent.listings.relist');
     Route::get('/dashboard/orders', [AgentOrderController::class, 'index'])->name('agent.orders.index');
+    Route::get('/dashboard/leads', [AgentLeadController::class, 'index'])->name('dashboard.leads.index');
+    Route::put('/dashboard/leads/{lead}', [AgentLeadController::class, 'update'])->name('dashboard.leads.update');
 });
 
 Route::get('/proyek', [ProjectController::class, 'index'])->name('projects.index');

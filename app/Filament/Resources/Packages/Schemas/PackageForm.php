@@ -38,6 +38,12 @@ class PackageForm
                     ->minValue(1)
                     ->required()
                     ->label('Maks. Foto'),
+                TextInput::make('max_listings')
+                    ->numeric()
+                    ->minValue(1)
+                    ->nullable()
+                    ->label('Maks. Listing Aktif')
+                    ->helperText('Kosongkan untuk tanpa batas.'),
                 Toggle::make('featured_included')
                     ->label('Termasuk Featured'),
                 TextInput::make('badge')

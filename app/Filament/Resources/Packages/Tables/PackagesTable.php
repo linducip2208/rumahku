@@ -20,6 +20,8 @@ class PackagesTable
                 TextColumn::make('price')->money('IDR')->sortable()->label('Harga'),
                 TextColumn::make('duration_days')->suffix(' hari')->sortable()->label('Durasi'),
                 TextColumn::make('max_photos')->sortable()->label('Maks. Foto'),
+                TextColumn::make('max_listings')->sortable()->label('Maks. Listing')
+                    ->placeholder('Tanpa batas'),
                 IconColumn::make('featured_included')->boolean()->label('Featured'),
                 TextColumn::make('badge')->badge()->toggleable()->label('Badge'),
             ])
