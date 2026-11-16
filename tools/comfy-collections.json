@@ -1,0 +1,32 @@
+[
+    {
+        "file": "collection-rumah-mewah.jpg",
+        "positive": "photorealistic architectural photography of a palatial modern luxury mansion exterior at dusk, symmetrical facade, grand double-height entrance, manicured lawn, warm interior lights glowing, ultra premium real estate, no people, no text, no watermark",
+        "property_id": 924,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "collection-villa-eksklusif.jpg",
+        "positive": "photorealistic architectural photography of an exclusive tropical villa with infinity pool overlooking the ocean at sunset in Bali, natural stone walls, frangipani trees, ultra premium real estate, no people, no text, no watermark",
+        "property_id": 925,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "collection-modern-minimalis.jpg",
+        "positive": "photorealistic architectural photography of a modern minimalist concrete and glass house, clean geometric lines, inner courtyard with single tree, soft daylight, ultra premium real estate, no people, no text, no watermark",
+        "property_id": 903,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "collection-tropical-living.jpg",
+        "positive": "photorealistic architectural photography of an open-air tropical living pavilion with high wooden ceiling, plunge pool, dense green garden, morning light rays, ultra premium real estate, no people, no text, no watermark",
+        "property_id": 932,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "collection-apartemen-premium.jpg",
+        "positive": "photorealistic architectural photography of a luxury apartment tower with rooftop sky pool at blue hour, glowing windows, city lights below, ultra premium real estate, no people, no text, no watermark",
+        "property_id": 914,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    }
+]

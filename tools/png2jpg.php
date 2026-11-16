@@ -1,4 +1,5 @@
 <?php
+
 // Convert ComfyUI PNG output -> 800x600 JPG. Usage: php tools/png2jpg.php <src.png> <dst.jpg>
 [$_, $src, $dst] = $argv + [null, null, null];
 if (! $src || ! $dst || ! file_exists($src)) {

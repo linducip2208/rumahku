@@ -1,0 +1,302 @@
+[
+    {
+        "property_id": 1,
+        "file": "local-1-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 2,
+        "file": "local-2-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 3,
+        "file": "local-3-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 4,
+        "file": "local-4-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 5,
+        "file": "local-5-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 6,
+        "file": "local-6-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 7,
+        "file": "local-7-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 8,
+        "file": "local-8-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 9,
+        "file": "local-9-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 10,
+        "file": "local-10-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 11,
+        "file": "local-11-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 12,
+        "file": "local-12-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 13,
+        "file": "local-13-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 14,
+        "file": "local-14-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 15,
+        "file": "local-15-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 16,
+        "file": "local-16-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 17,
+        "file": "local-17-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 18,
+        "file": "local-18-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 19,
+        "file": "local-19-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 20,
+        "file": "local-20-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 21,
+        "file": "local-21-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 22,
+        "file": "local-22-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 23,
+        "file": "local-23-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 24,
+        "file": "local-24-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 25,
+        "file": "local-25-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 26,
+        "file": "local-26-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 27,
+        "file": "local-27-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 28,
+        "file": "local-28-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 29,
+        "file": "local-29-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 30,
+        "file": "local-30-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 31,
+        "file": "local-31-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 32,
+        "file": "local-32-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 33,
+        "file": "local-33-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 34,
+        "file": "local-34-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 35,
+        "file": "local-35-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 36,
+        "file": "local-36-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 37,
+        "file": "local-37-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 38,
+        "file": "local-38-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 39,
+        "file": "local-39-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 40,
+        "file": "local-40-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 41,
+        "file": "local-41-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 42,
+        "file": "local-42-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 43,
+        "file": "local-43-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 44,
+        "file": "local-44-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 45,
+        "file": "local-45-1.jpg",
+        "positive": "photorealistic architectural photography of a elegant modern luxury residence villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 46,
+        "file": "local-46-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion in Jakarta Selatan, Indonesia, contemporary tropical design, swimming pool, manicured garden, warm evening lights, ultra detailed, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 47,
+        "file": "local-47-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion apartment tower in Depok, Indonesia, modern high-rise with sky pool and podium garden, blue hour sky, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 48,
+        "file": "local-48-1.jpg",
+        "positive": "photorealistic aerial photography of a premium vacant land plot in Bekasi, Indonesia, flat terrain with road access and green surroundings, golden hour, investment real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 49,
+        "file": "local-49-1.jpg",
+        "positive": "photorealistic architectural photography of a modern luxury commercial shophouse row in Surabaya, Indonesia, clean facades, glass storefront, morning light, premium commercial real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "property_id": 50,
+        "file": "local-50-1.jpg",
+        "positive": "photorealistic architectural photography of a palatial luxury mansion villa in Bandung, Indonesia, Balinese tropical style, private infinity pool, frangipani trees, natural stone, sunset glow, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    }
+]

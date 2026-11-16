@@ -343,9 +343,19 @@
         </div>
         <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
             @foreach ($collectionTiles as $i => $col)
-                @php $grad = $gradients[($i + 1) % count($gradients)]; @endphp
+                @php
+                    $grad = $gradients[($i + 1) % count($gradients)];
+                    $colSlug = \Illuminate\Support\Str::slug($col['label'] ?? '');
+                    $colImgMap = ['rumah-mewah' => 'collection-rumah-mewah.jpg', 'villa-eksklusif' => 'collection-villa-eksklusif.jpg', 'modern-minimalis' => 'collection-modern-minimalis.jpg', 'tropical-living' => 'collection-tropical-living.jpg', 'apartemen-premium' => 'collection-apartemen-premium.jpg'];
+                    $colImg = isset($colImgMap[$colSlug]) && file_exists(public_path('landing/'.$colImgMap[$colSlug])) ? asset('landing/'.$colImgMap[$colSlug]) : null;
+                @endphp
                 <a href="{{ route('properties.index', $col['params']) }}" class="group relative flex h-40 flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-br p-4 text-white shadow-sm transition hover:shadow-md {{ $grad }}">
-                    <div class="pointer-events-none absolute -right-6 -top-6 size-24 rounded-full border-[12px] border-white/15" aria-hidden="true"></div>
+                    @if ($colImg)
+                        <img src="{{ $colImg }}" alt="{{ $col['label'] }}" loading="lazy" class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A4A]/85 via-[#0F2A4A]/25 to-transparent" aria-hidden="true"></div>
+                    @else
+                        <div class="pointer-events-none absolute -right-6 -top-6 size-24 rounded-full border-[12px] border-white/15" aria-hidden="true"></div>
+                    @endif
                     <div class="relative">
                         <div class="text-base font-extrabold leading-tight">{{ $col['label'] }}</div>
                         <p class="mt-0.5 line-clamp-1 text-[11px] text-white/80">{{ $col['desc'] }}</p>
@@ -382,9 +392,17 @@
                         $grad = $gradients[$i % count($gradients)];
                     @endphp
                     <a href="{{ route('properties.index', ['city' => $cityName]) }}" class="group flex items-center justify-between gap-2 rounded-xl bg-gradient-to-br p-4 text-white shadow-sm transition hover:shadow-md {{ $grad }}">
-                        <span>
-                            <span class="block truncate text-sm font-bold sm:text-base">{{ $cityName }}</span>
-                            <span class="block text-[11px] text-white/85">{{ $total ? $total.' properti' : 'Lihat properti' }}</span>
+                        <span class="flex items-center gap-2.5 min-w-0">
+                            @php $logoSlug = \Illuminate\Support\Str::slug($cityName); @endphp
+                            @if ($logoSlug && file_exists(public_path('landing/logos/city-'.$logoSlug.'.png')))
+                                <img src="{{ asset('landing/logos/city-'.$logoSlug.'.png') }}" alt="Lambang {{ $cityName }}" loading="lazy" class="size-10 shrink-0 rounded-full bg-white p-1 object-contain shadow" onerror="this.remove()" />
+                            @else
+                                <span aria-hidden="true" class="grid size-10 shrink-0 place-items-center rounded-full bg-white/20 text-sm font-extrabold">{{ mb_substr((string) $cityName, 0, 1) }}</span>
+                            @endif
+                            <span class="min-w-0">
+                                <span class="block truncate text-sm font-bold sm:text-base">{{ $cityName }}</span>
+                                <span class="block text-[11px] text-white/85">{{ $total ? $total.' properti' : 'Lihat properti' }}</span>
+                            </span>
                         </span>
                         <span aria-hidden="true" class="grid size-8 shrink-0 place-items-center rounded-full bg-white/20 transition group-hover:bg-white/30">→</span>
                     </a>

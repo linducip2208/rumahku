@@ -1,4 +1,5 @@
 <?php
+
 // Build tools/comfy-jobs.json: 1 luxury cover prompt per property (50 total).
 // Run: php tools/build-comfy-jobs.php
 $pdo = new PDO('mysql:host=127.0.0.1;port=3306;dbname=rumah123;charset=utf8mb4', 'root', '');
@@ -22,11 +23,11 @@ foreach ($rows as $r) {
     $jobs[] = [
         'property_id' => (int) $r['id'],
         'file' => "local-{$r['id']}-1.jpg",
-        'positive' => $fn($r, $lux((int) $r['price'])) . ', no people, no text, no watermark',
+        'positive' => $fn($r, $lux((int) $r['price'])).', no people, no text, no watermark',
         'negative' => $neg,
     ];
 }
 
 @mkdir(__DIR__, 0777, true);
-file_put_contents(__DIR__ . '/comfy-jobs.json', json_encode($jobs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-echo 'JOBS ' . count($jobs) . PHP_EOL;
+file_put_contents(__DIR__.'/comfy-jobs.json', json_encode($jobs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+echo 'JOBS '.count($jobs).PHP_EOL;
