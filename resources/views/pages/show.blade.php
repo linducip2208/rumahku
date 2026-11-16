@@ -125,6 +125,46 @@
             <div class="text-sm text-muted-foreground whitespace-pre-line">{{ $property->description }}</div>
         </div>
 
+        @php
+            $facilities = $property->facilities;
+            if (is_string($facilities)) {
+                $facilities = array_filter(array_map('trim', explode(',', $facilities)));
+            }
+            $facilities = is_array($facilities) ? array_values(array_filter($facilities, fn ($f) => trim((string) $f) !== '')) : [];
+        @endphp
+        @if (! empty($facilities))
+            <div class="kt-card p-5 mt-4">
+                <h2 class="font-bold mb-3">Fasilitas</h2>
+                <div class="flex flex-wrap gap-2">
+                    @foreach ($facilities as $facility)
+                        <span class="inline-flex items-center gap-1.5 text-xs rounded-full bg-primary/10 text-primary px-3 py-1.5 font-medium">
+                            <i class="ki-filled ki-check-circle"></i> {{ $facility }}
+                        </span>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        @if ($property->lat && $property->lng)
+            @php
+                $lat = (float) $property->lat;
+                $lng = (float) $property->lng;
+                $d = 0.02;
+                $bbox = ($lng - $d) . ',' . ($lat - $d) . ',' . ($lng + $d) . ',' . ($lat + $d);
+            @endphp
+            <div class="kt-card p-5 mt-4">
+                <h2 class="font-bold mb-1">Lokasi</h2>
+                <p class="text-xs text-muted-foreground mb-3">{{ $property->address }} — {{ $property->district }}, {{ $property->city }}</p>
+                <div class="rounded-xl overflow-hidden border border-border aspect-[16/9] bg-muted">
+                    <iframe
+                        title="Peta lokasi {{ $property->title }}"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox={{ $bbox }}&layer=mapnik&marker={{ $lat }},{{ $lng }}"
+                        class="size-full border-0"
+                        loading="lazy"></iframe>
+                </div>
+            </div>
+        @endif
+
         <!-- KPR Calculator -->
         <div class="kt-card p-5 mt-4">
             <h2 class="font-bold mb-1">Kalkulator KPR</h2>
@@ -181,14 +221,10 @@
 
         <!-- Related -->
         @if ($related->isNotEmpty())
-            <h2 class="font-bold mt-6 mb-3">Properti Terkait</h2>
-            <div class="grid gap-4 sm:grid-cols-2">
+            <h2 class="font-bold mt-6 mb-3">Properti Serupa di {{ $property->city }}</h2>
+            <div class="grid gap-3 sm:gap-4 grid-cols-2">
                 @foreach ($related as $rel)
-                    <a href="{{ route('properties.show', $rel->slug) }}" class="kt-card p-4 hover:shadow-md transition">
-                        <div class="text-primary font-extrabold text-sm">Rp {{ number_format($rel->price, 0, ',', '.') }}</div>
-                        <div class="font-semibold text-sm mt-1 line-clamp-1">{{ $rel->title }}</div>
-                        <div class="text-xs text-muted-foreground">{{ $rel->city }}</div>
-                    </a>
+                    <x-property-card :property="$rel" />
                 @endforeach
             </div>
         @endif

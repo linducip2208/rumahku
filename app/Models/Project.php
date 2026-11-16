@@ -19,6 +19,8 @@ class Project extends Model
         'city',
         'price_from',
         'description',
+        'facilities',
+        'unit_types',
     ];
 
     /**
@@ -28,6 +30,7 @@ class Project extends Model
     {
         return [
             'price_from' => 'integer',
+            'unit_types' => 'array',
         ];
     }
 

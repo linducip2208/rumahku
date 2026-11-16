@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Properties\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -67,6 +68,32 @@ class PropertyForm
                         'strata' => 'Strata Title',
                     ])
                     ->label('Sertifikat'),
+                TagsInput::make('facilities')
+                    ->label('Fasilitas')
+                    ->placeholder('Ketik fasilitas lalu Enter')
+                    ->suggestions([
+                        'Carport',
+                        'Taman',
+                        'Keamanan 24 Jam',
+                        'PAM',
+                        'Listrik 2200W',
+                        'Kolam Renang',
+                        'Gym',
+                        'Lift',
+                        'Parkir Basement',
+                        'Akses Jalan',
+                        'Sertifikat Pecah',
+                        'Air Bersih',
+                        'Parkir Luas',
+                        'Rolling Door',
+                        'Toilet',
+                        'Kantor Lantai 2',
+                        'Private Pool',
+                        'Taman Tropis',
+                        'Gazebo',
+                        'Keamanan',
+                    ])
+                    ->columnSpanFull(),
             ])->columns(3),
             Section::make('Lokasi')->schema([
                 TextInput::make('province')->required()->maxLength(100)->label('Provinsi'),

@@ -49,7 +49,7 @@
                 <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.sewa') }}</a>
                 <a href="{{ route('projects.index') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.proyek') }}</a>
                 <a href="{{ route('agents.index') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.agen') }}</a>
-                <a href="{{ route('articles.index') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.artikel') }}</a>
+                <a href="{{ route('info.show', 'tentang') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.footer.perusahaan') }}</a>
             </nav>
             <div class="flex items-center gap-2">
                 <div class="hidden sm:flex items-center gap-1 text-xs font-semibold">
@@ -62,8 +62,9 @@
                 </a>
                 @guest
                     <a href="{{ route('login') }}" class="hidden sm:inline-flex kt-btn kt-btn-outline">{{ __('site.actions.masuk') }}</a>
-                    <a href="{{ route('register') }}" class="hidden sm:inline-flex kt-btn kt-btn-primary !bg-blue-600 hover:!bg-blue-700">{{ __('site.actions.daftar') }}</a>
-                    <a href="{{ route('register') }}" class="sm:hidden kt-btn kt-btn-primary !bg-blue-600 hover:!bg-blue-700 !px-3">Daftar</a>
+                    <a href="{{ route('register') }}" class="kt-btn kt-btn-primary !bg-blue-600 hover:!bg-blue-700 !px-3 sm:!px-4">
+                        <i class="ki-filled ki-plus"></i><span class="hidden sm:inline"> {{ __('site.actions.pasang_iklan') }}</span><span class="sm:hidden"> Iklan</span>
+                    </a>
                 @endguest
                 @auth
                     <a href="{{ route('dashboard') }}" class="hidden sm:inline-flex kt-btn kt-btn-outline">{{ __('site.actions.dasbor') }}</a>
@@ -86,7 +87,7 @@
             <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.sewa') }}</a>
             <a href="{{ route('projects.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.proyek') }}</a>
             <a href="{{ route('agents.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.agen') }}</a>
-            <a href="{{ route('articles.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.artikel') }}</a>
+            <a href="{{ route('info.show', 'tentang') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.footer.perusahaan') }}</a>
             <a href="{{ route('properties.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.actions.cari') }}</a>
             <div class="flex items-center gap-2 px-3 pt-2 text-xs font-semibold">
                 <a href="{{ url()->current().'?lang=id' }}" class="{{ app()->getLocale() === 'id' ? 'text-primary' : 'text-muted-foreground' }}">ID</a>
@@ -145,8 +146,16 @@
         };
         $footAbout = $footGet('footer_about', 'Portal properti Indonesia: cari rumah, apartemen, tanah, ruko, dan villa dijual & disewa, proyek baru, dan agen terverifikasi.');
         $footCities = (isset($cities) && $cities instanceof \Illuminate\Support\Collection && $cities->isNotEmpty())
-            ? $cities->take(5)
-            : collect([['city' => 'Jakarta Selatan'], ['city' => 'Depok'], ['city' => 'Bekasi'], ['city' => 'Bandung'], ['city' => 'Surabaya']]);
+            ? $cities->take(6)
+            : collect([['city' => 'Jakarta Selatan'], ['city' => 'Depok'], ['city' => 'Bekasi'], ['city' => 'Bandung'], ['city' => 'Surabaya'], ['city' => 'Medan']]);
+        $footCategories = [
+            ['label' => 'Rumah', 'type' => 'rumah'],
+            ['label' => 'Apartemen', 'type' => 'apartemen'],
+            ['label' => 'Ruko', 'type' => 'ruko'],
+            ['label' => 'Tanah', 'type' => 'tanah'],
+            ['label' => 'Villa', 'type' => 'villa'],
+            ['label' => 'Kost', 'type' => 'kost'],
+        ];
         $socials = [
             'facebook' => $footGet('social_facebook'),
             'instagram' => $footGet('social_instagram'),
@@ -182,24 +191,27 @@
             @endif
         </div>
         <div>
-            <div class="font-bold mb-3 text-white">Jual & Sewa</div>
+            <div class="font-bold mb-3 text-white">Jual &amp; Sewa</div>
             <ul class="space-y-2 text-white/70">
-                <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['status' => 'jual']) }}">Rumah Dijual</a></li>
-                <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['status' => 'sewa']) }}">Rumah Disewa</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['status' => 'jual', 'type' => 'rumah']) }}">Rumah Dijual</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['status' => 'sewa', 'type' => 'rumah']) }}">Rumah Disewa</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['status' => 'jual', 'type' => 'apartemen']) }}">Apartemen Dijual</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['status' => 'jual', 'type' => 'tanah']) }}">Tanah Dijual</a></li>
                 <li><a class="hover:text-white hover:underline" href="{{ route('projects.index') }}">Proyek Baru</a></li>
                 <li><a class="hover:text-white hover:underline" href="{{ route('auctions.index') }}">Lelang Properti</a></li>
                 <li><a class="hover:text-white hover:underline" href="{{ route('agents.index') }}">Agen Properti</a></li>
-                <li><a class="hover:text-white hover:underline" href="{{ route('articles.index') }}">Artikel & Panduan</a></li>
             </ul>
         </div>
         <div>
             <div class="font-bold mb-3 text-white">Kategori</div>
             <ul class="space-y-2 text-white/70">
-                @foreach (['rumah' => 'Rumah', 'apartemen' => 'Apartemen', 'ruko' => 'Ruko', 'tanah' => 'Tanah', 'villa' => 'Villa'] as $val => $label)
-                    <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['type' => $val]) }}">{{ $label }}</a></li>
+                @foreach ($footCategories as $fc)
+                    <li><a class="hover:text-white hover:underline" href="{{ route('properties.index', ['type' => $fc['type']]) }}">{{ $fc['label'] }}</a></li>
                 @endforeach
             </ul>
-            <div class="font-bold mt-5 mb-3 text-white">Lokasi Populer</div>
+        </div>
+        <div>
+            <div class="font-bold mb-3 text-white">Lokasi Populer</div>
             <ul class="space-y-2 text-white/70">
                 @foreach ($footCities as $row)
                     @php $fc = is_array($row) ? ($row['city'] ?? '') : ($row->city ?? ''); @endphp
@@ -208,30 +220,22 @@
                     @endif
                 @endforeach
             </ul>
-        </div>
-        <div id="cta-lead">
-            <div class="font-bold mb-3 text-white">Butuh Bantuan?</div>
-            <ul class="space-y-2 text-white/70 mb-4">
-                <li><a class="hover:text-white hover:underline" href="{{ route('pricing') }}">Harga & Paket</a></li>
-                <li><a class="hover:text-white hover:underline" href="{{ route('compare.index') }}">Bandingkan Properti</a></li>
-                <li><a class="hover:text-white hover:underline" href="{{ route('services.index') }}">Jasa Properti</a></li>
-                <li><a class="hover:text-white hover:underline" href="{{ route('register') }}">Pasang Iklan Gratis</a></li>
+            <div class="font-bold mt-5 mb-3 text-white">Bantuan</div>
+            <ul class="space-y-2 text-white/70">
+                <li><a class="hover:text-white hover:underline" href="{{ route('info.show', 'tentang') }}">Tentang Kami</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('info.show', 'bantuan') }}">Bantuan</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('contact') }}">Kontak</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('info.show', 'privasi') }}">Kebijakan Privasi</a></li>
+                <li><a class="hover:text-white hover:underline" href="{{ route('info.show', 'syarat') }}">Syarat &amp; Ketentuan</a></li>
             </ul>
-            <p class="text-white/70 mb-3 text-[13px]">Tinggalkan kontak, tim kami akan menghubungi Anda.</p>
-            <form method="POST" action="{{ route('leads.store') }}" class="flex flex-col gap-2">
-                @csrf
-                <input type="text" name="name" required placeholder="Nama" class="kt-input !bg-white/10 !border-white/20 !text-white placeholder:!text-white/50" />
-                <input type="text" name="phone" required placeholder="No. HP / WA" class="kt-input !bg-white/10 !border-white/20 !text-white placeholder:!text-white/50" />
-                <button class="kt-btn !bg-blue-600 hover:!bg-blue-500 !text-white font-semibold" type="submit">Hubungi Kami</button>
-            </form>
         </div>
     </div>
     <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4 lg:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/60">
             <div>© {{ date('Y') }} Rumah123. Hak cipta dilindungi.</div>
             <div class="flex items-center gap-4">
-                <span class="hover:text-white cursor-pointer">Kebijakan Privasi</span>
-                <span class="hover:text-white cursor-pointer">Syarat & Ketentuan</span>
+                <a href="{{ route('info.show', 'privasi') }}" class="hover:text-white hover:underline">Kebijakan Privasi</a>
+                <a href="{{ route('info.show', 'syarat') }}" class="hover:text-white hover:underline">Syarat &amp; Ketentuan</a>
             </div>
         </div>
     </div>

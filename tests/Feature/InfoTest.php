@@ -15,7 +15,7 @@ class InfoTest extends TestCase
             '/tentang' => 'Tentang Kami',
             '/bantuan' => 'Pusat Bantuan',
             '/privasi' => 'Kebijakan Privasi',
-            '/syarat' => 'Syarat & Ketentuan',
+            '/syarat' => 'Syarat &amp; Ketentuan',
         ];
 
         foreach ($pages as $url => $title) {

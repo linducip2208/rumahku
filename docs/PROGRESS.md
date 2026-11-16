@@ -175,3 +175,11 @@ Update file ini setiap selesai satu blok.
 - [x] PayFlowTest BARU (4 tests hijau): guest /pay → login; POST /orders → pending → GET /pay 200 instruksi manual; callback manual {} ok:true; callback unknown-driver ok:false 200
 - [x] docs/API.md BARU: kontrak API v1 Flutter-ready (ditulis dari routes/api.php + Resources aktual)
 - Catatan: auth+dashboard agen, upload, sitemap/robots/404, favicon set baru tetap milik agen lain — blok ini hanya seeders/tests/docs
+
+## 2026-11-16/17 — Ringkasan akhir (rekonstruksi, file sempat tertimpa)
+- [x] Bank ide 20.000 (20 fitur x 1000) + metadata P0-P4; Filament + API /api/v1/ideas
+- [x] Audit 3 agen + fix P0: order ownership, login throttle, role fillable, API unpublished 404, bid lock, idempotency, index hot tables
+- [x] Admin auth FilamentUser; fasilitas properti/proyek + cover unik per tipe (GD 6 style)
+- [x] Home search-first; index sidebar+sort+grid/list; detail fasilitas+OSM; KPR widget; chat properti; captcha; audit trail; CSV; i18n; skeleton
+- [x] ComfyUI OFFLINE (2x cek) + 18 job AI image gagal (API key) -> picsum seed editorial; listing tetap gambar lokal
+- [x] LocaleTest diperbaiki pasca-redesign (nav/tab kembali __())
