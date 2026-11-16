@@ -4,6 +4,11 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
+    <nav class="text-xs text-muted-foreground mb-2" aria-label="Breadcrumb">
+        <a href="{{ route('home') }}" class="hover:underline">Beranda</a>
+        <span class="mx-1">/</span>
+        <span class="text-foreground font-medium">Bandingkan</span>
+    </nav>
     <h1 class="text-2xl font-extrabold tracking-tight">Bandingkan Properti</h1>
     <p class="text-sm text-muted-foreground mt-1">Maksimal 4 properti. Buka halaman detail properti lalu tekan tombol &ldquo;Bandingkan +&rdquo; untuk menambahkannya ke daftar ini.</p>
 
@@ -12,8 +17,21 @@
             Belum ada properti untuk dibandingkan. Jelajahi <a href="{{ route('properties.index') }}" class="text-primary hover:underline font-semibold">daftar properti</a>, buka halamannya, lalu tekan tombol &ldquo;Bandingkan +&rdquo;.
         </div>
     @else
+        <div class="mt-6 grid gap-3 sm:gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+            @foreach ($properties as $property)
+                <div class="flex flex-col gap-2">
+                    <x-property-card :property="$property" />
+                    <form method="POST" action="{{ route('compare.remove', $property) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full rounded-full border border-red-200 bg-white px-3 py-1.5 text-xs font-semibold text-destructive transition hover:bg-red-50">Hapus dari perbandingan</button>
+                    </form>
+                </div>
+            @endforeach
+        </div>
+
         <div class="mt-6 overflow-x-auto">
-            <table class="w-full text-sm kt-card overflow-hidden">
+            <table class="w-full text-sm rounded-2xl border border-border bg-white overflow-hidden shadow-sm">
                 <thead>
                     <tr class="border-b border-border text-left">
                         <th class="p-4 w-40 text-muted-foreground font-medium">Aspek</th>
@@ -21,11 +39,6 @@
                             <th class="p-4 min-w-52 align-top">
                                 <a href="{{ route('properties.show', $property->slug) }}" class="font-bold hover:underline line-clamp-2">{{ $property->title }}</a>
                                 <div class="text-xs text-muted-foreground font-normal">{{ $property->city }}</div>
-                                <form method="POST" action="{{ route('compare.remove', $property) }}" class="mt-2">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-xs font-semibold text-destructive hover:underline">Hapus dari perbandingan</button>
-                                </form>
                             </th>
                         @endforeach
                     </tr>
@@ -34,7 +47,7 @@
                     <tr class="border-b border-border">
                         <td class="p-4 text-muted-foreground">Harga</td>
                         @foreach ($properties as $property)
-                            <td class="p-4 font-extrabold text-primary">Rp {{ number_format($property->price, 0, ',', '.') }}</td>
+                            <td class="p-4 font-extrabold text-blue-700">Rp {{ number_format($property->price, 0, ',', '.') }}{{ ($property->listing_status ?? 'jual') === 'sewa' ? '/thn' : '' }}</td>
                         @endforeach
                     </tr>
                     <tr class="border-b border-border">

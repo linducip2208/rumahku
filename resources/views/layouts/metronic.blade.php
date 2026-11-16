@@ -37,71 +37,68 @@
 </script>
 
 <!-- Header / Topbar -->
-<header class="border-b border-border bg-background/95 backdrop-blur sticky top-0 z-30" x-data="{ open: false }">
+<header class="bg-[#0F2A4A] text-white sticky top-0 z-30 shadow-md" x-data="{ open: false }">
     <div class="max-w-7xl mx-auto px-4 lg:px-6">
         <div class="flex items-center justify-between h-16 gap-3">
             <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0">
-                <span class="grid place-items-center size-9 rounded-lg bg-blue-600 text-white font-extrabold text-lg">R</span>
-                <span class="font-extrabold text-xl tracking-tight text-[#0F2A4A]">Rumah<span class="text-blue-600">123</span></span>
+                <span class="grid place-items-center size-9 rounded-lg bg-white text-[#0F2A4A] font-extrabold text-lg">R</span>
+                <span class="font-extrabold text-xl tracking-tight text-white">Rumah123</span>
             </a>
             <nav class="hidden md:flex items-center gap-1 text-sm font-medium" aria-label="Navigasi utama">
-                <a href="{{ route('properties.index', ['status' => 'jual']) }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.jual') }}</a>
-                <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.sewa') }}</a>
-                <a href="{{ route('projects.index') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.proyek') }}</a>
-                <a href="{{ route('agents.index') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.nav.agen') }}</a>
-                <a href="{{ route('info.show', 'tentang') }}" class="px-3 py-2 rounded-lg text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">{{ __('site.footer.perusahaan') }}</a>
+                <a href="{{ route('properties.index', ['status' => 'jual']) }}" class="px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">{{ __('site.nav.jual') }}</a>
+                <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">{{ __('site.nav.sewa') }}</a>
+                <a href="{{ route('projects.index') }}" class="px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">{{ __('site.nav.proyek') }}</a>
+                <a href="{{ route('agents.index') }}" class="px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">{{ __('site.nav.agen') }}</a>
+                <a href="{{ route('info.show', 'tentang') }}" class="px-3 py-2 rounded-lg text-white/85 hover:text-white hover:bg-white/10">{{ __('site.footer.perusahaan') }}</a>
             </nav>
             <div class="flex items-center gap-2">
                 <div class="hidden sm:flex items-center gap-1 text-xs font-semibold">
-                    <a href="{{ url()->current().'?lang=id' }}" class="{{ app()->getLocale() === 'id' ? 'text-blue-600' : 'text-muted-foreground hover:underline' }}">ID</a>
-                    <span class="text-muted-foreground">|</span>
-                    <a href="{{ url()->current().'?lang=en' }}" class="{{ app()->getLocale() === 'en' ? 'text-blue-600' : 'text-muted-foreground hover:underline' }}">EN</a>
+                    <a href="{{ url()->current().'?lang=id' }}" class="{{ app()->getLocale() === 'id' ? 'text-amber-300' : 'text-white/70 hover:text-white hover:underline' }}">ID</a>
+                    <span class="text-white/40">|</span>
+                    <a href="{{ url()->current().'?lang=en' }}" class="{{ app()->getLocale() === 'en' ? 'text-amber-300' : 'text-white/70 hover:text-white hover:underline' }}">EN</a>
                 </div>
-                <a href="{{ route('properties.index') }}" aria-label="Cari properti" class="hidden sm:inline-flex items-center justify-center size-10 rounded-lg border border-border text-[#0F2A4A] hover:bg-blue-50 hover:text-blue-700">
-                    <i class="ki-filled ki-magnifier text-lg"></i>
-                </a>
                 @guest
-                    <a href="{{ route('login') }}" class="hidden sm:inline-flex kt-btn kt-btn-outline">{{ __('site.actions.masuk') }}</a>
-                    <a href="{{ route('register') }}" class="kt-btn kt-btn-primary !bg-blue-600 hover:!bg-blue-700 !px-3 sm:!px-4">
+                    <a href="{{ route('login') }}" class="hidden sm:inline-flex items-center rounded-lg border border-white/30 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">{{ __('site.actions.masuk') }}</a>
+                    <a href="{{ route('register') }}" class="inline-flex items-center gap-1 rounded-lg bg-amber-400 px-3 sm:px-4 py-2 text-sm font-bold text-[#0F2A4A] hover:bg-amber-300 transition">
                         <i class="ki-filled ki-plus"></i><span class="hidden sm:inline"> {{ __('site.actions.pasang_iklan') }}</span><span class="sm:hidden"> Iklan</span>
                     </a>
                 @endguest
                 @auth
-                    <a href="{{ route('dashboard') }}" class="hidden sm:inline-flex kt-btn kt-btn-outline">{{ __('site.actions.dasbor') }}</a>
-                    <a href="{{ route('agent.listings.create') }}" class="kt-btn kt-btn-primary !bg-blue-600 hover:!bg-blue-700 !px-3 sm:!px-4">
+                    <a href="{{ route('dashboard') }}" class="hidden sm:inline-flex items-center rounded-lg border border-white/30 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">{{ __('site.actions.dasbor') }}</a>
+                    <a href="{{ route('agent.listings.create') }}" class="inline-flex items-center gap-1 rounded-lg bg-amber-400 px-3 sm:px-4 py-2 text-sm font-bold text-[#0F2A4A] hover:bg-amber-300 transition">
                         <i class="ki-filled ki-plus"></i><span class="hidden sm:inline"> {{ __('site.actions.pasang_iklan') }}</span><span class="sm:hidden"> Iklan</span>
                     </a>
                     <form method="POST" action="{{ route('logout') }}" class="hidden sm:inline">
                         @csrf
-                        <button type="submit" class="kt-btn kt-btn-outline">{{ __('site.actions.keluar') }}</button>
+                        <button type="submit" class="rounded-lg border border-white/30 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">{{ __('site.actions.keluar') }}</button>
                     </form>
                 @endauth
-                <button type="button" @click="open = !open" :aria-expanded="open.toString()" aria-label="Menu navigasi" class="md:hidden inline-flex items-center justify-center size-10 rounded-lg border border-border hover:bg-muted">
+                <button type="button" @click="open = !open" :aria-expanded="open.toString()" aria-label="Menu navigasi" class="md:hidden inline-flex items-center justify-center size-10 rounded-lg border border-white/20 text-white hover:bg-white/10">
                     <span x-show="!open"><i class="ki-filled ki-burger-menu text-lg"></i></span>
                     <span x-show="open" x-cloak><i class="ki-filled ki-cross text-lg"></i></span>
                 </button>
             </div>
         </div>
-        <nav x-show="open" x-cloak x-collapse class="md:hidden pb-4 grid gap-1 text-sm font-medium border-t border-border pt-3 mt-1">
-            <a href="{{ route('properties.index', ['status' => 'jual']) }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.jual') }}</a>
-            <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.sewa') }}</a>
-            <a href="{{ route('projects.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.proyek') }}</a>
-            <a href="{{ route('agents.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.nav.agen') }}</a>
-            <a href="{{ route('info.show', 'tentang') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.footer.perusahaan') }}</a>
-            <a href="{{ route('properties.index') }}" class="px-3 py-2.5 rounded-lg hover:bg-blue-50">{{ __('site.actions.cari') }}</a>
+        <nav x-show="open" x-cloak x-collapse class="md:hidden pb-4 grid gap-1 text-sm font-medium border-t border-white/10 pt-3 mt-1">
+            <a href="{{ route('properties.index', ['status' => 'jual']) }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10 hover:text-white">{{ __('site.nav.jual') }}</a>
+            <a href="{{ route('properties.index', ['status' => 'sewa']) }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10 hover:text-white">{{ __('site.nav.sewa') }}</a>
+            <a href="{{ route('projects.index') }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10 hover:text-white">{{ __('site.nav.proyek') }}</a>
+            <a href="{{ route('agents.index') }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10 hover:text-white">{{ __('site.nav.agen') }}</a>
+            <a href="{{ route('info.show', 'tentang') }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10 hover:text-white">{{ __('site.footer.perusahaan') }}</a>
+            <a href="{{ route('properties.index') }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10 hover:text-white">{{ __('site.actions.cari') }}</a>
             <div class="flex items-center gap-2 px-3 pt-2 text-xs font-semibold">
-                <a href="{{ url()->current().'?lang=id' }}" class="{{ app()->getLocale() === 'id' ? 'text-primary' : 'text-muted-foreground' }}">ID</a>
-                <span class="text-muted-foreground">|</span>
-                <a href="{{ url()->current().'?lang=en' }}" class="{{ app()->getLocale() === 'en' ? 'text-primary' : 'text-muted-foreground' }}">EN</a>
+                <a href="{{ url()->current().'?lang=id' }}" class="{{ app()->getLocale() === 'id' ? 'text-amber-300' : 'text-white/70' }}">ID</a>
+                <span class="text-white/40">|</span>
+                <a href="{{ url()->current().'?lang=en' }}" class="{{ app()->getLocale() === 'en' ? 'text-amber-300' : 'text-white/70' }}">EN</a>
             </div>
             @guest
-                <a href="{{ route('login') }}" class="px-3 py-2.5 rounded-lg hover:bg-muted">{{ __('site.actions.masuk') }}</a>
+                <a href="{{ route('login') }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10">{{ __('site.actions.masuk') }}</a>
             @endguest
             @auth
-                <a href="{{ route('dashboard') }}" class="px-3 py-2.5 rounded-lg hover:bg-muted">{{ __('site.actions.dasbor') }}</a>
+                <a href="{{ route('dashboard') }}" class="px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10">{{ __('site.actions.dasbor') }}</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-muted">{{ __('site.actions.keluar') }}</button>
+                    <button type="submit" class="w-full text-left px-3 py-2.5 rounded-lg text-white/85 hover:bg-white/10">{{ __('site.actions.keluar') }}</button>
                 </form>
             @endauth
         </nav>

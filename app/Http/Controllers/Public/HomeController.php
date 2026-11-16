@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Project;
 use App\Models\Property;
 use App\Models\Setting;
 use App\Models\User;
@@ -102,6 +103,8 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
+        $projects = Project::query()->latest()->take(6)->get();
+
         $landingDefaults = [
             'hero_title' => 'Temukan Rumah Impianmu dengan Mudah',
             'hero_subtitle' => 'Jelajahi properti dijual & disewa di seluruh Indonesia — rumah, apartemen, ruko, tanah, dan villa pilihan.',
@@ -138,6 +141,7 @@ class HomeController extends Controller
             'collections' => $collections,
             'agents' => $agents,
             'articles' => $articles,
+            'projects' => $projects,
             'landing' => $landing,
         ]);
     }

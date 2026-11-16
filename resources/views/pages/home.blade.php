@@ -46,6 +46,8 @@
     $cities = $toCol($cities ?? null);
     $agents = $toCol($agents ?? null);
     $articles = $toCol($articles ?? null);
+    // Proyek Baru: hanya tampil bila controller mengirimkan data (field: name, slug, city, price_from, developer).
+    $homeProjects = $toCol($projects ?? null);
 
     // ---- Kategori (8): controller => ['label','type','count','empty'] ----
     $typeLabels = ['rumah' => 'Rumah', 'apartemen' => 'Apartemen', 'tanah' => 'Tanah', 'villa' => 'Villa', 'ruko' => 'Ruko', 'kost' => 'Kost', 'gedung' => 'Gedung Komersial', 'gudang' => 'Gudang'];
@@ -103,10 +105,22 @@
         'from-cyan-700 via-sky-600 to-blue-500',
         'from-slate-700 via-slate-600 to-slate-500',
     ];
+
+    // ---- Akses cepat: semua link route() real yang ada ----
+    $quickLinks = [
+        ['label' => 'Cari Properti', 'icon' => 'ki-magnifier', 'url' => route('properties.index')],
+        ['label' => 'Pasang Iklan', 'icon' => 'ki-plus', 'url' => route('agent.listings.create')],
+        ['label' => 'Cari Agen', 'icon' => 'ki-people', 'url' => route('agents.index')],
+        ['label' => 'Kalkulator KPR', 'icon' => 'ki-setting-2', 'url' => '#kpr'],
+        ['label' => 'Lelang', 'icon' => 'ki-star', 'url' => route('auctions.index')],
+        ['label' => 'Panduan', 'icon' => 'ki-document', 'url' => route('articles.index')],
+        ['label' => 'Bandingkan', 'icon' => 'ki-arrows-horizontal', 'url' => route('compare.index')],
+        ['label' => 'Proyek Baru', 'icon' => 'ki-home', 'url' => route('projects.index')],
+    ];
 @endphp
 
 @section('content')
-{{-- ============ 1. HERO KOMPAK + PANEL PENCARIAN ============ --}}
+{{-- ============ 1. HERO KOMPAK + SEARCH CARD ============ --}}
 @if ($show('hero'))
 <section class="relative overflow-hidden bg-[#0F2A4A] text-white">
     @if ($heroFile)
@@ -126,8 +140,8 @@
         </div>
     </div>
 </section>
-<div class="relative z-10 mx-auto -mt-10 max-w-7xl px-4 md:-mt-12 lg:px-6">
-    <div x-data="{ tab: 'jual' }" class="rounded-xl bg-white p-4 shadow-lg sm:p-5">
+<div class="relative z-10 mx-auto -mt-10 max-w-7xl px-4 lg:px-6">
+    <div x-data="{ tab: 'jual' }" class="rounded-xl bg-white p-4 shadow-xl sm:p-5">
         <div class="flex gap-2 text-sm font-semibold" role="tablist" aria-label="Status listing">
             <button type="button" role="tab" :aria-selected="tab === 'jual'" @click="tab = 'jual'"
                 :class="tab === 'jual' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
@@ -139,7 +153,7 @@
                 :class="tab === 'baru' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
                 class="rounded-full px-4 py-2 transition">{{ __('site.nav.proyek') }}</button>
         </div>
-        <form method="GET" :action="tab === 'baru' ? '{{ route('projects.index') }}' : '{{ route('properties.index') }}'" class="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-[1fr_160px_130px_130px_auto]">
+        <form method="GET" :action="tab === 'baru' ? '{{ route('projects.index') }}' : '{{ route('properties.index') }}'" class="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
             <template x-if="tab !== 'baru'">
                 <input type="hidden" name="status" :value="tab" />
             </template>
@@ -172,8 +186,8 @@
                 <span class="text-xs font-semibold text-slate-500">Harga Max (Rp)</span>
                 <input type="number" min="0" name="max_price" value="{{ request('max_price') }}" placeholder="Maks" class="kt-input mt-1 w-full" />
             </label>
-            <div class="flex items-end md:col-span-2 lg:col-span-1">
-                <button type="submit" class="kt-btn kt-btn-primary w-full !py-2.5 font-semibold lg:w-auto lg:!px-8"><i class="ki-filled ki-magnifier"></i> Cari</button>
+            <div class="md:col-span-2 lg:col-span-4">
+                <button type="submit" class="kt-btn kt-btn-primary w-full !bg-blue-600 hover:!bg-blue-700 !py-2.5 text-base font-bold"><i class="ki-filled ki-magnifier"></i> Cari</button>
             </div>
         </form>
     </div>
@@ -182,6 +196,15 @@
         <span class="font-semibold text-slate-500">Populer:</span>
         @foreach ($popularSearches as $pop)
             <a href="{{ route('properties.index', $pop['params']) }}" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 font-medium text-slate-600 shadow-sm transition hover:border-blue-300 hover:text-blue-700">{{ $pop['label'] }}</a>
+        @endforeach
+    </div>
+    {{-- Akses cepat --}}
+    <div class="mt-4 grid grid-cols-4 gap-2 lg:grid-cols-8">
+        @foreach ($quickLinks as $ql)
+            <a href="{{ $ql['url'] }}" class="group flex flex-col items-center gap-1.5 rounded-xl border border-slate-100 bg-white px-2 py-3 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                <span class="grid size-10 place-items-center rounded-full bg-blue-600/10 text-lg text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white"><i class="ki-filled {{ $ql['icon'] }}"></i></span>
+                <span class="text-[11px] font-semibold leading-tight text-slate-700 group-hover:text-blue-700">{{ $ql['label'] }}</span>
+            </a>
         @endforeach
     </div>
 </div>
@@ -213,10 +236,36 @@
 </section>
 @endif
 
-{{-- ============ 3. KATEGORI KOMPAK ============ --}}
-@if ($show('categories'))
+{{-- ============ 3. PROPERTI PILIHAN ============ --}}
+@if ($show('featured'))
 <section class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+        <div class="mb-4 flex items-end justify-between gap-3">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Pilihan Editor</p>
+                <h2 class="text-xl font-extrabold tracking-tight text-[#0F2A4A] sm:text-2xl">Properti Pilihan untuk Anda</h2>
+            </div>
+            <a href="{{ route('properties.index') }}" class="shrink-0 text-sm font-semibold text-blue-600 hover:underline">Lihat Semua →</a>
+        </div>
+        @if ($featured->isEmpty())
+            <div class="rounded-xl border border-dashed border-slate-200 bg-white p-8 text-center text-sm text-slate-500">
+                Belum ada properti unggulan. Data akan tampil setelah properti dipublikasikan.
+            </div>
+        @else
+            <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+                @foreach ($featured as $property)
+                    <x-property-card :property="$property" />
+                @endforeach
+            </div>
+        @endif
+    </div>
+</section>
+@endif
+
+{{-- ============ 4. KATEGORI KOMPAK ============ --}}
+@if ($show('categories'))
+<section class="bg-[#F6F8FB]">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4 flex items-end justify-between gap-3">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Kategori</p>
@@ -243,36 +292,51 @@
 </section>
 @endif
 
-{{-- ============ 4. PROPERTI PILIHAN ============ --}}
-@if ($show('featured'))
-<section class="bg-[#F6F8FB]">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+{{-- ============ 5. PROYEK BARU (strip scroll-snap; tampil bila ada data) ============ --}}
+@if ($homeProjects->isNotEmpty())
+<section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4 flex items-end justify-between gap-3">
             <div>
-                <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Pilihan Editor</p>
-                <h2 class="text-xl font-extrabold tracking-tight text-[#0F2A4A] sm:text-2xl">Properti Pilihan untuk Anda</h2>
+                <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Pengembang Terpercaya</p>
+                <h2 class="text-xl font-extrabold tracking-tight text-[#0F2A4A] sm:text-2xl">Proyek Baru</h2>
             </div>
-            <a href="{{ route('properties.index') }}" class="shrink-0 text-sm font-semibold text-blue-600 hover:underline">Lihat Semua →</a>
+            <a href="{{ route('projects.index') }}" class="shrink-0 text-sm font-semibold text-blue-600 hover:underline">Lihat Semua →</a>
         </div>
-        @if ($featured->isEmpty())
-            <div class="rounded-xl border border-dashed border-slate-200 bg-white p-8 text-center text-sm text-slate-500">
-                Belum ada properti unggulan. Data akan tampil setelah properti dipublikasikan.
-            </div>
-        @else
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                @foreach ($featured as $property)
-                    <x-property-card :property="$property" />
-                @endforeach
-            </div>
-        @endif
+        <div class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:px-0">
+            @foreach ($homeProjects as $i => $project)
+                @php
+                    $p = is_array($project) ? (object) $project : $project;
+                    $devName = isset($p->developer) && is_object($p->developer) ? ($p->developer->name ?? null) : ($p->developer_name ?? null);
+                    $grad = $gradients[$i % count($gradients)];
+                    $pUrl = ! empty($p->slug) ? route('projects.show', $p->slug) : route('projects.index');
+                @endphp
+                <a href="{{ $pUrl }}" class="w-72 shrink-0 snap-start overflow-hidden rounded-xl border border-slate-100 bg-white shadow-sm transition hover:shadow-md">
+                    <div class="flex h-28 items-end bg-gradient-to-br {{ $grad }} p-4 text-white">
+                        <span class="grid size-11 place-items-center rounded-xl bg-white/20 text-xl font-extrabold">{{ strtoupper(mb_substr($p->name ?? 'P', 0, 1)) }}</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="truncate text-sm font-bold text-[#0F2A4A]">{{ $p->name ?? 'Proyek' }}</div>
+                        <div class="mt-0.5 truncate text-xs text-slate-500">{{ $devName ? $devName.' · ' : '' }}{{ $p->city ?? '' }}</div>
+                        <div class="mt-1 text-xs font-bold text-blue-700">
+                            @if (! empty($p->price_from))
+                                Mulai Rp {{ number_format((int) $p->price_from, 0, ',', '.') }}
+                            @else
+                                Lihat detail proyek
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
     </div>
 </section>
 @endif
 
-{{-- ============ 5. KOLEKSI KOMPAK ============ --}}
+{{-- ============ 6. KOLEKSI KOMPAK ============ --}}
 @if ($show('collections') && $collectionTiles->isNotEmpty())
 <section class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4">
             <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Koleksi</p>
             <h2 class="text-xl font-extrabold tracking-tight text-[#0F2A4A] sm:text-2xl">Jelajahi Hunian Istimewa</h2>
@@ -294,10 +358,10 @@
 </section>
 @endif
 
-{{-- ============ 6. KOTA KOMPAK ============ --}}
+{{-- ============ 7. KOTA KOMPAK ============ --}}
 @if ($show('cities'))
 <section class="bg-[#F6F8FB]">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4 flex items-end justify-between gap-3">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Lokasi</p>
@@ -331,10 +395,10 @@
 </section>
 @endif
 
-{{-- ============ 7. PROPERTI TERBARU ============ --}}
+{{-- ============ 8. PROPERTI TERBARU ============ --}}
 @if ($show('latest'))
 <section class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4 flex items-end justify-between gap-3">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Baru Tayang</p>
@@ -360,10 +424,10 @@
 </section>
 @endif
 
-{{-- ============ 8. AGEN KOMPAK ============ --}}
+{{-- ============ 9. AGEN KOMPAK ============ --}}
 @if ($show('agents') && $agents->isNotEmpty())
 <section class="bg-[#F6F8FB]">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4 flex items-end justify-between gap-3">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Agen Terverifikasi</p>
@@ -404,10 +468,10 @@
 </section>
 @endif
 
-{{-- ============ 9. SELLER CTA + KPR ============ --}}
+{{-- ============ 10. SELLER CTA + KPR ============ --}}
 @if ($show('seller'))
 <section class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="grid gap-4 lg:grid-cols-2">
             <div class="relative overflow-hidden rounded-2xl bg-[#0F2A4A] p-6 text-white sm:p-8">
                 <div class="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full border-[20px] border-white/10" aria-hidden="true"></div>
@@ -428,13 +492,12 @@
                     <a href="{{ route('contact') }}" class="kt-btn border border-white/30 font-semibold text-white hover:bg-white/10">Hubungi Kami</a>
                 </div>
             </div>
-            <div x-data="{ price: 800000000, dp: 20, tenor: 20, rate: 6.5,
+            <div id="kpr" class="scroll-mt-24 rounded-2xl border border-slate-200 bg-[#F6F8FB] p-6 sm:p-8" x-data="{ price: 800000000, dp: 20, tenor: 20, rate: 6.5,
                     fmt(v) { return 'Rp ' + Math.round(v).toLocaleString('id-ID'); },
                     get loan() { return this.price * (1 - this.dp / 100); },
                     get n() { return Math.max(1, this.tenor * 12); },
                     get r() { return this.rate / 12 / 100; },
-                    get pay() { if (this.r <= 0) return this.loan / this.n; const p = Math.pow(1 + this.r, this.n); return this.loan * this.r * p / (p - 1); } }"
-                class="rounded-2xl border border-slate-200 bg-[#F6F8FB] p-6 sm:p-8">
+                    get pay() { if (this.r <= 0) return this.loan / this.n; const p = Math.pow(1 + this.r, this.n); return this.loan * this.r * p / (p - 1); } }">
                 <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Simulasi KPR</p>
                 <h2 class="mt-1 text-xl font-extrabold tracking-tight text-[#0F2A4A]">Hitung Estimasi Cicilan</h2>
                 <div class="mt-4 grid gap-3 sm:grid-cols-2">
@@ -468,10 +531,10 @@
 </section>
 @endif
 
-{{-- ============ 10. ARTIKEL KOMPAK ============ --}}
+{{-- ============ 11. ARTIKEL KOMPAK ============ --}}
 @if ($show('articles') && $articles->isNotEmpty())
 <section class="bg-[#F6F8FB]">
-    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6 lg:py-10">
+    <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
         <div class="mb-4 flex items-end justify-between gap-3">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-blue-600">Edukasi</p>
