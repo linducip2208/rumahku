@@ -310,10 +310,16 @@
                     $devName = isset($p->developer) && is_object($p->developer) ? ($p->developer->name ?? null) : ($p->developer_name ?? null);
                     $grad = $gradients[$i % count($gradients)];
                     $pUrl = ! empty($p->slug) ? route('projects.show', $p->slug) : route('projects.index');
+                    $pCover = ! empty($p->slug) && file_exists(public_path('landing/project-'.$p->slug.'.jpg')) ? asset('landing/project-'.$p->slug.'.jpg') : null;
                 @endphp
                 <a href="{{ $pUrl }}" class="w-72 shrink-0 snap-start overflow-hidden rounded-xl border border-slate-100 bg-white shadow-sm transition hover:shadow-md">
-                    <div class="flex h-28 items-end bg-gradient-to-br {{ $grad }} p-4 text-white">
-                        <span class="grid size-11 place-items-center rounded-xl bg-white/20 text-xl font-extrabold">{{ strtoupper(mb_substr($p->name ?? 'P', 0, 1)) }}</span>
+                    <div class="relative flex h-28 items-end overflow-hidden bg-gradient-to-br {{ $grad }} p-4 text-white">
+                        @if ($pCover)
+                            <img src="{{ $pCover }}" alt="{{ $p->name ?? 'Proyek' }}" loading="lazy" class="absolute inset-0 size-full object-cover" onerror="this.remove()" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0F2A4A]/70 via-transparent to-transparent" aria-hidden="true"></div>
+                        @else
+                            <span class="grid size-11 place-items-center rounded-xl bg-white/20 text-xl font-extrabold">{{ strtoupper(mb_substr($p->name ?? 'P', 0, 1)) }}</span>
+                        @endif
                     </div>
                     <div class="p-4">
                         <div class="truncate text-sm font-bold text-[#0F2A4A]">{{ $p->name ?? 'Proyek' }}</div>

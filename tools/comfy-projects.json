@@ -1,0 +1,32 @@
+[
+    {
+        "file": "project-griya-asri-jakarta-selatan.jpg",
+        "positive": "photorealistic architectural photography of a luxurious modern residential cluster entrance in Jakarta Selatan, Indonesia, elegant tropical contemporary houses row, grand gate, manicured landscape, warm evening lights, ultra premium real estate photography, no people, no text, no watermark",
+        "property_id": 950,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "project-pesona-hijau-depok.jpg",
+        "positive": "photorealistic architectural photography of a luxurious modern residential cluster entrance in Depok, Indonesia, green-concept homes with lush gardens, grand gate, manicured landscape, morning light, ultra premium real estate photography, no people, no text, no watermark",
+        "property_id": 951,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "project-citra-residence-bekasi.jpg",
+        "positive": "photorealistic architectural photography of a luxurious modern residential cluster entrance in Bekasi, Indonesia, modern minimalist cluster homes with clean facades, grand gate, manicured landscape, blue sky daylight, ultra premium real estate photography, no people, no text, no watermark",
+        "property_id": 952,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "project-nusa-indah-park-surabaya.jpg",
+        "positive": "photorealistic architectural photography of a luxurious modern residential cluster entrance in Surabaya, Indonesia, premium park-side residences with playground and lake view, grand gate, manicured landscape, golden hour, ultra premium real estate photography, no people, no text, no watermark",
+        "property_id": 953,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    },
+    {
+        "file": "project-wastu-living-bandung.jpg",
+        "positive": "photorealistic architectural photography of a luxurious modern residential cluster entrance in Bandung, Indonesia, Javanese-modern homes with mountain backdrop, grand gate, manicured landscape, soft morning light, ultra premium real estate photography, no people, no text, no watermark",
+        "property_id": 954,
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up"
+    }
+]

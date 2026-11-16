@@ -11,6 +11,12 @@
     </nav>
     <h1 class="text-2xl lg:text-3xl font-extrabold">{{ $project->name }}</h1>
     <p class="text-sm text-muted-foreground mt-1">{{ $project->city }} &middot; Developer: {{ optional($project->developer)->name ?? '-' }}</p>
+    @php $pCoverShow = ! empty($project->slug) && file_exists(public_path('landing/project-'.$project->slug.'.jpg')) ? asset('landing/project-'.$project->slug.'.jpg') : null; @endphp
+    @if ($pCoverShow)
+        <div class="mt-4 overflow-hidden rounded-2xl border border-slate-100 shadow-sm">
+            <img src="{{ $pCoverShow }}" alt="{{ $project->name }}" class="aspect-[21/9] w-full object-cover" loading="eager" onerror="this.closest('div').remove()" />
+        </div>
+    @endif
     <div class="text-xl font-extrabold text-primary mt-3">Mulai Rp {{ number_format($project->price_from, 0, ',', '.') }}</div>
     <div class="kt-card p-5 mt-4">
         <h2 class="font-bold mb-2">Tentang Proyek</h2>
