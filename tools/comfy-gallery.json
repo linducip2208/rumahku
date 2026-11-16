@@ -1,0 +1,602 @@
+[
+    {
+        "property_id": 12,
+        "file": "local-1-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 13,
+        "file": "local-1-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 22,
+        "file": "local-2-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 23,
+        "file": "local-2-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 32,
+        "file": "local-3-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 33,
+        "file": "local-3-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 42,
+        "file": "local-4-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 43,
+        "file": "local-4-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 52,
+        "file": "local-5-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 53,
+        "file": "local-5-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 62,
+        "file": "local-6-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 63,
+        "file": "local-6-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 72,
+        "file": "local-7-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 73,
+        "file": "local-7-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 82,
+        "file": "local-8-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 83,
+        "file": "local-8-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 92,
+        "file": "local-9-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 93,
+        "file": "local-9-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 102,
+        "file": "local-10-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 103,
+        "file": "local-10-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 112,
+        "file": "local-11-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 113,
+        "file": "local-11-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 122,
+        "file": "local-12-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 123,
+        "file": "local-12-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 132,
+        "file": "local-13-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 133,
+        "file": "local-13-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 142,
+        "file": "local-14-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 143,
+        "file": "local-14-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 152,
+        "file": "local-15-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 153,
+        "file": "local-15-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 162,
+        "file": "local-16-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 163,
+        "file": "local-16-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 172,
+        "file": "local-17-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 173,
+        "file": "local-17-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 182,
+        "file": "local-18-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 183,
+        "file": "local-18-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 192,
+        "file": "local-19-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 193,
+        "file": "local-19-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 202,
+        "file": "local-20-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 203,
+        "file": "local-20-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 212,
+        "file": "local-21-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 213,
+        "file": "local-21-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 222,
+        "file": "local-22-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 223,
+        "file": "local-22-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 232,
+        "file": "local-23-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 233,
+        "file": "local-23-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 242,
+        "file": "local-24-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 243,
+        "file": "local-24-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 252,
+        "file": "local-25-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 253,
+        "file": "local-25-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 262,
+        "file": "local-26-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 263,
+        "file": "local-26-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 272,
+        "file": "local-27-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 273,
+        "file": "local-27-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 282,
+        "file": "local-28-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 283,
+        "file": "local-28-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 292,
+        "file": "local-29-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 293,
+        "file": "local-29-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 302,
+        "file": "local-30-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 303,
+        "file": "local-30-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 312,
+        "file": "local-31-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 313,
+        "file": "local-31-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 322,
+        "file": "local-32-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 323,
+        "file": "local-32-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 332,
+        "file": "local-33-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 333,
+        "file": "local-33-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 342,
+        "file": "local-34-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 343,
+        "file": "local-34-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 352,
+        "file": "local-35-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 353,
+        "file": "local-35-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 362,
+        "file": "local-36-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 363,
+        "file": "local-36-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 372,
+        "file": "local-37-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 373,
+        "file": "local-37-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 382,
+        "file": "local-38-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 383,
+        "file": "local-38-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 392,
+        "file": "local-39-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 393,
+        "file": "local-39-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 402,
+        "file": "local-40-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 403,
+        "file": "local-40-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 412,
+        "file": "local-41-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 413,
+        "file": "local-41-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 422,
+        "file": "local-42-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 423,
+        "file": "local-42-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 432,
+        "file": "local-43-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 433,
+        "file": "local-43-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 442,
+        "file": "local-44-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 443,
+        "file": "local-44-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 452,
+        "file": "local-45-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 453,
+        "file": "local-45-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 462,
+        "file": "local-46-2.jpg",
+        "positive": "photorealistic architectural photography, backyard garden view with terrace, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 463,
+        "file": "local-46-3.jpg",
+        "positive": "photorealistic architectural photography, cozy living room interior with sofa and large windows, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 472,
+        "file": "local-47-2.jpg",
+        "positive": "photorealistic architectural photography, modern apartment bedroom interior with city view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 473,
+        "file": "local-47-3.jpg",
+        "positive": "photorealistic architectural photography, apartment swimming pool and podium garden, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 482,
+        "file": "local-48-2.jpg",
+        "positive": "photorealistic architectural photography, aerial view of green vacant land plots with road access, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 483,
+        "file": "local-48-3.jpg",
+        "positive": "photorealistic architectural photography, empty land with mountain backdrop and fence, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 492,
+        "file": "local-49-2.jpg",
+        "positive": "photorealistic architectural photography, shophouse interior with bright retail space, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 493,
+        "file": "local-49-3.jpg",
+        "positive": "photorealistic architectural photography, shophouse row at blue hour with lit storefronts, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 502,
+        "file": "local-50-2.jpg",
+        "positive": "photorealistic architectural photography, tropical villa bedroom opening to pool, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    },
+    {
+        "property_id": 503,
+        "file": "local-50-3.jpg",
+        "positive": "photorealistic architectural photography, villa kitchen and dining with garden view, Indonesia, premium real estate, no people, no text, no watermark",
+        "negative": "cartoon, illustration, drawing, sketch, watermark, text, logo, distorted architecture, blurry, low quality, people close-up text"
+    }
+]
