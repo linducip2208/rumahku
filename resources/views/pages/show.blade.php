@@ -243,10 +243,10 @@
             @if ($waAgentHref || $waNumber)
                 <div class="grid grid-cols-2 gap-2 mt-4">
                     @if ($waNumber)
-                        <a href="tel:{{ $waNumber }}" class="kt-btn kt-btn-outline w-full"><i class="ki-filled ki-phone"></i> Telepon</a>
+                        <a href="{{ route('track.click', [$property, 'tel']) }}" class="kt-btn kt-btn-outline w-full"><i class="ki-filled ki-phone"></i> Telepon</a>
                     @endif
                     @if ($waAgentHref)
-                        <a href="{{ $waAgentHref }}" target="_blank" rel="noopener" class="kt-btn kt-btn-primary w-full"><i class="ki-filled ki-message-text"></i> WhatsApp</a>
+                        <a href="{{ route('track.click', [$property, 'wa']) }}" target="_blank" rel="noopener" class="kt-btn kt-btn-primary w-full"><i class="ki-filled ki-message-text"></i> WhatsApp</a>
                     @endif
                 </div>
             @endif
@@ -265,6 +265,7 @@
                 @endif
                 <button type="submit" class="kt-btn kt-btn-primary w-full">Hubungi Agen</button>
             </form>
+            <a href="{{ route('properties.brochure', $property->slug) }}" class="kt-btn kt-btn-outline w-full mt-2"><i class="ki-filled ki-document"></i> Unduh Brosur (PDF)</a>
         </div>
     </aside>
 </div>
@@ -272,12 +273,12 @@
 <!-- Sticky bar mobile -->
 <div class="fixed bottom-0 inset-x-0 z-40 md:hidden border-t border-border bg-background/95 backdrop-blur px-3 py-2 grid grid-cols-3 gap-2">
     @if ($waNumber)
-        <a href="tel:{{ $waNumber }}" class="kt-btn kt-btn-outline w-full"><i class="ki-filled ki-phone"></i> Telepon</a>
+        <a href="{{ route('track.click', [$property, 'tel']) }}" class="kt-btn kt-btn-outline w-full"><i class="ki-filled ki-phone"></i> Telepon</a>
     @else
         <span class="kt-btn kt-btn-outline w-full opacity-50 pointer-events-none"><i class="ki-filled ki-phone"></i> Telepon</span>
     @endif
     @if ($waAgentHref)
-        <a href="{{ $waAgentHref }}" target="_blank" rel="noopener" class="kt-btn kt-btn-primary w-full"><i class="ki-filled ki-message-text"></i> WA</a>
+        <a href="{{ route('track.click', [$property, 'wa']) }}" target="_blank" rel="noopener" class="kt-btn kt-btn-primary w-full"><i class="ki-filled ki-message-text"></i> WA</a>
     @else
         <span class="kt-btn kt-btn-outline w-full opacity-50 pointer-events-none"><i class="ki-filled ki-message-text"></i> WA</span>
     @endif

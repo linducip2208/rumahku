@@ -39,6 +39,8 @@ class Property extends Model
         'featured',
         'verified_at',
         'views',
+        'wa_clicks',
+        'tel_clicks',
         'published_at',
         'sold_at',
     ];
@@ -62,6 +64,8 @@ class Property extends Model
             'published_at' => 'datetime',
             'sold_at' => 'datetime',
             'views' => 'integer',
+            'wa_clicks' => 'integer',
+            'tel_clicks' => 'integer',
         ];
     }
 

@@ -26,6 +26,7 @@ use App\Http\Controllers\Public\PropertyController;
 use App\Http\Controllers\Public\SeoController;
 use App\Http\Controllers\Public\ServiceController;
 use App\Http\Controllers\Public\ServiceShowController;
+use App\Http\Controllers\Public\TrackController;
 use App\Http\Controllers\SitemapController;
 use App\Models\Package;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/properti', [PropertyController::class, 'index'])->name('properties.index');
 Route::get('/properti/{slug}', [PropertyController::class, 'show'])->name('properties.show');
+Route::get('/properti/{slug}/brosur', [PropertyController::class, 'brochure'])->name('properties.brochure');
+Route::get('/t/{property}/{channel}', [TrackController::class, 'click'])->whereIn('channel', ['wa', 'tel'])->name('track.click');
 
 Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:30,1')->name('leads.store');
 

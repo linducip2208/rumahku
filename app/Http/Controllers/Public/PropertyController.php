@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Laravel\Scout\Builder as ScoutBuilder;
 
 class PropertyController extends Controller
@@ -109,6 +111,19 @@ class PropertyController extends Controller
             'property' => $property,
             'related' => $related,
         ]);
+    }
+
+    public function brochure(string $slug): Response
+    {
+        $property = Property::query()
+            ->with(['images', 'user.agentProfile'])
+            ->where('slug', $slug)
+            ->whereNotNull('published_at')
+            ->whereNull('sold_at')
+            ->firstOrFail();
+
+        return Pdf::loadView('pages.brochure', ['property' => $property])
+            ->download($property->slug.'-brosur.pdf');
     }
 
     private function normalizeStatus(string $status): string
