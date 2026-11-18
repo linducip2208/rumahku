@@ -15,14 +15,14 @@ class LeadReceived extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public Property $property,
+        public ?Property $property,
         public Lead $lead,
     ) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Leads baru: '.$this->property->title,
+            subject: $this->property ? 'Leads baru: '.$this->property->title : 'Leads baru (umum)',
         );
     }
 

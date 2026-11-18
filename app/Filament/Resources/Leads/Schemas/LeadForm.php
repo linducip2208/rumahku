@@ -17,8 +17,8 @@ class LeadForm
                 ->relationship('property', 'title')
                 ->searchable()
                 ->preload()
-                ->required()
-                ->label('Properti'),
+                ->label('Properti')
+                ->helperText('Kosongkan untuk inquiry umum.'),
             Select::make('agent_user_id')
                 ->relationship('agent', 'name')
                 ->searchable()

@@ -7,10 +7,13 @@ use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -30,6 +33,7 @@ class PropertiesTable
                 TextColumn::make('sold_at')->dateTime('d M Y')->sortable()->label('Terjual'),
             ])
             ->filters([
+                TrashedFilter::make(),
                 SelectFilter::make('status_sold')
                     ->label('Status Sold')
                     ->options([
@@ -111,6 +115,8 @@ class PropertiesTable
                         })
                         ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
                     BulkAction::make('mark_sold')
                         ->label('Tandai Terjual')
                         ->icon('heroicon-o-banknotes')

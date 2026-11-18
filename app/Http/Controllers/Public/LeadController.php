@@ -27,15 +27,11 @@ class LeadController extends Controller
 
         $property = isset($validated['property_id'])
             ? Property::find($validated['property_id'])
-            : Property::whereNotNull('published_at')->latest()->first();
-
-        if (! $property) {
-            return back()->withErrors(['property_id' => 'Belum ada properti tersedia untuk dihubungi.'])->withInput();
-        }
+            : null;
 
         $lead = Lead::create([
-            'property_id' => $property->id,
-            'agent_user_id' => $property->user_id,
+            'property_id' => $property?->id,
+            'agent_user_id' => $property?->user_id,
             'name' => $validated['name'],
             'phone' => $validated['phone'],
             'message' => $validated['message'] ?? null,

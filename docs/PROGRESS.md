@@ -164,6 +164,14 @@ Update file ini setiap selesai satu blok.
 - [x] `LoginController::fulfillOrderIntent`: aturan sama dengan OrderController (milik sendiri + anti-duplikat), gagal → `/harga` + error
 - [x] Test: intent terpenuhi setelah login (order pending + redirect orders); intent properti orang lain → pricing + tanpa order
 
+## 2026-11-18 — Lead umum + SoftDeletes Property (161 tests green)
+- [x] Migrasi: `leads.property_id` nullable (raw ALTER, MySQL-only) + `properties.deleted_at`
+- [x] Inquiry umum tanpa properti tersimpan jujur (`NULL`, bukan tempel acak); notifikasi hanya ke admin; mailable + blade null-safe
+- [x] API `/v1/leads` property opsional; Filament Lead property opsional + helper
+- [x] Property SoftDeletes + `shouldBeSearchable` tolak sampah; agen destroy tetap `forceDelete` (file ikut bersih); admin filter sampah + restore/force
+- [x] Test: inquiry umum web+API, soft-delete hidden dari katalog/sitemap lalu restore
+- [ ] Ditunda (butuh infra): Dusk, Lighthouse
+
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
 - [x] Didaftarkan di `DatabaseSeeder` tanpa hapus seeder bawaan

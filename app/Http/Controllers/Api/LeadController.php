@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lead;
 use App\Models\Property;
 use App\Support\NotifiesNewLead;
 use Illuminate\Http\JsonResponse;
@@ -17,16 +18,19 @@ class LeadController extends Controller
         }
 
         $validated = $request->validate([
-            'property_id' => ['required', 'integer', 'exists:properties,id'],
+            'property_id' => ['nullable', 'integer', 'exists:properties,id'],
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:30'],
             'message' => ['nullable', 'string', 'max:2000'],
         ]);
 
-        $property = Property::query()->findOrFail($validated['property_id']);
+        $property = isset($validated['property_id'])
+            ? Property::query()->findOrFail($validated['property_id'])
+            : null;
 
-        $lead = $property->leads()->create([
-            'agent_user_id' => $property->user_id,
+        $lead = Lead::query()->create([
+            'property_id' => $property?->id,
+            'agent_user_id' => $property?->user_id,
             'name' => $validated['name'],
             'phone' => $validated['phone'],
             'message' => $validated['message'] ?? null,

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Mail\LeadReceived;
 use App\Models\AgentProfile;
 use App\Models\Article;
 use App\Models\Auction;
@@ -13,6 +14,7 @@ use App\Models\PropertyOrder;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
@@ -199,5 +201,37 @@ class HardeningTest extends TestCase
         $this->post(route('login'), ['email' => $other->email, 'password' => 'password'])
             ->assertRedirect(route('pricing'));
         $this->assertDatabaseMissing('property_orders', ['property_id' => $property->id]);
+    }
+
+    public function test_general_inquiry_saved_without_property(): void
+    {
+        Mail::fake();
+
+        $this->post(route('leads.store'), [
+            'name' => 'Umum',
+            'phone' => '081234567890',
+            'message' => 'Tanya umum.',
+        ])->assertStatus(302);
+        $this->assertDatabaseHas('leads', ['name' => 'Umum', 'property_id' => null, 'agent_user_id' => null]);
+        Mail::assertSent(LeadReceived::class);
+
+        $this->postJson('/api/v1/leads', [
+            'name' => 'Umum API',
+            'phone' => '081234567891',
+        ])->assertStatus(201);
+        $this->assertDatabaseHas('leads', ['name' => 'Umum API', 'property_id' => null]);
+    }
+
+    public function test_property_soft_delete_hidden_then_restored(): void
+    {
+        $property = Property::factory()->create(['published_at' => now(), 'sold_at' => null, 'title' => 'SoftDel Prop XYZ']);
+
+        $property->delete();
+        $this->assertSoftDeleted('properties', ['id' => $property->id]);
+        $this->get('/properti')->assertOk()->assertDontSee('SoftDel Prop XYZ');
+        $this->get('/properti/'.$property->slug)->assertNotFound();
+
+        $property->restore();
+        $this->get('/properti/'.$property->slug)->assertOk()->assertSee('SoftDel Prop XYZ');
     }
 }

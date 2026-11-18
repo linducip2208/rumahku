@@ -101,7 +101,9 @@ class ListingController extends Controller
             $image->delete();
         }
 
-        $listing->delete();
+        // Hard-delete eksplisit: file fisik ikut dihapus, jadi soft
+        // delete tidak cocok di sini (restore akan tanpa gambar).
+        $listing->forceDelete();
 
         return redirect()->route('agent.listings.index')->with('success', 'Listing berhasil dihapus.');
     }

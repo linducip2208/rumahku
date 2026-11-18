@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Property extends Model
 {
     /** @use HasFactory<PropertyFactory> */
-    use HasFactory, LogsActivity, Searchable;
+    use HasFactory, LogsActivity, Searchable, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -111,7 +112,7 @@ class Property extends Model
 
     public function shouldBeSearchable(): bool
     {
-        return $this->published_at !== null && $this->sold_at === null;
+        return $this->published_at !== null && $this->sold_at === null && $this->deleted_at === null;
     }
 
     /**

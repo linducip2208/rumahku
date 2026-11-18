@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Mail;
 
 class NotifiesNewLead
 {
-    public static function send(Property $property, Lead $lead): void
+    public static function send(?Property $property, Lead $lead): void
     {
         try {
-            $property->loadMissing('user');
-
-            $agentEmail = is_string($property->user?->email) ? $property->user->email : null;
+            $agentEmail = is_string($property?->user?->email) ? $property->user->email : null;
             $adminEmail = (string) config('app.admin_email', 'admin@rumah123.local');
 
             $mailable = new LeadReceived($property, $lead);
@@ -38,7 +36,7 @@ class NotifiesNewLead
         } catch (\Throwable $e) {
             Log::warning('Gagal mengirim notifikasi lead baru.', [
                 'lead_id' => $lead->id ?? null,
-                'property_id' => $property->id ?? null,
+                'property_id' => $property?->id,
                 'error' => $e->getMessage(),
             ]);
         }
