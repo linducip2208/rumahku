@@ -25,7 +25,7 @@ class LeadForm
                 ->preload()
                 ->label('Agen'),
             TextInput::make('name')->required()->maxLength(255)->label('Nama'),
-            TextInput::make('phone')->tel()->required()->maxLength(30)->label('Telepon'),
+            TextInput::make('phone')->tel()->required()->maxLength(30)->regex('/^(\+62|62|0)[0-9]{8,14}$/')->validationMessages(['regex' => 'Format telepon tidak valid (contoh: 0812xxxxxxx).'])->label('Telepon'),
             Textarea::make('message')->columnSpanFull()->label('Pesan'),
             TextInput::make('source')->maxLength(100)->default('web')->label('Sumber'),
             Select::make('status')

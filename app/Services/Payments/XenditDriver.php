@@ -82,6 +82,12 @@ class XenditDriver implements PaymentGateway
         $expectedToken = (string) Setting::get('payments.xendit_callback_token', '');
         $givenToken = (string) ($payload['callback_token'] ?? '');
 
+        if ($expectedToken === '' && app()->isProduction()) {
+            throw new MissingCredentials(
+                'Xendit callback token belum diisi. Isi di admin: Pengaturan → Pembayaran (payments.xendit_callback_token).'
+            );
+        }
+
         if ($expectedToken !== '' && ! hash_equals($expectedToken, $givenToken)) {
             return null;
         }

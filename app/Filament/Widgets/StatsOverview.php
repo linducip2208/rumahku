@@ -26,7 +26,8 @@ class StatsOverview extends StatsOverviewWidget
             ->where('paid_at', '>=', now()->startOfMonth())
             ->sum('amount');
 
-        $viewsTrend = $this->dailyCounts(Property::query()->whereNotNull('published_at'), 'published_at');
+        $listingTrend = $this->dailyCounts(Property::query()->whereNotNull('published_at'), 'published_at');
+        $viewsTrend = $this->dailySums(Property::query(), 'created_at', 'views');
         $leadsTrend = $this->dailyCounts(Lead::query(), 'created_at');
         $revenueTrend = $this->dailySums(PropertyOrder::query()->where('status', 'paid'), 'paid_at', 'amount');
 
@@ -36,7 +37,7 @@ class StatsOverview extends StatsOverviewWidget
                 ->descriptionIcon('heroicon-m-home-modern')
                 ->icon('heroicon-o-home-modern')
                 ->color('primary')
-                ->chart($viewsTrend),
+                ->chart($listingTrend),
             Stat::make('Total Views', number_format($views))
                 ->description('Akumulasi views properti')
                 ->descriptionIcon('heroicon-m-eye')

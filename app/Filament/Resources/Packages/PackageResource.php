@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class PackageResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Transaksi';
+
     protected static ?string $model = Package::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTicket;

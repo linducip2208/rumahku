@@ -21,8 +21,8 @@ class AgentProfileForm
                 ->unique(ignoreRecord: true)
                 ->label('User'),
             TextInput::make('agency')->maxLength(255)->label('Agensi'),
-            TextInput::make('phone')->tel()->required()->maxLength(30)->label('Telepon'),
-            TextInput::make('wa')->tel()->required()->maxLength(30)->label('WhatsApp'),
+            TextInput::make('phone')->tel()->required()->maxLength(30)->regex('/^(\+62|62|0)[0-9]{8,14}$/')->validationMessages(['regex' => 'Format telepon tidak valid.'])->label('Telepon'),
+            TextInput::make('wa')->tel()->required()->maxLength(30)->regex('/^(\+62|62|0)[0-9]{8,14}$/')->validationMessages(['regex' => 'Format WA tidak valid.'])->label('WhatsApp'),
             FileUpload::make('photo')->image()->directory('agents')->label('Foto'),
             DateTimePicker::make('verified_at')->label('Terverifikasi Pada'),
         ]);

@@ -28,6 +28,10 @@ class FavoriteController extends Controller
             return back()->with('success', 'Dihapus dari favorit.');
         }
 
+        if ($property->published_at === null || $property->sold_at !== null) {
+            return back()->withErrors(['property_id' => 'Properti tidak tersedia untuk difavoritkan.']);
+        }
+
         Favorite::create([
             'user_id' => $userId,
             'property_id' => $property->id,

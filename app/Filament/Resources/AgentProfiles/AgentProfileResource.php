@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class AgentProfileResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Pengguna';
+
     protected static ?string $model = AgentProfile::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;

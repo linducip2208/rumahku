@@ -4,7 +4,9 @@ namespace App\Filament\Resources\Packages\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class PackageForm
 {
@@ -15,6 +17,8 @@ class PackageForm
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('slug', Str::slug((string) $state)))
                     ->label('Nama'),
                 TextInput::make('slug')
                     ->required()

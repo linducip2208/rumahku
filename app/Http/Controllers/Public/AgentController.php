@@ -33,6 +33,7 @@ class AgentController extends Controller
         $properties = Property::query()
             ->with('images')
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->where('user_id', $agent->user_id)
             ->latest()
             ->paginate(12);

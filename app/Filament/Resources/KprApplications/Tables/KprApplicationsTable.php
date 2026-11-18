@@ -7,10 +7,13 @@ use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class KprApplicationsTable
@@ -29,6 +32,7 @@ class KprApplicationsTable
                 TextColumn::make('created_at')->dateTime('d M Y')->sortable()->label('Masuk'),
             ])
             ->filters([
+                TrashedFilter::make(),
                 SelectFilter::make('status')
                     ->options([
                         'pending' => 'Pending',
@@ -64,6 +68,8 @@ class KprApplicationsTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
                 ]),
             ]);
     }

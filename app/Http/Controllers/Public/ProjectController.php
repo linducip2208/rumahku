@@ -31,6 +31,7 @@ class ProjectController extends Controller
         $properties = Property::query()
             ->with('images')
             ->whereNotNull('published_at')
+            ->whereNull('sold_at')
             ->where('user_id', $project->developer_user_id)
             ->latest()
             ->take(8)

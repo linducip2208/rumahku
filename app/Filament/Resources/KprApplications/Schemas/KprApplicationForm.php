@@ -25,7 +25,7 @@ class KprApplicationForm
                 ->preload()
                 ->label('Pengguna'),
             TextInput::make('name')->required()->maxLength(255)->label('Nama'),
-            TextInput::make('phone')->tel()->required()->maxLength(30)->label('Telepon'),
+            TextInput::make('phone')->tel()->required()->maxLength(30)->regex('/^(\+62|62|0)[0-9]{8,14}$/')->validationMessages(['regex' => 'Format telepon tidak valid.'])->label('Telepon'),
             TextInput::make('email')->email()->maxLength(255)->label('Email'),
             TextInput::make('dp_amount')->numeric()->required()->minValue(0)->prefix('Rp')->label('Uang Muka (DP)'),
             Select::make('tenor_months')

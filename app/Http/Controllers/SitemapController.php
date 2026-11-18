@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgentProfile;
 use App\Models\Article;
+use App\Models\Auction;
 use App\Models\Project;
 use App\Models\Property;
+use App\Models\Service;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 
@@ -35,6 +38,7 @@ class SitemapController extends Controller
 
             Property::query()
                 ->whereNotNull('published_at')
+                ->whereNull('sold_at')
                 ->select(['slug', 'updated_at'])
                 ->orderByDesc('updated_at')
                 ->chunk(500, function ($properties) use (&$urls): void {
@@ -76,6 +80,50 @@ class SitemapController extends Controller
                     }
                 });
 
+            Auction::query()
+                ->where('status', 'open')
+                ->select(['id', 'updated_at'])
+                ->orderByDesc('updated_at')
+                ->chunk(500, function ($auctions) use (&$urls): void {
+                    foreach ($auctions as $auction) {
+                        $urls[] = [
+                            'loc' => route('auctions.show', ['auction' => $auction->id]),
+                            'lastmod' => optional($auction->updated_at)->format('Y-m-d'),
+                            'changefreq' => 'daily',
+                            'priority' => '0.6',
+                        ];
+                    }
+                });
+
+            Service::query()
+                ->select(['id', 'updated_at'])
+                ->orderByDesc('updated_at')
+                ->chunk(500, function ($services) use (&$urls): void {
+                    foreach ($services as $service) {
+                        $urls[] = [
+                            'loc' => route('services.show', ['service' => $service->id]),
+                            'lastmod' => optional($service->updated_at)->format('Y-m-d'),
+                            'changefreq' => 'weekly',
+                            'priority' => '0.5',
+                        ];
+                    }
+                });
+
+            AgentProfile::query()
+                ->whereNotNull('verified_at')
+                ->select(['id', 'updated_at'])
+                ->orderByDesc('updated_at')
+                ->chunk(500, function ($agents) use (&$urls): void {
+                    foreach ($agents as $agent) {
+                        $urls[] = [
+                            'loc' => route('agents.show', ['id' => $agent->id]),
+                            'lastmod' => optional($agent->updated_at)->format('Y-m-d'),
+                            'changefreq' => 'weekly',
+                            'priority' => '0.5',
+                        ];
+                    }
+                });
+
             $listings = ['jual', 'sewa'];
             $types = ['rumah', 'apartemen', 'tanah', 'ruko', 'villa'];
             $cities = ['depok', 'jakarta-selatan', 'bekasi', 'surabaya', 'bandung'];
@@ -87,6 +135,7 @@ class SitemapController extends Controller
 
                         $exists = Property::query()
                             ->whereNotNull('published_at')
+                            ->whereNull('sold_at')
                             ->where('type', $type)
                             ->where('listing_status', $listing)
                             ->where('city', 'like', '%'.$cityName.'%')

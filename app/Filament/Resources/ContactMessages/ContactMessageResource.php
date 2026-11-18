@@ -15,6 +15,8 @@ use Filament\Tables\Table;
 
 class ContactMessageResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Transaksi';
+
     protected static ?string $model = ContactMessage::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
@@ -22,6 +24,13 @@ class ContactMessageResource extends Resource
     protected static ?string $navigationLabel = 'Pesan Kontak';
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = static::getModel()::query()->where('is_read', false)->count();
+
+        return $count > 0 ? (string) $count : null;
+    }
 
     public static function infolist(Schema $schema): Schema
     {

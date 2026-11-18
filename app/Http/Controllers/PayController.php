@@ -6,6 +6,7 @@ use App\Models\PropertyOrder;
 use App\Services\Payments\MissingCredentials;
 use App\Services\Payments\PaymentManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -59,6 +60,8 @@ class PayController extends Controller
         try {
             $gateway = $manager->driver($driver);
         } catch (\InvalidArgumentException $e) {
+            Log::warning('pay.callback unknown_driver', ['driver' => $driver]);
+
             return response()->json(['ok' => false, 'error' => 'unknown_driver'], 200);
         }
 
@@ -69,6 +72,8 @@ class PayController extends Controller
         try {
             $order = $gateway->handleCallback($payload);
         } catch (MissingCredentials $e) {
+            Log::warning('pay.callback missing_credentials', ['driver' => $driver]);
+
             return response()->json(['ok' => false, 'error' => 'missing_credentials'], 200);
         }
 

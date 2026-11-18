@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
@@ -71,12 +72,14 @@ class ManagePayments extends Page implements HasForms
                             ->label('Server key')
                             ->password()
                             ->revealable()
-                            ->helperText('Isi di admin, bukan di .env. Kosongkan = Midtrans nonaktif.'),
+                            ->required(fn (Get $get): bool => $get('default_driver') === 'midtrans')
+                            ->helperText('Wajib bila gateway default = Midtrans. Kosongkan = Midtrans nonaktif.'),
                         TextInput::make('midtrans_client_key')
                             ->label('Client key')
                             ->password()
                             ->revealable()
-                            ->helperText('Isi di admin, bukan di .env. Untuk Snap.js di frontend.'),
+                            ->required(fn (Get $get): bool => $get('default_driver') === 'midtrans')
+                            ->helperText('Untuk Snap.js di frontend.'),
                         Toggle::make('midtrans_is_production')
                             ->label('Mode production')
                             ->helperText('Mati = sandbox. Nyalakan hanya dengan kunci production.'),
@@ -87,18 +90,21 @@ class ManagePayments extends Page implements HasForms
                             ->label('Secret key')
                             ->password()
                             ->revealable()
-                            ->helperText('Isi di admin, bukan di .env. Kosongkan = Xendit nonaktif.'),
+                            ->required(fn (Get $get): bool => $get('default_driver') === 'xendit')
+                            ->helperText('Wajib bila gateway default = Xendit.'),
                         TextInput::make('xendit_callback_token')
                             ->label('Callback token')
                             ->password()
                             ->revealable()
-                            ->helperText('Token verifikasi webhook dari dasbor Xendit. Disarankan diisi.'),
+                            ->required(fn (Get $get): bool => $get('default_driver') === 'xendit')
+                            ->helperText('Wajib di production untuk verifikasi webhook.'),
                     ]),
                 Section::make('Transfer manual')
                     ->schema([
                         Textarea::make('bank_accounts')
                             ->label('Daftar rekening bank')
                             ->rows(4)
+                            ->required(fn (Get $get): bool => $get('default_driver') === 'manual')
                             ->placeholder("Contoh:\nBCA 1234567890 a.n. PT Rumah123\nMandiri 0987654321 a.n. PT Rumah123")
                             ->helperText('Ditampilkan di halaman instruksi pembayaran manual.')
                             ->columnSpanFull(),

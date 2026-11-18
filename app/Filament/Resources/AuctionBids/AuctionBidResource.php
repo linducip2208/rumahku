@@ -15,6 +15,8 @@ use Filament\Tables\Table;
 
 class AuctionBidResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Katalog';
+
     protected static ?string $model = AuctionBid::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;

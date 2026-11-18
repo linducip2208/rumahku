@@ -6,8 +6,11 @@ use App\Models\Article;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class ArticlesTable
@@ -22,6 +25,7 @@ class ArticlesTable
                 TextColumn::make('updated_at')->dateTime('d M Y')->sortable()->label('Diubah'),
             ])
             ->filters([
+                TrashedFilter::make(),
                 SelectFilter::make('type')->options([
                     'rumah' => 'Rumah',
                     'apartemen' => 'Apartemen',
@@ -43,6 +47,8 @@ class ArticlesTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
                 ]),
             ]);
     }

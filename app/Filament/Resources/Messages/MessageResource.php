@@ -15,6 +15,8 @@ use Filament\Tables\Table;
 
 class MessageResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Transaksi';
+
     protected static ?string $model = Message::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleLeftRight;

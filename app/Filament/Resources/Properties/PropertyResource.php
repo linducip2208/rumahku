@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class PropertyResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Katalog';
+
     protected static ?string $model = Property::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHomeModern;

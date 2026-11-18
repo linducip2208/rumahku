@@ -20,7 +20,7 @@ class ArticleController extends Controller
         $query = Article::query()->orderByDesc('id');
 
         if (! empty($validated['city'])) {
-            $query->where('city', $validated['city']);
+            $query->where('city', 'like', '%'.$validated['city'].'%');
         }
 
         if (! empty($validated['type'])) {

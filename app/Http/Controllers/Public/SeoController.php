@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
 use App\Models\Property;
 use Illuminate\Contracts\View\View;
 
@@ -50,15 +49,6 @@ class SeoController extends Controller
             'metaTitle' => $metaTitle,
             'metaDesc' => $metaDesc,
             'canonical' => $canonical,
-        ]);
-    }
-
-    public function showArticle(string $slug): View
-    {
-        $article = Article::query()->where('slug', $slug)->firstOrFail();
-
-        return view('pages.articles-show', [
-            'article' => $article,
         ]);
     }
 }

@@ -5,9 +5,11 @@ namespace App\Filament\Resources\Projects\Schemas;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class ProjectForm
 {
@@ -19,13 +21,15 @@ class ProjectForm
                 ->searchable()
                 ->preload()
                 ->label('Developer'),
-            TextInput::make('name')->required()->maxLength(255)->label('Nama Proyek'),
+            TextInput::make('name')->required()->maxLength(255)->label('Nama Proyek')
+                ->live(onBlur: true)
+                ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('slug', Str::slug((string) $state))),
             TextInput::make('slug')->required()->maxLength(255)->unique(ignoreRecord: true),
             TextInput::make('city')->required()->maxLength(255)->label('Kota'),
             TextInput::make('price_from')->numeric()->prefix('Rp')->required()->label('Harga Dari'),
-            Textarea::make('facilities')
+            TagsInput::make('facilities')
                 ->label('Fasilitas')
-                ->placeholder('One Gate System, Taman Bermain, Masjid, Minimarket')
+                ->placeholder('Ketik fasilitas lalu Enter')
                 ->columnSpanFull(),
             Repeater::make('unit_types')
                 ->label('Tipe Unit')

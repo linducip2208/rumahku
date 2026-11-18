@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\PropertyController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('v1')->group(function (): void {
+Route::prefix('v1')->middleware('throttle:120,1')->group(function (): void {
     Route::post('/auth/register', [AuthController::class, 'register'])->middleware('throttle:10,1')->name('api.v1.auth.register');
     Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1')->name('api.v1.auth.login');
 
@@ -23,7 +23,7 @@ Route::prefix('v1')->group(function (): void {
     Route::get('/articles', [ArticleController::class, 'index'])->name('api.v1.articles.index');
     Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('api.v1.articles.show');
 
-    Route::post('/leads', [LeadController::class, 'store'])->name('api.v1.leads.store');
+    Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:30,1')->name('api.v1.leads.store');
 
     Route::get('/ideas/features', [IdeaController::class, 'features'])->name('api.v1.ideas.features');
     Route::get('/ideas', [IdeaController::class, 'index'])->name('api.v1.ideas.index');

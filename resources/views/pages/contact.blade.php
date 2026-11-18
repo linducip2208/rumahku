@@ -57,6 +57,11 @@
                 <textarea name="message" rows="5" placeholder="Tulis pesan Anda…" class="kt-input mt-1 w-full">{{ old('message') }}</textarea>
                 @error('message')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
             </label>
+            <div class="cf-turnstile" data-sitekey="{{ \App\Models\Setting::get('captcha.turnstile_site_key', '') }}"></div>
+            @error('captcha')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+            @if (\App\Models\Setting::get('captcha.turnstile_site_key', ''))
+                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            @endif
             <div>
                 <button type="submit" class="kt-btn kt-btn-primary">Kirim Pesan</button>
             </div>

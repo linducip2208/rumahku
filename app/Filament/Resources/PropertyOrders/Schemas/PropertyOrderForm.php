@@ -25,10 +25,12 @@ class PropertyOrderForm
                     ->preload()
                     ->required()
                     ->label('Properti'),
-                TextInput::make('package_slug')
+                Select::make('package_slug')
+                    ->relationship('package', 'name')
+                    ->searchable()
+                    ->preload()
                     ->required()
-                    ->maxLength(255)
-                    ->label('Slug Paket'),
+                    ->label('Paket'),
                 TextInput::make('amount')
                     ->numeric()
                     ->prefix('Rp')

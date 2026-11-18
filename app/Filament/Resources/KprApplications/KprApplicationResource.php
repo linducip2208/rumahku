@@ -18,6 +18,8 @@ use Filament\Tables\Table;
 
 class KprApplicationResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Transaksi';
+
     protected static ?string $model = KprApplication::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;

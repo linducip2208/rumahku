@@ -41,6 +41,20 @@ class OrderController extends Controller
             return response()->json(['message' => 'Properti bukan milik Anda.'], 403);
         }
 
+        $existingPending = PropertyOrder::query()
+            ->where('user_id', $request->user()->id)
+            ->where('property_id', $property->id)
+            ->where('status', 'pending')
+            ->first();
+
+        if ($existingPending) {
+            return response()->json([
+                'message' => 'Order pending untuk properti ini sudah ada.',
+                'id' => $existingPending->id,
+                'status' => $existingPending->status,
+            ], 409);
+        }
+
         $order = PropertyOrder::create([
             'user_id' => $request->user()->id,
             'property_id' => $property->id,

@@ -9,8 +9,10 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Set;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class PropertyForm
 {
@@ -27,7 +29,8 @@ class PropertyForm
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255)
-                    ->live(onBlur: true),
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('slug', Str::slug((string) $state))),
                 TextInput::make('slug')
                     ->required()
                     ->maxLength(255)

@@ -21,7 +21,7 @@ class FacilitySeeder extends Seeder
         'villa' => ['Private Pool', 'Taman Tropis', 'Gazebo', 'Keamanan'],
     ];
 
-    public const PROJECT_FACILITIES = 'One Gate System, Taman Bermain, Masjid, Minimarket';
+    public const PROJECT_FACILITIES = ['One Gate System', 'Taman Bermain', 'Masjid', 'Minimarket'];
 
     /**
      * @var list<array{nama: string, lt: int, lb: int, kt: int, km: int, harga: int}>
@@ -46,7 +46,7 @@ class FacilitySeeder extends Seeder
 
         Project::query()
             ->whereNull('facilities')
-            ->update(['facilities' => self::PROJECT_FACILITIES]);
+            ->update(['facilities' => json_encode(self::PROJECT_FACILITIES)]);
 
         Project::query()
             ->whereNull('unit_types')

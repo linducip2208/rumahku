@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class ProjectResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Katalog';
+
     protected static ?string $model = Project::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;

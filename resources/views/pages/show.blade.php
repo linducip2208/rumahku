@@ -35,6 +35,27 @@
 
 @push('styles')
     <x-seo-meta :title="$metaTitle" :description="$metaDesc" :canonical="$canonical" :image="$metaImage" />
+    <script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'RealEstateListing',
+        'name' => $property->title,
+        'description' => $metaDesc,
+        'url' => $canonical,
+        'image' => $metaImage,
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $property->address ?? null,
+            'addressLocality' => $property->city ?? null,
+            'addressRegion' => $property->province ?? null,
+        ],
+        'offers' => [
+            '@type' => 'Offer',
+            'price' => $property->price,
+            'priceCurrency' => 'IDR',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 @endpush
 
 @section('content')

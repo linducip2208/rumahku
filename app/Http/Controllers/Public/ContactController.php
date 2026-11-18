@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
 use App\Models\Setting;
+use App\Services\Security\TurnstileValidator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class ContactController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, TurnstileValidator $captcha): RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -29,6 +30,10 @@ class ContactController extends Controller
             'subject' => ['nullable', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:2000'],
         ]);
+
+        if (! $captcha->passes($request->input('cf-turnstile-response'), $request->ip())) {
+            return back()->withErrors(['captcha' => 'Verifikasi keamanan gagal. Silakan coba lagi.'])->withInput();
+        }
 
         ContactMessage::create([
             'name' => $validated['name'],

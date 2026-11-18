@@ -149,6 +149,15 @@ Live: `php artisan serve --port=8001` → `/` `/properti` `/admin`. Preview Metr
 
 Update file ini setiap selesai satu blok.
 
+## 2026-11-18 — Hardening 7 batch (audit → fix, 157 tests green)
+- [x] P0: throttle API leads + bid + brosur + global v1 `120,1`; favorit `firstOrCreate` anti-race; order dedup `409`; sold hilang di sitemap/proyek/agen; city `LIKE`; `Project.facilities` cast array; `payment_reference/driver` fillable; Xendit token wajib di prod + log callback
+- [x] P1: hint demo `/admin/login` (debug only); `UserResource` + filter role; auto-slug 4 form; `package_slug` relasi; validasi telepon; audit lock; status ide; `FacilitySeeder` JSON + `TagsInput`; `README.md` proyek + CI `.github/workflows/ci.yml`
+- [x] P2: grup navigasi + badge (leads/order/kontak); payment wajib kondisional; sitemap +lelang/jasa/agen; JSON-LD detail; Policy (Property/Order/Lead); `HardeningTest`
+- [x] Batch 3-5: tren views terpisah; hapus dead code; tipe invalid → kosong; `/kontak` sebelum catchall; Turnstile kontak; compare/favorit tolak sold
+- [x] Batch 6: SoftDeletes (leads, orders, KPR, artikel, proyek) + filter sampah + restore/force di admin
+- [x] Verifikasi: 157 passed / 621 assertions; `pint --test` passed; `npm run build` OK; `filament:optimize` OK; 48 rute admin
+- [ ] Ditunda (butuh keputusan/infra): Dusk, Lighthouse, lead fallback `NOT NULL`, pricing guest POST-hilang, SoftDeletes Property
+
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
 - [x] Didaftarkan di `DatabaseSeeder` tanpa hapus seeder bawaan

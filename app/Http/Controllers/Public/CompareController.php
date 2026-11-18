@@ -29,7 +29,11 @@ class CompareController extends Controller
         }
 
         $properties = $ids->isNotEmpty()
-            ? Property::query()->with('images')->whereIn('id', $ids->all())->get()->sortBy(fn (Property $p): int => array_search($p->id, $ids->all()))
+            ? Property::query()->with('images')
+                ->whereIn('id', $ids->all())
+                ->whereNotNull('published_at')
+                ->whereNull('sold_at')
+                ->get()->sortBy(fn (Property $p): int => array_search($p->id, $ids->all()))
             : collect();
 
         $recommendations = $properties->isNotEmpty()
@@ -44,6 +48,10 @@ class CompareController extends Controller
 
     public function add(Request $request, Property $property): RedirectResponse
     {
+        if ($property->published_at === null || $property->sold_at !== null) {
+            abort(404);
+        }
+
         $ids = collect(session('compare_ids', []))->map(fn ($v): int => (int) $v);
         if (! $ids->contains($property->id)) {
             $ids->push($property->id);

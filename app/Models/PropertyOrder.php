@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Featured order: pembelian paket unggulan untuk sebuah properti.
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PropertyOrder extends Model
 {
     /** @use HasFactory<PropertyOrderFactory> */
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -25,6 +26,8 @@ class PropertyOrder extends Model
         'status',
         'paid_at',
         'expires_at',
+        'payment_reference',
+        'payment_driver',
     ];
 
     /**

@@ -35,7 +35,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/properti', [PropertyController::class, 'index'])->name('properties.index');
 Route::get('/properti/{slug}', [PropertyController::class, 'show'])->name('properties.show');
-Route::get('/properti/{slug}/brosur', [PropertyController::class, 'brochure'])->name('properties.brochure');
+Route::get('/properti/{slug}/brosur', [PropertyController::class, 'brochure'])->middleware('throttle:30,1')->name('properties.brochure');
 Route::get('/t/{property}/{channel}', [TrackController::class, 'click'])->whereIn('channel', ['wa', 'tel'])->name('track.click');
 
 Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:30,1')->name('leads.store');
@@ -95,7 +95,7 @@ Route::post('/favorit/{property}', [FavoriteController::class, 'toggle'])->middl
 
 Route::get('/lelang', [AuctionController::class, 'index'])->name('auctions.index');
 Route::get('/lelang/{auction}', [AuctionShowController::class, 'show'])->name('auctions.show');
-Route::post('/lelang/{auction}/bid', [BidController::class, 'store'])->middleware('auth')->name('auctions.bids.store');
+Route::post('/lelang/{auction}/bid', [BidController::class, 'store'])->middleware(['auth', 'throttle:10,1'])->name('auctions.bids.store');
 Route::get('/jasa', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/jasa/{service}', [ServiceShowController::class, 'show'])->name('services.show');
 
@@ -103,14 +103,14 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 
 Route::post('/kpr', [KprController::class, 'store'])->middleware('throttle:30,1')->name('kpr.store');
 
-Route::get('/{page}', [InfoController::class, 'show'])
-    ->whereIn('page', ['tentang', 'bantuan', 'privasi', 'syarat'])
-    ->name('info.show');
-
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 Route::post('/kontak', [ContactController::class, 'store'])
     ->middleware('throttle:10,1')
     ->name('contact.store');
+
+Route::get('/{page}', [InfoController::class, 'show'])
+    ->whereIn('page', ['tentang', 'bantuan', 'privasi', 'syarat'])
+    ->name('info.show');
 
 Route::get('/{listing}/{type}/{city}', [SeoController::class, 'landing'])
     ->whereIn('listing', ['jual', 'sewa'])

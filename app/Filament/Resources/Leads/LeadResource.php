@@ -18,11 +18,20 @@ use Filament\Tables\Table;
 
 class LeadResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Transaksi';
+
     protected static ?string $model = Lead::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = static::getModel()::query()->where('status', 'baru')->count();
+
+        return $count > 0 ? (string) $count : null;
+    }
 
     public static function form(Schema $schema): Schema
     {

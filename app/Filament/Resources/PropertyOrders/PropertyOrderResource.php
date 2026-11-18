@@ -16,11 +16,20 @@ use Filament\Tables\Table;
 
 class PropertyOrderResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Transaksi';
+
     protected static ?string $model = PropertyOrder::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;
 
     protected static ?string $recordTitleAttribute = 'package_slug';
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = static::getModel()::query()->where('status', 'pending')->count();
+
+        return $count > 0 ? (string) $count : null;
+    }
 
     public static function form(Schema $schema): Schema
     {

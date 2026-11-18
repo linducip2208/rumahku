@@ -51,6 +51,9 @@ class PropertyController extends Controller
 
             if (in_array($type, self::ALLOWED_TYPES, true)) {
                 $query->where('type', $type);
+            } else {
+                // Tipe tak dikenal: kembalikan kosong, jangan abaikan diam-diam.
+                $query->whereRaw('0 = 1');
             }
         }
 
@@ -59,6 +62,8 @@ class PropertyController extends Controller
 
             if (in_array($status, self::ALLOWED_STATUSES, true)) {
                 $query->where('listing_status', $status);
+            } else {
+                $query->whereRaw('0 = 1');
             }
         }
 
@@ -168,6 +173,9 @@ class PropertyController extends Controller
 
             if (in_array($type, self::ALLOWED_TYPES, true)) {
                 $query->where('type', $type);
+            } else {
+                // Tipe tak dikenal: kembalikan kosong, jangan abaikan diam-diam.
+                $query->whereRaw('0 = 1');
             }
         }
 
@@ -176,6 +184,8 @@ class PropertyController extends Controller
 
             if (in_array($status, self::ALLOWED_STATUSES, true)) {
                 $query->where('listing_status', $status);
+            } else {
+                $query->whereRaw('0 = 1');
             }
         }
 

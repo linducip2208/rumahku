@@ -15,11 +15,23 @@ use Filament\Tables\Table;
 
 class AuditLogResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Lainnya';
+
     protected static ?string $model = AuditLog::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     protected static ?string $recordTitleAttribute = 'id';
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return false;
+    }
 
     public static function infolist(Schema $schema): Schema
     {
@@ -42,10 +54,5 @@ class AuditLogResource extends Resource
             'index' => ListAuditLogs::route('/'),
             'view' => ViewAuditLog::route('/{record}'),
         ];
-    }
-
-    public static function canCreate(): bool
-    {
-        return false;
     }
 }

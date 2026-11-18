@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\FeatureIdeas\Tables;
 
 use App\Services\Ideas\IdeaBank;
+use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -42,6 +44,18 @@ class FeatureIdeasTable
             ])
             ->recordActions([
                 ViewAction::make(),
+                Action::make('setStatus')
+                    ->label('Status')
+                    ->icon('heroicon-o-check-circle')
+                    ->schema([
+                        Select::make('status')
+                            ->options(['backlog' => 'Backlog', 'planned' => 'Planned', 'done' => 'Done'])
+                            ->required()
+                            ->default(fn ($record) => $record->status),
+                    ])
+                    ->action(function ($record, array $data): void {
+                        $record->update(['status' => $data['status']]);
+                    }),
             ]);
     }
 }

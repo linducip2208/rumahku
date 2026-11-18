@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Storage;
 /**
  * Storage settings: read-only status + manual instructions.
  *
- * Keputusan: tidak ada app/Models/Setting.php di repo, sehingga halaman ini
- * TIDAK membuat tabel settings dan TIDAK menulis .env dari UI. Perubahan
+ * Keputusan: halaman ini TIDAK menulis .env dari UI. Perubahan
  * disk S3 dilakukan manual via environment (lihat instruksi di halaman).
  */
 class ManageStorage extends Page
