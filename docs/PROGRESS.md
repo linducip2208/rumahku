@@ -170,7 +170,13 @@ Update file ini setiap selesai satu blok.
 - [x] API `/v1/leads` property opsional; Filament Lead property opsional + helper
 - [x] Property SoftDeletes + `shouldBeSearchable` tolak sampah; agen destroy tetap `forceDelete` (file ikut bersih); admin filter sampah + restore/force
 - [x] Test: inquiry umum web+API, soft-delete hidden dari katalog/sitemap lalu restore
-- [ ] Ditunda (butuh infra): Dusk, Lighthouse
+
+## 2026-11-18 — Dusk + Lighthouse scaffold (161 tests green + 5 dusk terdaftar)
+- [x] `composer require laravel/dusk --dev` + `dusk:install`; `SmokeTest` 5 test (home, login, redirect guest, pricing, admin login); hapus `ExampleTest` placeholder
+- [x] CI: perbaiki job `test` (MySQL allow-empty-password, cocok `.env.testing` root/nopass) + job `dusk` baru (setup-chrome, MySQL `rumah123_dusk`, serve :8000)
+- [x] `lighthouserc.json` (budget perf/a11y/SEO) + `npm run lighthouse` + docs `TESTING.md`
+- [x] Verifikasi lokal: 5 test Dusk terdeteksi phpunit, YAML CI valid, JSON valid, suite fitur tetap hijau
+- [ ] Eksekusi browser sesungguhnya butuh Chrome (tidak ada di mesin ini) → jalan di CI Actions
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
