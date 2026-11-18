@@ -7,6 +7,7 @@ use App\Http\Controllers\Agent\OrderController as AgentOrderController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderIntentController;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\Public\AgentController;
 use App\Http\Controllers\Public\ArticleController;
@@ -81,6 +82,7 @@ Route::get('/harga', function () {
 })->name('pricing');
 
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
+Route::post('/order-intent', [OrderIntentController::class, 'store'])->middleware(['guest', 'throttle:10,1'])->name('orders.intent');
 
 Route::middleware('auth')->group(function () {
     Route::get('/pay/{order}', [PayController::class, 'pay'])->name('pay.show');

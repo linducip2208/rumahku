@@ -8,6 +8,10 @@
         <h1 class="text-2xl font-extrabold tracking-tight">{{ __('site.auth.login_title') }}</h1>
         <p class="text-sm text-muted-foreground mt-1">{{ __('site.auth.login_subtitle') }}</p>
 
+        @if (session('info'))
+            <p class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">{{ session('info') }}</p>
+        @endif
+
         <form method="POST" action="{{ route('login') }}" class="mt-6 grid gap-4">
             @csrf
             <div>

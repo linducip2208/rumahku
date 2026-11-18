@@ -157,4 +157,47 @@ class HardeningTest extends TestCase
         $order->forceDelete();
         $this->assertDatabaseMissing('property_orders', ['id' => $order->id]);
     }
+
+    public function test_guest_order_intent_fulfilled_after_login(): void
+    {
+        $user = User::factory()->create();
+        $property = Property::factory()->create(['user_id' => $user->id]);
+        $package = Package::query()->firstOrCreate(
+            ['slug' => 'basic'],
+            ['name' => 'Basic', 'price' => 100000, 'duration_days' => 30, 'max_photos' => 5]
+        );
+
+        $this->post(route('orders.intent'), [
+            'property_id' => $property->id,
+            'package_slug' => $package->slug,
+        ])->assertRedirect(route('login'));
+
+        $this->post(route('login'), ['email' => $user->email, 'password' => 'password'])
+            ->assertRedirect(route('agent.orders.index'));
+        $this->assertDatabaseHas('property_orders', [
+            'user_id' => $user->id,
+            'property_id' => $property->id,
+            'status' => 'pending',
+        ]);
+    }
+
+    public function test_order_intent_rejected_for_others_property(): void
+    {
+        $owner = User::factory()->create();
+        $other = User::factory()->create();
+        $property = Property::factory()->create(['user_id' => $owner->id]);
+        $package = Package::query()->firstOrCreate(
+            ['slug' => 'basic'],
+            ['name' => 'Basic', 'price' => 100000, 'duration_days' => 30, 'max_photos' => 5]
+        );
+
+        $this->post(route('orders.intent'), [
+            'property_id' => $property->id,
+            'package_slug' => $package->slug,
+        ])->assertRedirect(route('login'));
+
+        $this->post(route('login'), ['email' => $other->email, 'password' => 'password'])
+            ->assertRedirect(route('pricing'));
+        $this->assertDatabaseMissing('property_orders', ['property_id' => $property->id]);
+    }
 }

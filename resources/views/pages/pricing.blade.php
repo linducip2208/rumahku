@@ -36,7 +36,7 @@
                     <li>{{ $package->featured_included ? 'Termasuk badge & slot Unggulan' : 'Listing standar' }}</li>
                     <li>Tayang {{ $package->duration_days }} hari</li>
                 </ul>
-                <form method="POST" action="{{ route('orders.store') }}" class="mt-auto">
+                <form method="POST" action="{{ auth()->check() ? route('orders.store') : route('orders.intent') }}" class="mt-auto">
                     @csrf
                     <input type="hidden" name="package_slug" value="{{ $package->slug }}" />
                     <input type="hidden" name="property_id" value="{{ request('property_id') }}" />

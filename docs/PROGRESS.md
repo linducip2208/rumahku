@@ -156,7 +156,13 @@ Update file ini setiap selesai satu blok.
 - [x] Batch 3-5: tren views terpisah; hapus dead code; tipe invalid → kosong; `/kontak` sebelum catchall; Turnstile kontak; compare/favorit tolak sold
 - [x] Batch 6: SoftDeletes (leads, orders, KPR, artikel, proyek) + filter sampah + restore/force di admin
 - [x] Verifikasi: 157 passed / 621 assertions; `pint --test` passed; `npm run build` OK; `filament:optimize` OK; 48 rute admin
-- [ ] Ditunda (butuh keputusan/infra): Dusk, Lighthouse, lead fallback `NOT NULL`, pricing guest POST-hilang, SoftDeletes Property
+- [ ] Ditunda (butuh keputusan/infra): Dusk, Lighthouse, lead fallback `NOT NULL`, SoftDeletes Property
+
+## 2026-11-18 — Order intent guest (pricing tidak hilang setelah login)
+- [x] `POST /order-intent` (guest, throttle) simpan `property_id+package_slug` ke session → redirect login + pesan info
+- [x] Pricing blade: guest → `orders.intent`, login → `orders.store`; pesan info tampil di form login
+- [x] `LoginController::fulfillOrderIntent`: aturan sama dengan OrderController (milik sendiri + anti-duplikat), gagal → `/harga` + error
+- [x] Test: intent terpenuhi setelah login (order pending + redirect orders); intent properti orang lain → pricing + tanpa order
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
