@@ -194,7 +194,9 @@ Update file ini setiap selesai satu blok.
 ## 2026-11-18 — Perbaiki CI merah (pantauan via API)
 - [x] Temuan: run #1–#3 gagal di `migrate` (password mismatch); run #7: job `test` tetap gagal migrate + job `dusk` gagal di `php artisan dusk` (14 dtk)
 - [x] Fix: password MySQL eksplisit `ci-password` di kedua job (ganti allow-empty), flag Chrome `--no-sandbox --disable-dev-shm-usage`, upload artefak dusk+screenshots+log saat gagal
-- [ ] Tunggu hasil run berikutnya di tab Actions
+- [x] Run #8: migrate+pint lolos, `test` gagal di suite (20 dtk), `dusk` gagal 19 dtk → isi log tak terbaca tanpa auth
+- [x] Fix diagnosa: kedua job tulis JUnit XML + `mikepenz/action-junit-report` (anotasi terbaca via API); dusk via `vendor/bin/phpunit tests/Browser`
+- [ ] Tunggu hasil run berikutnya, baca anotasi junit via API
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)

@@ -40,7 +40,12 @@ jobs:
       - run: composer install --no-progress --prefer-dist
       - run: php artisan migrate --env=testing --force
       - run: vendor/bin/pint --test
-      - run: php artisan test --compact
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-test.xml
+      - uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: /tmp/junit-test.xml
+          check_name: PHPUnit results
       - run: npm ci --ignore-scripts
       - run: npm run build
 
@@ -90,7 +95,12 @@ jobs:
       - run: php artisan dusk:chrome-driver --detect
       - run: php artisan serve --host=127.0.0.1 --port=8000 > /tmp/serve.log 2>&1 &
       - run: for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null && break; sleep 1; done
-      - run: php artisan dusk
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-dusk.xml tests/Browser
+      - uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: /tmp/junit-dusk.xml
+          check_name: Dusk results
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
