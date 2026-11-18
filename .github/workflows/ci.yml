@@ -40,14 +40,19 @@ jobs:
       - run: composer install --no-progress --prefer-dist
       - run: php artisan migrate --env=testing --force
       - run: vendor/bin/pint --test
+      - run: npm ci --ignore-scripts
+      - run: npm run build
       - run: vendor/bin/phpunit --log-junit /tmp/junit-test.xml
       - uses: mikepenz/action-junit-report@v4
         if: always()
         with:
           report_paths: /tmp/junit-test.xml
           check_name: PHPUnit results
-      - run: npm ci --ignore-scripts
-      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: junit-test
+          path: /tmp/junit-test.xml
 
   dusk:
     runs-on: ubuntu-latest

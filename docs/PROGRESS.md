@@ -196,7 +196,9 @@ Update file ini setiap selesai satu blok.
 - [x] Fix: password MySQL eksplisit `ci-password` di kedua job (ganti allow-empty), flag Chrome `--no-sandbox --disable-dev-shm-usage`, upload artefak dusk+screenshots+log saat gagal
 - [x] Run #8: migrate+pint lolos, `test` gagal di suite (20 dtk), `dusk` gagal 19 dtk → isi log tak terbaca tanpa auth
 - [x] Fix diagnosa: kedua job tulis JUnit XML + `mikepenz/action-junit-report` (anotasi terbaca via API); dusk via `vendor/bin/phpunit tests/Browser`
-- [ ] Tunggu hasil run berikutnya, baca anotasi junit via API
+- [x] Run #9: reporter jalan tapi tanpa token checks:write → anotasi gagal dibuat; yang terbaca: `test` gagal di phpunit (16 dtk), `dusk` gagal 19 dtk
+- [x] Akar masalah kemungkinan: (1) `@vite` butuh manifest tapi build jalan SETELAH test → pindah build SEBELUM phpunit; (2) Dusk tanpa wait → pakai `waitForText`/`waitFor`/`waitForLocation`
+- [ ] Tunggu hasil run berikutnya
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
