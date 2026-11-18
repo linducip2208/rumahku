@@ -42,26 +42,94 @@ jobs:
       - run: vendor/bin/pint --test
       - run: npm ci --ignore-scripts
       - run: npm run build
-      - run: vendor/bin/phpunit --log-junit /tmp/junit-unit.xml tests/Unit
+      - run: vendor/bin/phpunit tests/Unit
         if: always()
-      - run: vendor/bin/phpunit --log-junit /tmp/junit-a.xml --filter '/(AdminPanelTest|AgentFlowTest|AgentListingLifecycleTest|ApiTest|ApiDocsTest|AuctionBidTest|AuctionRaceTest|AuditLogTest|BackupTest|CaptchaTest|ContactTest)/'
+      - run: vendor/bin/phpunit tests/Feature/AdminPanelTest.php
         if: always()
-      - run: vendor/bin/phpunit --log-junit /tmp/junit-b.xml --filter '/(ExampleTest|ExtraFlowTest|FacilityTest|FavoriteToggleTest|FeatureConnectionTest|FlushDemoDataTest|HardeningTest|IdeaBankTest|InfoTest|KprFlowTest|LandingDataTest)/'
+      - run: vendor/bin/phpunit tests/Feature/AgentFlowTest.php
         if: always()
-      - run: vendor/bin/phpunit --log-junit /tmp/junit-c.xml --filter '/(LeadNotifyTest|LeadPipelineTest|ListingQuotaTest|LocaleTest|LoginThrottleTest|MarketplaceTest|MessageTest|ModerationTest|OrderOwnershipTest|OwnerRoleTest|PackageTest)/'
+      - run: vendor/bin/phpunit tests/Feature/AgentListingLifecycleTest.php
         if: always()
-      - run: vendor/bin/phpunit --log-junit /tmp/junit-d.xml --filter '/(PayFlowTest|PaymentIdempotencyTest|PaymentTest|PropertyCsvTest|SearchTest|SeoArticlesTest|SoldStatusTest|TokenSecurityTest|TrackAndBrochureTest|UnpublishedApiTest)/'
+      - run: vendor/bin/phpunit tests/Feature/ApiDocsTest.php
         if: always()
-      - uses: mikepenz/action-junit-report@v4
+      - run: vendor/bin/phpunit tests/Feature/ApiTest.php
         if: always()
-        with:
-          report_paths: /tmp/junit-*.xml
-          check_name: PHPUnit results
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: junit-test
-          path: /tmp/junit-*.xml
+      - run: vendor/bin/phpunit tests/Feature/AuctionBidTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/AuctionRaceTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/AuditLogTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/BackupTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/CaptchaTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/ContactTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/ExampleTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/ExtraFlowTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/FacilityTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/FavoriteToggleTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/FeatureConnectionTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/FlushDemoDataTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/HardeningTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/IdeaBankTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/InfoTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/KprFlowTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/LandingDataTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/LeadNotifyTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/LeadPipelineTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/ListingQuotaTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/LocaleTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/LoginThrottleTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/MarketplaceTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/MessageTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/ModerationTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/OrderOwnershipTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/OwnerRoleTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/PackageTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/PayFlowTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/PaymentIdempotencyTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/PaymentTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/PropertyCsvTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/SearchTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/SeoArticlesTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/SoldStatusTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/TokenSecurityTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/TrackAndBrochureTest.php
+        if: always()
+      - run: vendor/bin/phpunit tests/Feature/UnpublishedApiTest.php
+        if: always()
 
   dusk:
     runs-on: ubuntu-latest

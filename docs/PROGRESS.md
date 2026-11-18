@@ -198,8 +198,8 @@ Update file ini setiap selesai satu blok.
 - [x] Fix diagnosa: kedua job tulis JUnit XML + `mikepenz/action-junit-report` (anotasi terbaca via API); dusk via `vendor/bin/phpunit tests/Browser`
 - [x] Run #9: reporter jalan tapi tanpa token checks:write → anotasi gagal dibuat; yang terbaca: `test` gagal di phpunit (16 dtk), `dusk` gagal 19 dtk
 - [x] Akar masalah kemungkinan: (1) `@vite` butuh manifest tapi build jalan SETELAH test → pindah build SEBELUM phpunit; (2) Dusk tanpa wait → pakai `waitForText`/`waitFor`/`waitForLocation`
-- [x] Run #10 tetap merah (build duluan tak mempan) → bisection: job `test` dipecah 5 chunk step (unit+A/B/C/D) agar peta merah terbaca via API
-- [ ] Baca chunk merah run berikutnya, perbaiki, kembalikan single-step
+- [x] Run #10 tetap merah (build duluan tak mempan) → bisection: per-file step (43 file, `if: always()`) agar file merah persis ketahuan; chunk lokal semua hijau jadi sintaks filter valid
+- [ ] Baca file merah run berikutnya, perbaiki akar masalah, kembalikan single-step
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
