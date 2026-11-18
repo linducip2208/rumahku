@@ -42,94 +42,12 @@ jobs:
       - run: vendor/bin/pint --test
       - run: npm ci --ignore-scripts
       - run: npm run build
-      - run: vendor/bin/phpunit tests/Unit
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/AdminPanelTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/AgentFlowTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/AgentListingLifecycleTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ApiDocsTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ApiTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/AuctionBidTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/AuctionRaceTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/AuditLogTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/BackupTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/CaptchaTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ContactTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ExampleTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ExtraFlowTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/FacilityTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/FavoriteToggleTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/FeatureConnectionTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/FlushDemoDataTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/HardeningTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/IdeaBankTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/InfoTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/KprFlowTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/LandingDataTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/LeadNotifyTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/LeadPipelineTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ListingQuotaTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/LocaleTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/LoginThrottleTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/MarketplaceTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/MessageTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/ModerationTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/OrderOwnershipTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/OwnerRoleTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/PackageTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/PayFlowTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/PaymentIdempotencyTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/PaymentTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/PropertyCsvTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/SearchTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/SeoArticlesTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/SoldStatusTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/TokenSecurityTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/TrackAndBrochureTest.php
-        if: always()
-      - run: vendor/bin/phpunit tests/Feature/UnpublishedApiTest.php
-        if: always()
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-test.xml
+      - run: php .github/scripts/ci-diagnose.php /tmp/junit-test.xml
+        if: failure()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
 
   dusk:
     runs-on: ubuntu-latest
@@ -178,11 +96,11 @@ jobs:
       - run: php artisan serve --host=127.0.0.1 --port=8000 > /tmp/serve.log 2>&1 &
       - run: for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null && break; sleep 1; done
       - run: vendor/bin/phpunit --log-junit /tmp/junit-dusk.xml tests/Browser
-      - uses: mikepenz/action-junit-report@v4
-        if: always()
-        with:
-          report_paths: /tmp/junit-dusk.xml
-          check_name: Dusk results
+      - run: php .github/scripts/ci-diagnose.php /tmp/junit-dusk.xml
+        if: failure()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

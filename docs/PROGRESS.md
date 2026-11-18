@@ -199,7 +199,10 @@ Update file ini setiap selesai satu blok.
 - [x] Run #9: reporter jalan tapi tanpa token checks:write → anotasi gagal dibuat; yang terbaca: `test` gagal di phpunit (16 dtk), `dusk` gagal 19 dtk
 - [x] Akar masalah kemungkinan: (1) `@vite` butuh manifest tapi build jalan SETELAH test → pindah build SEBELUM phpunit; (2) Dusk tanpa wait → pakai `waitForText`/`waitFor`/`waitForLocation`
 - [x] Run #10 tetap merah (build duluan tak mempan) → bisection: per-file step (43 file, `if: always()`) agar file merah persis ketahuan; chunk lokal semua hijau jadi sintaks filter valid
-- [ ] Baca file merah run berikutnya, perbaiki akar masalah, kembalikan single-step
+- [x] Run #12: 30 file merah = SEMUA yang sentuh web/Blade; hijau hanya API JSON/model/command/skip → pola: web layer gagal sistematis di runner
+- [x] Eliminasi: manifest (lolos tanpa manifest), case view/komponen/tabel, .env hilang (lolos tanpa .env), sintaks filter, skema (migrate+seeder lolos)
+- [x] Diagnosa permanen: `.github/scripts/ci-diagnose.php` parse junit → commit status `ci-diag/<File>` via `gh` (terbaca via API)
+- [ ] Baca status `ci-diag/*` run berikutnya → perbaiki akar masalah → kembalikan CI sederhana
 
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
