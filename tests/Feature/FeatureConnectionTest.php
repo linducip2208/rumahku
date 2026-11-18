@@ -181,4 +181,85 @@ class FeatureConnectionTest extends TestCase
         $this->assertStringContainsString('6281234567890', (string) $response->headers->get('Location'));
         $this->assertSame(1, (int) $property->fresh()->wa_clicks);
     }
+
+    public function test_financing_chain_kpr_linked_to_property(): void
+    {
+        $owner = User::factory()->create();
+        $property = Property::factory()->create([
+            'user_id' => $owner->id,
+            'published_at' => now(),
+            'price' => 500000000,
+        ]);
+
+        // DP melebihi harga → ditolak, tidak ada application tersimpan.
+        $this->post('/kpr', [
+            'property_id' => $property->id,
+            'name' => 'Budi',
+            'phone' => '08123456789',
+            'dp_amount' => 600000000,
+            'tenor_months' => 120,
+        ])->assertSessionHasErrors('dp_amount');
+        $this->assertDatabaseCount('kpr_applications', 0);
+
+        // DP valid → tersimpan terikat ke properti + tenor/bank ikut.
+        $this->post('/kpr', [
+            'property_id' => $property->id,
+            'name' => 'Budi',
+            'phone' => '08123456789',
+            'dp_amount' => 100000000,
+            'tenor_months' => 120,
+            'bank_preference' => 'bca',
+        ])->assertStatus(302);
+        $this->assertDatabaseHas('kpr_applications', [
+            'property_id' => $property->id,
+            'tenor_months' => 120,
+            'bank_preference' => 'bca',
+            'status' => 'pending',
+        ]);
+    }
+
+    public function test_discussion_chain_message_appears_in_thread(): void
+    {
+        $owner = User::factory()->create();
+        $property = Property::factory()->create([
+            'user_id' => $owner->id,
+            'published_at' => now(),
+            'sold_at' => null,
+        ]);
+        $buyer = User::factory()->create();
+
+        // Guest tidak bisa chat (auth), user bisa.
+        $this->post('/messages', ['property_id' => $property->id, 'body' => 'Halo?'])
+            ->assertRedirect('/login');
+
+        $this->actingAs($buyer)->post('/messages', [
+            'property_id' => $property->id,
+            'body' => 'Apakah masih tersedia unit hook?',
+        ])->assertStatus(302);
+        $this->assertDatabaseHas('messages', [
+            'property_id' => $property->id,
+            'sender_user_id' => $buyer->id,
+        ]);
+
+        // Pesan muncul di thread halaman detail.
+        $this->get('/properti/'.$property->slug)->assertOk()->assertSee('Apakah masih tersedia unit hook?');
+    }
+
+    public function test_guest_intent_chain_pricing_form_routes_correctly(): void
+    {
+        $owner = User::factory()->create();
+        $property = Property::factory()->create(['user_id' => $owner->id]);
+        Package::query()->firstOrCreate(
+            ['slug' => 'basic'],
+            ['name' => 'Basic', 'price' => 100000, 'duration_days' => 30, 'max_photos' => 5]
+        );
+
+        // Guest: form pricing mengarah ke order-intent (data selamat via session).
+        $this->get('/harga?property_id='.$property->id)->assertOk()
+            ->assertSee(route('orders.intent'), false);
+
+        // User login: form mengarah langsung ke orders.store.
+        $this->actingAs($owner)->get('/harga?property_id='.$property->id)->assertOk()
+            ->assertSee(route('orders.store'), false);
+    }
 }

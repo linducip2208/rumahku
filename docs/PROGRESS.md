@@ -183,6 +183,10 @@ Update file ini setiap selesai satu blok.
 - [x] Temuan saat nulis test (bukan bug app): payload callback manual pakai `reference_id`+`status` (bukan `external_id`); track WA butuh properti milik agen berprofil
 - [x] CI run #1–3 merah di `migrate --env=testing` (password MySQL mismatch) → sudah diperbaiki di job `test` (allow-empty-password); run #4 in-progress dipantau via API
 
+## 2026-11-18 — Koneksi batch 2: KPR, chat, intent pricing (169 tests green)
+- [x] 3 journey baru di `FeatureConnectionTest`: KPR terikat properti (DP>harga ditolak), chat muncul di thread detail (guest ditolak login), form pricing guest→intent vs login→orders
+- [x] Verifikasi penuh hijau, push sinkron
+
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
 - [x] Didaftarkan di `DatabaseSeeder` tanpa hapus seeder bawaan
