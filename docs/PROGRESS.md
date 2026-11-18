@@ -178,6 +178,11 @@ Update file ini setiap selesai satu blok.
 - [x] Verifikasi lokal: 5 test Dusk terdeteksi phpunit, YAML CI valid, JSON valid, suite fitur tetap hijau
 - [ ] Eksekusi browser sesungguhnya butuh Chrome (tidak ada di mesin ini) → jalan di CI Actions
 
+## 2026-11-18 — Cek koneksi antar fitur (166 tests green)
+- [x] `FeatureConnectionTest` 5 journey: buyer (katalog→lead→agen→notifikasi), monetisasi (order→pay→callback→featured), lelang (bid→current_price), sold konsisten hilang di semua kanal, sosial (favorit→compare→track WA)
+- [x] Temuan saat nulis test (bukan bug app): payload callback manual pakai `reference_id`+`status` (bukan `external_id`); track WA butuh properti milik agen berprofil
+- [x] CI run #1–3 merah di `migrate --env=testing` (password MySQL mismatch) → sudah diperbaiki di job `test` (allow-empty-password); run #4 in-progress dipantau via API
+
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
 - [x] Didaftarkan di `DatabaseSeeder` tanpa hapus seeder bawaan
