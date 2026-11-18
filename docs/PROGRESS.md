@@ -191,6 +191,11 @@ Update file ini setiap selesai satu blok.
 - [x] 4 journey baru: favorit API round-trip (toggle→index→untoggle), order API bisa dibayar via web + user lain 403, compare dibatasi 4 + track tel, dashboard mencerminkan aktivitas agen
 - [x] Verifikasi penuh hijau
 
+## 2026-11-18 — Perbaiki CI merah (pantauan via API)
+- [x] Temuan: run #1–#3 gagal di `migrate` (password mismatch); run #7: job `test` tetap gagal migrate + job `dusk` gagal di `php artisan dusk` (14 dtk)
+- [x] Fix: password MySQL eksplisit `ci-password` di kedua job (ganti allow-empty), flag Chrome `--no-sandbox --disable-dev-shm-usage`, upload artefak dusk+screenshots+log saat gagal
+- [ ] Tunggu hasil run berikutnya di tab Actions
+
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
 - [x] Didaftarkan di `DatabaseSeeder` tanpa hapus seeder bawaan

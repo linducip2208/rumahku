@@ -12,7 +12,7 @@ jobs:
       mysql:
         image: mysql:8.4
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_ROOT_PASSWORD: ci-password
           MYSQL_DATABASE: rumah123_testing
         ports:
           - 3306:3306
@@ -21,6 +21,13 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: rumah123_testing
+      DB_USERNAME: root
+      DB_PASSWORD: ci-password
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -43,7 +50,7 @@ jobs:
       mysql:
         image: mysql:8.4
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_ROOT_PASSWORD: ci-password
           MYSQL_DATABASE: rumah123_dusk
         ports:
           - 3306:3306
@@ -59,7 +66,7 @@ jobs:
       DB_PORT: 3306
       DB_DATABASE: rumah123_dusk
       DB_USERNAME: root
-      DB_PASSWORD: ''
+      DB_PASSWORD: ci-password
       SCOUT_DRIVER: collection
       MAIL_MAILER: array
       QUEUE_CONNECTION: sync
@@ -84,3 +91,11 @@ jobs:
       - run: php artisan serve --host=127.0.0.1 --port=8000 > /tmp/serve.log 2>&1 &
       - run: for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000 > /dev/null && break; sleep 1; done
       - run: php artisan dusk
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: dusk-artifacts
+          path: |
+            tests/Browser/screenshots/
+            tests/Browser/console/
+            storage/logs/
