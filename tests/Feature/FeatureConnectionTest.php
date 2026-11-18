@@ -262,4 +262,95 @@ class FeatureConnectionTest extends TestCase
         $this->actingAs($owner)->get('/harga?property_id='.$property->id)->assertOk()
             ->assertSee(route('orders.store'), false);
     }
+
+    public function test_api_favorite_round_trip_appears_in_index(): void
+    {
+        $owner = User::factory()->create();
+        $property = Property::factory()->create([
+            'user_id' => $owner->id,
+            'published_at' => now(),
+            'sold_at' => null,
+        ]);
+        $user = User::factory()->create();
+        $token = $user->createToken('t', ['favorites:write'])->plainTextToken;
+        $headers = ['Authorization' => 'Bearer '.$token];
+
+        // Toggle on → masuk daftar favorit API.
+        $this->postJson('/api/v1/favorites/toggle', ['property_id' => $property->id], $headers)
+            ->assertCreated();
+        $this->getJson('/api/v1/favorites', $headers)->assertOk()
+            ->assertJsonFragment(['id' => $property->id]);
+
+        // Toggle off → hilang dari daftar.
+        $this->postJson('/api/v1/favorites/toggle', ['property_id' => $property->id], $headers)
+            ->assertOk()->assertJsonPath('favorited', false);
+        $index = $this->getJson('/api/v1/favorites', $headers)->assertOk()->json('data');
+        $this->assertNotContains($property->id, array_column($index, 'id'));
+    }
+
+    public function test_api_order_payable_via_web(): void
+    {
+        Setting::set('payments.default_driver', 'manual', 'payments');
+        Setting::set('payments.bank_accounts', 'BCA 1 a.n. X', 'payments');
+
+        $user = User::factory()->create();
+        $property = Property::factory()->create(['user_id' => $user->id]);
+        $package = Package::query()->firstOrCreate(
+            ['slug' => 'basic'],
+            ['name' => 'Basic', 'price' => 100000, 'duration_days' => 30, 'max_photos' => 5]
+        );
+        $token = $user->createToken('t', ['orders:write'])->plainTextToken;
+
+        // Order dibuat via API…
+        $this->postJson('/api/v1/orders', [
+            'property_id' => $property->id,
+            'package_slug' => $package->slug,
+        ], ['Authorization' => 'Bearer '.$token])->assertCreated();
+
+        $order = PropertyOrder::query()->where('property_id', $property->id)->firstOrFail();
+
+        // …bisa dibayar via web dengan user yang sama, user lain ditolak.
+        $this->actingAs($user)->get('/pay/'.$order->id)->assertOk();
+        $other = User::factory()->create();
+        $this->actingAs($other)->get('/pay/'.$order->id)->assertForbidden();
+    }
+
+    public function test_compare_caps_at_four_and_track_tel(): void
+    {
+        $agent = User::factory()->create(['role' => 'agent']);
+        AgentProfile::factory()->create([
+            'user_id' => $agent->id,
+            'verified_at' => now(),
+            'phone' => '081234567890',
+            'wa' => '081234567890',
+        ]);
+        $properties = Property::factory()->count(5)->create([
+            'user_id' => $agent->id,
+            'published_at' => now(),
+            'sold_at' => null,
+        ]);
+        $user = User::factory()->create();
+
+        foreach ($properties as $property) {
+            $this->actingAs($user)->post('/bandingkan/'.$property->id)->assertStatus(302);
+        }
+
+        // Session dibatasi 4 walau 5 kali tambah.
+        $this->assertCount(4, session('compare_ids'));
+
+        // Klik telpon agen → counter tel naik.
+        $this->get("/t/{$properties->first()->id}/tel")->assertRedirect();
+        $this->assertSame(1, (int) $properties->first()->fresh()->tel_clicks);
+    }
+
+    public function test_dashboard_reflects_agent_activity(): void
+    {
+        $agent = User::factory()->create(['role' => 'agent']);
+        $property = Property::factory()->create(['user_id' => $agent->id]);
+        Lead::factory()->create(['property_id' => $property->id, 'agent_user_id' => $agent->id]);
+
+        $response = $this->actingAs($agent)->get('/dashboard')->assertOk();
+        $this->assertSame(1, (int) $response->viewData('totalListings'));
+        $this->assertSame(1, (int) $response->viewData('totalLeads'));
+    }
 }

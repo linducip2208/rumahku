@@ -187,6 +187,10 @@ Update file ini setiap selesai satu blok.
 - [x] 3 journey baru di `FeatureConnectionTest`: KPR terikat properti (DP>harga ditolak), chat muncul di thread detail (guest ditolak login), form pricing guest→intent vs login→orders
 - [x] Verifikasi penuh hijau, push sinkron
 
+## 2026-11-18 — Koneksi batch 3: API↔web, batas compare, dashboard (173 tests green)
+- [x] 4 journey baru: favorit API round-trip (toggle→index→untoggle), order API bisa dibayar via web + user lain 403, compare dibatasi 4 + track tel, dashboard mencerminkan aktivitas agen
+- [x] Verifikasi penuh hijau
+
 ## 2026-11-14 — Seeders + Tests (blok paralel)
 - [x] `database/seeders/DemoSeeder.php` defensif (class_exists + hasTable; kolom users.role opsional)
 - [x] Didaftarkan di `DatabaseSeeder` tanpa hapus seeder bawaan
