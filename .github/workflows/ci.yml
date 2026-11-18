@@ -42,17 +42,26 @@ jobs:
       - run: vendor/bin/pint --test
       - run: npm ci --ignore-scripts
       - run: npm run build
-      - run: vendor/bin/phpunit --log-junit /tmp/junit-test.xml
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-unit.xml tests/Unit
+        if: always()
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-a.xml --filter '/(AdminPanelTest|AgentFlowTest|AgentListingLifecycleTest|ApiTest|ApiDocsTest|AuctionBidTest|AuctionRaceTest|AuditLogTest|BackupTest|CaptchaTest|ContactTest)/'
+        if: always()
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-b.xml --filter '/(ExampleTest|ExtraFlowTest|FacilityTest|FavoriteToggleTest|FeatureConnectionTest|FlushDemoDataTest|HardeningTest|IdeaBankTest|InfoTest|KprFlowTest|LandingDataTest)/'
+        if: always()
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-c.xml --filter '/(LeadNotifyTest|LeadPipelineTest|ListingQuotaTest|LocaleTest|LoginThrottleTest|MarketplaceTest|MessageTest|ModerationTest|OrderOwnershipTest|OwnerRoleTest|PackageTest)/'
+        if: always()
+      - run: vendor/bin/phpunit --log-junit /tmp/junit-d.xml --filter '/(PayFlowTest|PaymentIdempotencyTest|PaymentTest|PropertyCsvTest|SearchTest|SeoArticlesTest|SoldStatusTest|TokenSecurityTest|TrackAndBrochureTest|UnpublishedApiTest)/'
+        if: always()
       - uses: mikepenz/action-junit-report@v4
         if: always()
         with:
-          report_paths: /tmp/junit-test.xml
+          report_paths: /tmp/junit-*.xml
           check_name: PHPUnit results
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: junit-test
-          path: /tmp/junit-test.xml
+          path: /tmp/junit-*.xml
 
   dusk:
     runs-on: ubuntu-latest
