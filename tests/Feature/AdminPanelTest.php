@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Database\Seeders\RolePermissionSeeder;
 use Filament\Auth\Pages\Login;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -14,10 +15,15 @@ class AdminPanelTest extends TestCase
 
     private function admin(): User
     {
-        return User::factory()->create([
+        $this->seed(RolePermissionSeeder::class);
+
+        $admin = User::factory()->create([
             'email' => 'admin-test@rumah123.local',
             'role' => 'admin',
         ]);
+        $admin->assignRole('admin');
+
+        return $admin->fresh();
     }
 
     public function test_guest_redirected_to_login(): void

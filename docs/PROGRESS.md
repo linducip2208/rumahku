@@ -163,6 +163,13 @@ Update file ini setiap selesai satu blok.
 - [x] Test: sync saat kolom berubah, RoleResource terlihat admin saja (total 5 test role)
 - [x] Verifikasi: route `/admin/roles` terdaftar, suite hijau, sinkron
 
+## 2026-11-19 — Gate resource inti + Permission viewer (180 tests green)
+- [x] `canViewAny` berbasis permission: Properties→manage properties, Leads→manage leads, Orders→manage orders, Articles+Projects→manage content (Users/Roles sudah ada)
+- [x] `PermissionResource` read-only (list + view + hitung role & pengguna, gate `manage roles`); route `/admin/permissions` terdaftar
+- [x] `AdminPanelTest::admin()` seed role + assign agar admin lolos gate baru
+- [x] Test: panel lolos tapi permission kurang → 403 di resource ter-gate; PermissionResource terlihat admin
+- [x] Verifikasi: suite hijau, sinkron
+
 ## 2026-11-18 — Hardening 7 batch (audit → fix, 157 tests green)
 - [x] P0: throttle API leads + bid + brosur + global v1 `120,1`; favorit `firstOrCreate` anti-race; order dedup `409`; sold hilang di sitemap/proyek/agen; city `LIKE`; `Project.facilities` cast array; `payment_reference/driver` fillable; Xendit token wajib di prod + log callback
 - [x] P1: hint demo `/admin/login` (debug only); `UserResource` + filter role; auto-slug 4 form; `package_slug` relasi; validasi telepon; audit lock; status ide; `FacilitySeeder` JSON + `TagsInput`; `README.md` proyek + CI `.github/workflows/ci.yml`

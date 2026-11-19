@@ -24,6 +24,11 @@ class PropertyOrderResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'package_slug';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->can('manage orders') ?? false;
+    }
+
     public static function getNavigationBadge(): ?string
     {
         $count = static::getModel()::query()->where('status', 'pending')->count();

@@ -26,6 +26,11 @@ class LeadResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->can('manage leads') ?? false;
+    }
+
     public static function getNavigationBadge(): ?string
     {
         $count = static::getModel()::query()->where('status', 'baru')->count();

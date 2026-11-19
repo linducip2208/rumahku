@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\Permissions\PermissionResource;
 use App\Filament\Resources\Roles\RoleResource;
 use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
 use Database\Seeders\RolePermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -93,5 +95,31 @@ class RolePermissionTest extends TestCase
 
         $this->actingAs($agent);
         $this->assertFalse(RoleResource::canViewAny());
+    }
+
+    public function test_panel_access_without_permission_is_denied_gated_pages(): void
+    {
+        // Agen lolos panel bila kolom role admin (in-memory, tanpa save agar
+        // hook sinkronisasi tidak ikut jalan), tapi tanpa permission Spatie
+        // yang sesuai → resource yang di-gate menolak (403).
+        $user = User::factory()->create(['role' => 'agent']);
+        $user->assignRole('agent');
+        $user->forceFill(['role' => 'admin']);
+
+        $this->actingAs($user)->get('/admin')->assertOk();
+        $this->actingAs($user)->get('/admin/users')->assertForbidden();
+        $this->actingAs($user)->get('/admin/properties')->assertOk(); // agent punya manage properties
+    }
+
+    public function test_permission_resource_registered_and_gated(): void
+    {
+        $this->assertTrue(Route::has('filament.admin.resources.permissions.index'));
+
+        $admin = User::factory()->create(['role' => 'admin']);
+        $admin->assignRole('admin');
+
+        $this->actingAs($admin);
+        $this->assertTrue(PermissionResource::canViewAny());
+        $this->get('/admin/permissions')->assertOk();
     }
 }

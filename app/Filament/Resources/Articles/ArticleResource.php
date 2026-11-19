@@ -24,6 +24,11 @@ class ArticleResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->can('manage content') ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return ArticleForm::configure($schema);
