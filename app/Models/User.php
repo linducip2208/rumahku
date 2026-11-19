@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 #[Fillable(['name', 'email', 'password'])]
@@ -22,6 +23,21 @@ class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasApiTokens, HasFactory, HasRoles, Notifiable;
+
+    protected static function booted(): void
+    {
+        // Kolom `role` tetap sumber utama: setiap user disimpan,
+        // sinkronkan Spatie role agar tak divergen (mis. diubah via admin).
+        static::saved(function (User $user): void {
+            $role = (string) ($user->getAttribute('role') ?? '');
+
+            if ($role === '' || ! Role::query()->where('name', $role)->exists() || $user->hasRole($role)) {
+                return;
+            }
+
+            $user->syncRoles([$role]);
+        });
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {

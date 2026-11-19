@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\Roles\RoleResource;
 use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
 use Database\Seeders\RolePermissionSeeder;
@@ -65,5 +66,32 @@ class RolePermissionTest extends TestCase
         $user = User::query()->where('email', 'agenbaru@example.com')->firstOrFail();
         $this->assertSame('agent', $user->role);
         $this->assertTrue($user->hasRole('agent'));
+    }
+
+    public function test_changing_role_column_syncs_spatie_role(): void
+    {
+        $user = User::factory()->create(['role' => 'agent']);
+        $user->assignRole('agent');
+        $this->assertFalse($user->can('manage users'));
+
+        $user->forceFill(['role' => 'admin'])->save();
+
+        $this->assertTrue($user->fresh()->hasRole('admin'));
+        $this->assertTrue($user->fresh()->can('manage users'));
+    }
+
+    public function test_role_resource_visible_only_with_manage_roles(): void
+    {
+        $admin = User::factory()->create(['role' => 'admin']);
+        $admin->assignRole('admin');
+
+        $agent = User::factory()->create(['role' => 'agent']);
+        $agent->assignRole('agent');
+
+        $this->actingAs($admin);
+        $this->assertTrue(RoleResource::canViewAny());
+
+        $this->actingAs($agent);
+        $this->assertFalse(RoleResource::canViewAny());
     }
 }

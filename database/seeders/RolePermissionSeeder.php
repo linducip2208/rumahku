@@ -22,6 +22,7 @@ class RolePermissionSeeder extends Seeder
     public const ROLE_PERMISSIONS = [
         'admin' => [
             'manage users',
+            'manage roles',
             'manage properties',
             'manage leads',
             'manage orders',

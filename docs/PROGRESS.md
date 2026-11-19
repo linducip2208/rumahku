@@ -156,6 +156,13 @@ Update file ini setiap selesai satu blok.
 - [x] Bonus: `DemoSeeder::seedProperties` dibuat idempoten (skip by slug) — `db:seed` ulang kini hijau; dev DB: admin 1 + agen 10 ter-assign
 - [x] Verifikasi penuh hijau, sinkron
 
+## 2026-11-19 — Admin role lengkap + seeder idempoten penuh (178 tests green)
+- [x] `DatabaseSeeder` Test User → `firstOrCreate` (db:seed penuh kini bisa diulang)
+- [x] `User::booted` sinkron kolom `role` → Spatie otomatis (guard bila role belum ada; tanpa loop karena pivot-only)
+- [x] `RolePermissionSeeder` + permission `manage roles` (admin); `RoleResource` Filament (list/view/create/edit + hitung permission & pengguna, gate `manage roles`)
+- [x] Test: sync saat kolom berubah, RoleResource terlihat admin saja (total 5 test role)
+- [x] Verifikasi: route `/admin/roles` terdaftar, suite hijau, sinkron
+
 ## 2026-11-18 — Hardening 7 batch (audit → fix, 157 tests green)
 - [x] P0: throttle API leads + bid + brosur + global v1 `120,1`; favorit `firstOrCreate` anti-race; order dedup `409`; sold hilang di sitemap/proyek/agen; city `LIKE`; `Project.facilities` cast array; `payment_reference/driver` fillable; Xendit token wajib di prod + log callback
 - [x] P1: hint demo `/admin/login` (debug only); `UserResource` + filter role; auto-slug 4 form; `package_slug` relasi; validasi telepon; audit lock; status ide; `FacilitySeeder` JSON + `TagsInput`; `README.md` proyek + CI `.github/workflows/ci.yml`
