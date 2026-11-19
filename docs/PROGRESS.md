@@ -149,6 +149,14 @@ Live: `php artisan serve --port=8001` → `/` `/properti` `/admin`. Preview Metr
 
 Update file ini setiap selesai satu blok.
 
+## 2026-11-19 — Daftar akun di /login + audit error Filament v5 (184 tests green)
+- [x] Halaman `/login` tampilkan daftar akun demo (admin + agen, hanya saat `APP_DEBUG=true`) + link ke `/admin/login`; test render
+- [x] Fix TypeError `ManagePayments.php:75`: closure type-hint `Filament\Forms\Get/Set` tidak ada di v5 → `Filament\Schemas\Components\Utilities\Get/Set` (5 file: ManagePayments + 4 form auto-slug); diverifikasi vendor tidak ada alias
+- [x] Audit 23 closure ber-type di `app/Filament`: sisanya aman (model/scalar/Collection)
+- [x] Regression test render halaman pembayaran (terbukti gagal dengan pesan persis sebelum fix, hijau sesudahnya)
+- [x] `AdminPagesRenderTest`: 12 halaman admin (dashboard, users, roles, permissions, properties+create, leads, orders+create, 3 halaman pengaturan) semua render 200
+- [x] Verifikasi penuh hijau, sinkron
+
 ## 2026-11-19 — Spatie roles & permissions kembali (176 tests green)
 - [x] `composer require spatie/laravel-permission ^8.5` + publish config/migrasi; `HasRoles` di `User` (kolom `role` tetap sumber utama, tanpa ubah perilaku lama)
 - [x] `RolePermissionSeeder` idempoten (roles admin/agent/owner/user + 6 permission, admin pegang semua); `DemoSeeder` panggil duluan + `assignRole` sinkron kolom→Spatie; `RegisterController` assignRole bila role tersedia

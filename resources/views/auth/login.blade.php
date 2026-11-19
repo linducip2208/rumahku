@@ -39,6 +39,14 @@
             {{ __('site.auth.login_prompt') }}
             <a href="{{ route('register') }}" class="text-primary hover:underline font-semibold">{{ __('site.auth.login_cta') }}</a>
         </p>
+
+        @if(config('app.debug'))
+            <div class="mt-4 rounded-xl border border-dashed border-amber-300 bg-amber-50 px-4 py-3 text-xs leading-relaxed text-amber-900">
+                <strong>Akun demo lokal</strong> (hanya tampil saat APP_DEBUG=true)<br>
+                Admin: <code>admin@rumah123.local</code> / <code>password</code> (masuk via <a href="/admin/login" class="underline font-semibold">/admin/login</a>)<br>
+                Agen: <code>agen1@rumah123.local</code> / <code>password</code>
+            </div>
+        @endif
     </div>
 </section>
 @endsection

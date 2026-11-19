@@ -140,6 +140,11 @@ class HardeningTest extends TestCase
         $this->assertDatabaseHas('contact_messages', ['name' => 'Siti']);
     }
 
+    public function test_login_page_lists_demo_accounts_in_debug(): void
+    {
+        $this->get(route('login'))->assertOk()->assertSee('admin@rumah123.local', false);
+    }
+
     public function test_soft_deletes_and_restore(): void
     {
         $lead = Lead::factory()->create();
