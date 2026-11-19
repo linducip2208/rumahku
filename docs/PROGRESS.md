@@ -149,6 +149,13 @@ Live: `php artisan serve --port=8001` → `/` `/properti` `/admin`. Preview Metr
 
 Update file ini setiap selesai satu blok.
 
+## 2026-11-19 — Spatie roles & permissions kembali (176 tests green)
+- [x] `composer require spatie/laravel-permission ^8.5` + publish config/migrasi; `HasRoles` di `User` (kolom `role` tetap sumber utama, tanpa ubah perilaku lama)
+- [x] `RolePermissionSeeder` idempoten (roles admin/agent/owner/user + 6 permission, admin pegang semua); `DemoSeeder` panggil duluan + `assignRole` sinkron kolom→Spatie; `RegisterController` assignRole bila role tersedia
+- [x] `UserResource::canViewAny` dibatasi permission `manage users`; `RolePermissionTest` 3 test (seed idempoten, admin vs agen, register assign)
+- [x] Bonus: `DemoSeeder::seedProperties` dibuat idempoten (skip by slug) — `db:seed` ulang kini hijau; dev DB: admin 1 + agen 10 ter-assign
+- [x] Verifikasi penuh hijau, sinkron
+
 ## 2026-11-18 — Hardening 7 batch (audit → fix, 157 tests green)
 - [x] P0: throttle API leads + bid + brosur + global v1 `120,1`; favorit `firstOrCreate` anti-race; order dedup `409`; sold hilang di sitemap/proyek/agen; city `LIKE`; `Project.facilities` cast array; `payment_reference/driver` fillable; Xendit token wajib di prod + log callback
 - [x] P1: hint demo `/admin/login` (debug only); `UserResource` + filter role; auto-slug 4 form; `package_slug` relasi; validasi telepon; audit lock; status ide; `FacilitySeeder` JSON + `TagsInput`; `README.md` proyek + CI `.github/workflows/ci.yml`

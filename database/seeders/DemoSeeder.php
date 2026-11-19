@@ -33,6 +33,8 @@ class DemoSeeder extends Seeder
 
     public function run(): void
     {
+        $this->call(RolePermissionSeeder::class);
+
         $password = Hash::make((string) env('DEMO_PASSWORD', 'password'));
         $hasRoleColumn = Schema::hasTable('users') && Schema::hasColumn('users', 'role');
 
@@ -73,6 +75,10 @@ class DemoSeeder extends Seeder
     {
         if ($hasRoleColumn && $user->getAttribute('role') !== $role) {
             $user->forceFill(['role' => $role])->save();
+        }
+
+        if (! $user->hasRole($role)) {
+            $user->assignRole($role);
         }
     }
 
@@ -139,10 +145,19 @@ class DemoSeeder extends Seeder
             $isSale = $i % 3 !== 0; // mix jual/sewa ± 2:1
             $listingWord = $isSale ? 'Dijual' : 'Disewakan';
             $title = "{$listingWord} ".ucfirst($type)." di {$city} #{$i}";
+            $slug = Str::slug($title)."-{$i}";
+
+            $existingId = DB::table('properties')->where('slug', $slug)->value('id');
+            if ($existingId) {
+                $ids[] = $existingId;
+
+                continue;
+            }
+
             $candidate = [
                 'user_id' => $agents[($i - 1) % count($agents)]->id,
                 'title' => $title,
-                'slug' => Str::slug($title)."-{$i}",
+                'slug' => $slug,
                 'type' => $type,
                 'listing_status' => $isSale ? 'jual' : 'sewa',
                 'price' => $this->realisticPrice($type, $isSale, $i),

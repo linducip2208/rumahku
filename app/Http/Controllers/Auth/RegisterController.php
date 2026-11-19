@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -42,6 +43,10 @@ class RegisterController extends Controller
         $role = $validated['role'] ?? 'agent';
 
         $user->forceFill(['role' => $role])->save();
+
+        if (Role::query()->where('name', $role)->exists() && ! $user->hasRole($role)) {
+            $user->assignRole($role);
+        }
 
         if ($role === 'agent') {
             AgentProfile::query()->create([
